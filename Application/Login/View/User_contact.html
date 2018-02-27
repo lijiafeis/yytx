@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>逸风天贸</title>
+    <link rel="stylesheet" href="__PUBLIC__/cs/weui.min.css"/>
+	<include file="Application/Wap/View/Public_header.html" />
+	<style>
+	
+	</style>
+<script>
+$(document).ready(function(){
+	layer.open({content:'保存二维码分享给好友，或者分享该页面地址给好友也可以哦！',skin:'msg',time:6});
+});
+/*链接跳转函数*/
+function jump_url(obj){
+	 layer.open({type: 2,shadeClose: false,content: '正在前往请求页面'});
+	 var url = $(obj).attr('data-url');
+	 setTimeout(function(){location.href=url},1000);
+}
+</script>
+</head>
+<body style="position: relative;background: #000;">
+	<div class="wap-header">
+		<i class="left iconfont icon-xiangzuo" onclick="history.go(-1);"></i>
+		<span>二维码</span>
+		<i class="right iconfont icon-zhuye" onclick="jump_url(this)" data-url="{:U('Center/index')}"></i>
+		<div class="clear"></div>
+	</div>
+	<img src="/{$qr_info.media_id}" width="100%" alt="" style="display: block">
+</body>
+</html>

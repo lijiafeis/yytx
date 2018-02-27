@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link href="__PUBLIC__/admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>资金管理</div>
+	<div class="main-content">
+
+		<div>
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">发送红包</a></li>
+		    <li role="presentation" class="active"><a href="#record" aria-controls="record" role="tab" data-toggle="tab">发送记录</a></li>		    
+		  </ul>
+		  
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		  	<div role="tabpanel" class="tab-pane" id="home">
+				
+				<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+					这个功能可以帮助你快速的给系统会员发送红包。
+				</div>
+				
+				
+			
+				  <div class="col-lg-12 col-sm-6">
+				    <div class="input-group">
+				      <div class="input-group-btn">
+				        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span id="dropdown-toggle">选择搜索项</span> <span class="caret"></span></button>
+				        <ul class="dropdown-menu" role="menu">
+				          <li data-type="id"><a href="#">用户ID</a></li>
+				          <li data-type='nickname'><a href="#">用户昵称</a></li>
+				        </ul>
+				      </div><!-- /btn-group -->
+				     <div class="input-group" style='width:400px;'>
+					  <input type="text" class="form-control" id="keyword" name="" value="" placeholder="">
+					  <span class="input-group-addon btn btn-info" style="background:#5bc0de;color:#fff;" onclick="search()">搜索用户</span>
+					</div>
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->
+  
+				  <div style="clear:both"></div>
+				<form class="form-horizontal" action="{:U('send_hongbao')}?type=sending" method="post" id="form" onsubmit="return check();" style="display:none;">
+					<div class="form-group" id="good_list" style="width:600px;margin:100px 0px;text-align:center;">
+						<div><img id="person_pic" src="__PUBLIC__/head.jpg" width="90px" alt="..." class="img-thumbnail"></div>
+						<div id="person_name" style="line-height:40px;margin-bottom:30px;">于春峰西瓜科技【ID：23455】</div>
+						 <div class="form-group">
+				    <label for="inputPassword3" class="col-sm-1 control-label" style="width:120px">发放金额/元</label>
+				    <div class="col-sm-7">
+				      <input type="text" class="form-control" name="money" id="money" placeholder="">
+				    </div>
+				  </div>
+
+				  <input type="hidden" name="user_id" id='user_id' value="">
+				  <input type="hidden" name="openid" id='openid' value="">
+				<button type="submit" class="btn btn-success col-sm-3">确定发送</button>
+					</div>
+				</form>
+		    </div>
+		    <div role="tabpanel" class="tab-pane active" id="record">
+				
+				<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+					后台红包发放记录
+				</div>
+				<div id="list">
+				
+				</div>
+		    </div>
+		
+		  </div>
+		</div>
+		
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+
+<script src="__PUBLIC__/admin/js/fileinput.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/fileinput_locale_zh.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+	$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+var type = 0;
+
+$(document).ready(function(){
+	$('.dropdown-menu li').click(function(){
+		$('#dropdown-toggle').text($(this).text());
+		type = $(this).attr('data-type');
+	});
+
+getpage(1);
+});
+function check(){
+	var index = layer.load();
+	var money = $('#money').val();if(money == ''){layer.closeAll();layer.msg('请填写发放金额');return false;}else if(money < 1){layer.closeAll();layer.msg('金额最低为1元');return false;}else if(money > 200){layer.closeAll();layer.msg('金额最高为200元');return false;}
+}
+function search(){
+	if(type == 0){layer.msg('请选择搜索类型');exit;}
+	var keyword = $('#keyword').val();
+	if(keyword == ''){layer.msg('请输入查询关键词');exit;}
+	$.ajax({
+		type:'post',
+		url:"{:U('send_hongbao')}?type=search",
+		dataType:'json',
+		data:{type:type,content:keyword},
+		success:function(json){
+			if(json == null){
+				layer.msg('未查找到用户');exit;
+			}
+			$('#form').css('display','block');
+			$('#person_pic').attr('src',json.headimgurl);
+			$('#user_id').val(json.user_id);
+			$('#openid').val(json.openid);
+			$('#person_name').text(json.nickname+'　ID:　'+json.user_id);
+		},
+		error:function(){
+			layer.msg('发生错误');
+		}
+
+	});
+}
+function getpage(p){
+	$('#list').html('<div style="text-align:center;margin-top:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="60px" ></div>');
+	$("#list").load(
+		"{:U('send_hongbao')}?type=list&p="+p,
+		function() {}
+	);
+}
+
+</script>

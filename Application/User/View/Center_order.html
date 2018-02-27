@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>订单列表</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/cardinal.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font1/iconfont.css">
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();
+});
+</script>
+	<script>
+var state = '{$state}';
+$(document).ready(function(){
+	$('.menu').each(function(){
+		if($(this).attr('data') == state){
+			$(this).css('border-bottom',"2px solid {:C('WAP_COLOR')}");
+			$(this).find('.icon').css('color',"{:C('WAP_COLOR')}");
+		}
+	});
+	$('.menu').on('click',function(){
+		var name = $(this).attr('data');
+		$('.menu').each(function(){
+			$(this).css('border','');$(this).find('.icon').css('color','');
+		});
+		$(this).css('border-bottom',"2px solid {:C('WAP_COLOR')}");
+		$(this).find('.icon').css('color',"{:C('WAP_COLOR')}");
+		$('.order').each(function(){
+			$(this).css('display','none');
+		});
+		$('#'+name).css('display','block');
+		if(name == 'all'){
+			state = "all";
+		}else if(name == 'pay'){
+			state = 'pay';
+		}else if(name == 'wuliu'){
+			state = 'wuliu';
+		}else if(name == 'zan'){
+			state = 'zan';
+		}
+		getpage(1);
+	});
+	getpage(1);
+});
+function getpage(p){
+	var url = "{:U('order_ajax')}?p="+p+"&type="+state;
+	$('#'+state).html('<div style="text-align:center;margin:0 auto;width:15%;padding-top:60px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" ></div>');
+	$('#'+state).load(
+		url,
+		function() {}
+	);
+}
+function shouhuo(order_id,pay_id){
+	loading('正在确认…');
+	$.ajax({
+		type:'post',
+		url:"{:U('order_shouhuo')}",
+		dataType:'json',
+		data:{order_id:order_id,pay_id:pay_id}, 
+		success:function(){
+			dialog2('确认收货成功！');loadingclose();$('.menu1').click();	
+		},
+		error:function(){
+			dialog2('操作失败！');loadingclose();
+			
+		}
+	});
+}
+	</script>
+	<style>
+	.weui_panel_bd a{text-decoration:none;}
+	.weui_btn_plain_default{font-size:10px;}
+	</style>
+</head>
+<body style="padding-bottom:100px;">
+
+
+<!--用户信息概要-->
+<div class="grid gutter-1px mb user-well">
+	<div class="grid-item 3/12 menu" data="all"><div class="box tc bottom-nav"><p class="icon iconfont">&#xe791;</p>全部</div></div>
+	<div class="grid-item 3/12 menu" data="pay"><div class="box tc bottom-nav"><p class="icon iconfont">&#xe673;</p>待付款</div></div>
+	<div class="grid-item 3/12 menu" data="wuliu"><div class="box tc bottom-nav"><p class="icon iconfont">&#xe671;</p>待收货</div></div>
+	<div class="grid-item 3/12 menu menu1" data="zan"><div class="box tc bottom-nav"><p class="icon iconfont">&#xe672;</p>待评价</div></div>
+</div>
+<div class="bd" style="min-height:150px;width:100%;background:#fff;">
+	<div class="order" id="all"></div>
+	<div class="order" id="pay"></div>
+	<div class="order" id="wuliu"></div>
+	<div class="order" id="zan"></div>
+		
+    <div style="clear:both"></div>
+        
+    </div>
+<include file="./Application/Shop/View/wap_footer.html" />
+</body>
+</html>

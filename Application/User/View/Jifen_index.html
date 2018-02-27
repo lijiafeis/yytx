@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>{$app_info.0.wxname}积分专区</title>
+   <!--  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+	
+
+	
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+	<style>
+	.group-header{background:#ff6666;width:100%;padding-bottom:2px;padding-top:10px;text-align:center;
+				background:-webkit-gradient(linear, 0% 0%, 100% 100%, from({:C('WAP_COLOR')}), to({:C('WAP_JIANBIAN_COLOR')}));}
+	.group-header .group{width:33.3%;color:#fff;text-align:center;padding:20px 0 0 0;font-size:14px;}
+	.group-header .weui_cell_bd span{font-size:14px;color:#fff}
+	.weui_cell{font-size:14px;}
+	.weui_cell:focus{background:#efedf1}
+	.weui_navbar_item{font-size:12px;}
+	.qiandao{position:fixed;top:13%;color:#f3f3f3;font-size:10px;line-height:15px;text-align:center;padding:10px;width:40px;height:40px;border-radius:50%;background:{:C('WAP_COLOR')};
+			right:5%;}
+	#shou{ 	-webkit-animation: myfirst 0.5s linear 0s infinite alternate;
+	}
+	@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+from {color: {:C('WAP_COLOR')};}
+to {color: #fff;}
+}
+.weui_icon_safe:before {
+    font-size: 24px;
+}
+.weui_icon_safe_success:before {
+    color: {:C('WAP_JIANBIAN_COLOR')};
+}
+	</style>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();//alert('<?php echo $paysign["timeStamp"];?>');
+});
+function wait(){
+	 layer.open({
+    content: '功能即将上线'
+    ,skin: 'footer'
+  });
+}
+function mingxi(){
+	$('#group2').css('display','none');
+	$('#group1').css('display','block');
+}
+function buy(){
+	$('#group1').css('display','none');
+	$('#group2').css('display','block');
+}
+</script>
+</head>
+<body  style="background: #efedf1;margin-bottom:70px;">
+	<div class="group-header" style="padding:0;">
+		<div style="background:#fff url(__PUBLIC__/images/jifen-bg.jpg) no-repeat;background-size:100% 100%;">
+		<img src="__PUBLIC__/images/jifen-bg.png" width="50%">
+		</div>
+		
+		
+		
+		<div class="weui_tab">
+			<div class="weui_navbar" style="color:#555;font-size:12px;">
+				<div class="weui_navbar_item" onclick="mingxi()">
+					<p class="icon iconfont" style="font-size:18px;line-height:30px;color:{:C('WAP_COLOR')};overflow:hidden;height:30px;">
+					<span id="now-jifen" style="display:inline-block;">{$user_info.jifen}<br/><span id="add-jifen">34</span></span></p>我的积分
+				</div>
+				<div class="weui_navbar_item" onclick="wait()">
+					<p class="icon iconfont" style="font-size:25px;line-height:30px;color:{:C('WAP_COLOR')};">&#xe60e;</p>积分商城
+				</div>
+				
+				
+				<div class="weui_navbar_item" onclick="wait()">
+					<p class="icon iconfont" style="font-size:22px;line-height:30px;color:{:C('WAP_COLOR')};">&#xe610;</p>积分抽奖
+				</div>
+				<div class="weui_navbar_item" onclick="buy()">
+					<p class="icon iconfont" style="font-size:29px;line-height:30px;color:{:C('WAP_COLOR')};">&#xe618;</p>积分购买
+				</div>
+				
+			</div>
+			<div class="weui_tab_bd">
+ 
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- <div class="icon iconfont" style="font-size:55px;color:#fffff0;line-height:60px;">&#xe6fa;</div>
+		<div style="white-space: nowrap;text-overflow:ellipsis;overflow:hidden;font-size:14px;color:#fff;line-height:50px;"><span><i class="icon iconfont">&#xe614;</i> 连续签到可获得更多积分！</span></div>
+		 -->
+	
+	
+	<div class="weui_cells abc" id="group1" style="width:100%;">
+		<div class="weui_panel weui_panel_access">
+			<div class="weui_panel_hd">积分明细</div>
+			<div id="list" style="width:100%;"></div>
+		</div>
+		<div class="pagelist">{$page}</div>
+	</div>
+	<div class="weui_cells abc" id="group2" style="width:100%;display:none;">
+		<div class="weui_panel weui_panel_access">
+			
+			<br/>
+			<div class="weui_cells_title">您的钱包余额为{$user_info.shop_income}元，充值请<a href="{:U('/pay/pay/user_money')}?state=pay" style="color:blue;text-decoration:underline">点击这里</a></div>
+			<div class="weui_cells">
+				<div class="weui_cell weui_cell_warn">
+					<div class="weui_cell_hd" style="width:20%;"><label for="" class="weui_label" style="width:100%">金额/元</label></div>
+					<div class="weui_cell_bd weui_cell_primary">
+						<input class="weui_input" type="number" pattern="[0-9]*" name="buy_number" id="buy_number" placeholder="请输入整数">
+					</div>
+					<div class="weui_cell_ft" onclick="">
+						<i class="weui_icon_safe weui_icon_safe_success" style="color:red;width:10px;"></i>
+					</div>
+				</div>
+
+			
+			</div>
+		
+		
+		
+		
+		
+		<div class="weui_cells_tips" style="font-size:12px;">购买须知：1元余额={$jifen_info.buy_per}个积分；只支持钱包余额购买积分；仅支持整数倍购买</div>
+		<div style="width:80%;margin:0 auto;padding:20px;">
+		<a href="javascript:enter();" class="weui_btn weui-btn-mini weui_btn_plain_primary" 
+		style="color:#fff;border:1px solid #fff;line-height:35px;background:{:C('WAP_COLOR')};font-size:14px;">
+		确认购买<span id="buy_jifen"></span>
+		</a>
+		</div>
+		
+		</div>
+		
+	</div>
+	
+	<div class="qiandao" onclick="qiandao()" style="<php>if($jifen_info['qiandao_switch'] != 1){echo 'display:none;';}</php>">
+	<if condition="$day_res eq true">
+	<span class="icon iconfont" id="shou" style="font-size:32px;">&#xe619;</span><br/>
+	<span>点我签到</span>
+	<else />
+	<span class="icon iconfont" id="shou" style="font-size:32px;">&#xe61a;</span><br/>
+	<span>已签到</span>
+	</if>
+	</div>
+		
+	
+	
+	
+	
+	
+	
+</body>
+<script>
+$(document).ready(function(){
+		getpage(1);
+		$('#buy_number').keyup(function(){
+			var value = $('#buy_number').val();
+			if(value > {$user_info.shop_income}){
+				value = Math.floor({$user_info.shop_income});
+				$('#buy_number').val(value);
+				$('#buy_jifen').text(value*{$jifen_info.buy_per}+'个积分');
+			}
+			else if(value != ''){
+				$('#buy_jifen').text(value*{$jifen_info.buy_per}+'个积分');
+			}else if(value == ''){$('#buy_jifen').text('');}
+		});
+});
+function getpage(p){
+	var url = "{:U('index_ajax')}?p="+p;
+	$('#list').html('<div style="text-align:center;margin:0 auto;width:15%;padding-top:60px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$('#list').load(
+		url,
+		function() {}
+	);
+}
+function enter(){
+	var value = $('#buy_number').val();
+	if(value == '' || value== 0){layer.open({content:'请输入购买金额',skin:'msg',time:1});exit;}
+	layer.open({
+		content: '请确认您的购买，账户的余额会被扣除'+value+'元，<br/>继续吗？'
+		,shadeClose: false,btn: ['确认', '取消']
+		,skin: 'footer'
+		,style: 'background:rgba(255,255,255,0.8)'
+		,yes: function(index){
+		  layer.closeAll();layer.open({type:2, shadeClose: false,content: '正在请求'});
+		  buy_jifen_enter(value);
+		}
+	  });
+}
+function buy_jifen_enter(value){
+	$.ajax({
+		type:'post',
+		url:"{:U('buy_jifen')}",
+		dataType:'json',
+		data:{number:value},
+		success:function(json){
+				if(json.success == 1){
+					over(json.error);
+					$('#add-jifen').text({$user_info.jifen}*1+json.jifen*1);
+					$('#now-jifen').animate({'margin-top':'-30px'},1500);
+					setTimeout(function(){location.reload();},1200);
+				}else{
+					over(json.error);
+				}
+		},
+		error:function(){
+			over('请求失败，可能是网络原因，稍后再试');
+		}
+	});
+}
+function a(str){
+	$('.qiandao').stop().animate({top:str+'%'},6000,'linear',function (){
+	//var str = parseInt(40*Math.random());
+	a(10);
+});
+}
+function qiandao(){
+	layer.open({
+		type: 2,shadeClose: false,content: '全力冲刺中'
+	});
+	$.ajax({
+		type:'post',
+		url:"{:U('qiandao')}",
+		dataType:'json',
+		data:{},
+		success:function(json){
+				if(json.success == 1){
+					over(json.error);
+					$('#add-jifen').text({$user_info.jifen}*1+json.jifen*1);
+					$('#now-jifen').animate({'margin-top':'-30px'},1500);
+					$('.qiandao').html('<span class="icon iconfont" id="shou" style="font-size:32px;">&#xe61a;</span><br/><span>已签到</span>');
+				}else{
+					over(json.error);
+				}
+		},
+		error:function(){
+			over('请求失败，可能是网络原因，稍后再试');
+		}
+	});
+}
+function over(text){
+	layer.closeAll();
+	layer.open({
+		content: text
+		,skin: 'msg'
+		,time: 3 //2秒后自动关闭
+	});
+}
+
+</script>
+</html>

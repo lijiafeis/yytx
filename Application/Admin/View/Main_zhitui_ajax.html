@@ -1,0 +1,24 @@
+<table class="table table-bordered table-hover" style="font-size:14px;margin-top:10px;">
+					<th>头像</th>
+					<th>会员名称</th>
+					<th>会员ID</th>
+					<th>会员等级</th>
+					<th>直推人数</th>
+					<th>一周内销售额</th>
+					<!-- <th>是否达标</th> -->
+					
+					<volist name="vinfo" id="vv" key="kk" empty="暂无数据">
+					<tr id="{$kk}" style="font-size:13px;">
+						<td><img src="{$vv.headimgurl}" width="30px"></td>
+						<td>{$vv.nickname}</td>
+						<td>{$vv.user_id}</td>
+						<td>{$vv.agent}</td>
+						<td>{$vv.count}</td>
+						<td>{$vv.sale_fee}</td>
+						<!-- <td><if condition="$vv.hongbao egt 40000">达标<else />未满4w，未达标</if></td> -->
+					</tr>
+					</volist>
+					
+				</table>
+				<div class="pagelist">{$page}</div>
+

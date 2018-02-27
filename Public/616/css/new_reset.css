@@ -1,0 +1,143 @@
+*{margin: 0;padding: 0;}
+html,body{height: 100%;font-family: "微软雅黑";-webkit-tap-highlight-color: rgba(0,0,0,0);}
+.wrap{height: 100%;max-width: 640px;min-width: 320px;margin: auto;font-size: 16px;color: #000;}
+img{margin: 0;padding: 0;border: 0;}
+.clear{clear: both;}
+ul{list-style: none;}
+a{text-decoration: none;color: #000;font-family: "微软雅黑";}
+input,textarea{border: 0;outline: none;font-family: "微软雅黑";}
+.flex_wrap{display: flex;}
+.flex{flex: 1;text-align: center;}
+
+/******************头部************************/
+.header-top {
+	height: 40px;
+	
+}
+
+.fixed {
+	position: fixed;
+	width: 100%;
+	max-width: 640px;
+	min-width: 320px;
+	z-index: 3;
+	margin: 0 auto;
+	
+}
+
+.fixed-top {
+	top: 0;
+	border-bottom: 1px #f0f0f0 solid;
+}
+
+.fixed-top .head {
+	background: #fff;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 10px;	
+	color: #000;
+	font-size: 15px;
+}
+
+.fixed-top .head .l-icon {
+	float: left;
+	margin-top: -1px;
+}
+
+.fixed-top .head .l-icon img {
+	width: 20px;
+	vertical-align: middle;
+}
+
+.fixed-top .head .r-icon {
+	float: right;
+}
+
+.fixed-top .head .r-icon img {
+	width: 20px;
+	vertical-align: middle;
+}
+/**************注册/登录*******************************/
+#logo{text-align: center;}
+#logo img{width: 30%;border-radius: 50%;}
+.login{padding: 30px 10%;box-sizing: border-box;width: 100%;}
+/*body{background:#f0f0f0;}
+.login_wrap{background:#666;}*/
+
+/*.login_wrap{height: 100%;background: url(../img/bg.png)no-repeat;background-size: 100%;max-width: 640px;margin: auto;}*/
+/*.login_wrap{height: 100%;background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#FAB27F), to(#ED5C93));background-size: 100%;max-width: 640px;margin: auto;}*/
+.yzm_box{display: flex;padding:0 10px;border: 1px #fff solid;height: 45px;border-radius: 25px;margin-bottom: 20px;}
+.hq_yzm{width: 100px;text-align: center;border-left: 1px #fff solid;height: 20px;margin-top: 13px;color: #fff;font-size: 14px;}
+input{font-family: "微软雅黑";border: 0;outline: none;}
+.register .tel,.register .pwd{margin-bottom: 20px;}
+.login input{width: 100%;display: block;padding: 14px;border-radius:25px;border: 1px #fff solid;background: rgba(0,0,0,0);color: #fff;box-sizing: border-box;}
+.forget{text-align: right;display: block;color: #fff;font-size: 14px;margin: 15px 0 30px;}
+.login input::-webkit-input-placeholder{color: #fff;}
+.login_btn{padding: 12px;background: #fff;border-radius: 30px;color: #F0788A;display: block;text-align: center;}
+#login #tel{margin-bottom: 20px;}
+.yzm_box input{flex: 3;border: 0;}
+/*********************************下单**********************************/
+/*********************************线下下单**********************************/
+.outline_infor{padding: 10px;background: #fff;font-size: 15px;line-height: 2;}
+.outline_infor .jfb{height: 30px;padding-left: 10px;}
+.outline_infor p{font-size: 14px;}
+.outline_infor span{color: #F54342;}
+.zfb_check{border-bottom: 1px #f8f8f8 solid;}
+.zfb_img,.wx_img{width: 40px;height: 40px;vertical-align: middle;}
+.weui-cells{margin-top: 10px;}
+.zf_text{padding: 10px 0 0 15px;font-size: 14px;}
+.black1{color: #080809;}
+.grey1{color: #5a5a5a;}
+.weui-cell__bd span{font-size: 15px;}
+.btn_wrapper{text-align: center;padding: 20px;padding-top: 40px;}
+.submit_btn{padding: 10px 30px;background: #F34241;color: #fff;font-size: 15px;}
+/*********************************线上下单**********************************/
+
+.tabs_thr{display: flex;background: #fff;height: 40px;line-height: 40px;border-bottom: 1px #f0f0f0 solid;}
+.tabs_thr .tab{flex: 1;text-align: center;}
+.outline_infor{padding: 10px;background: #fff;font-size: 15px;}
+.outline_infor .jfb{height: 30px;padding-left: 10px;}
+.outline_infor p{font-size: 14px;}
+.outline_infor span{}
+.online_infor{background: #fff;font-size: 15px;}
+.color_1{color: #F54342;}
+.online_infor .input-box{padding:5px 0px;box-sizing: border-box;border-bottom: 1px #f0f0f0 solid;}
+.online_infor .input-box .input-wrap{display: table;box-sizing: border-box;}
+.online_infor .input-box .input-wrap .input-wrap-addon{border: 0;outline: none;background: rgba(0,0,0,0);width: 1%;white-space: nowrap;display: table-cell;padding: 6px 12px;box-sizing: border-box;}
+.online_infor .input-box .input-wrap input {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: "Microsoft YaHei";
+    outline: none;
+    border: 0;
+    box-sizing: border-box;
+  
+}
+.active{color:  #F34241;border-bottom: 1px #F34241 solid;}
+
+
+/*********************我的奖励***********************************/
+.jl_infor{padding: 15px;background: #fff;}
+.jl_infor .l_infor{float: left;}
+.jl_infor .l_infor b{font-size: 20px;margin:5px 0;display: block;}
+.jl_infor .r_btns{float: right;}	
+.jl_infor .r_btns a{padding: 8px 30px;border:1px #F54342 solid;border-radius: 4px;display: block;}
+.jl_infor .r_btns .out{margin-bottom: 10px;color:#F54342 ;}
+.jl_infor .r_btns .use{background:#F54342 ;color: #fff;}
+.state_jl{margin: 10px 0;}
+.state_jl .infor{padding: 10px 0;background: #fff;border-bottom: 1px #f0f0f0 solid;}
+.state_jl .infor .inner{padding-left: 15px;box-sizing: border-box;float: left;width: 50%;border-right: 1px #f0f0f0 solid;}
+.state_jl .infor .inner:nth-of-type(2n){border-right: 0;}
+.order_link{padding: 10px;display: flex;text-align: center;background: #fff;}
+.order_link a{flex: 1;}
+.order_link a img{width: 25px;}

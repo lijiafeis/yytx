@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css5/default.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css5/commom.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css5/style.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui-reset.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body style="background: #F7F4F5;">
+<div class="wrap">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>物流信息</span>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</header>
+	<div class="wl-info">
+		<div class="goods-image">
+			<img src="__PUBLIC__/home/images5/bg.png"/>
+		</div>
+		<div class="r-info">
+			<p>物流: <em>{$data.kd}</em></p>	
+			<p class="order-bh">订单编号: {$data.ddh}</p>
+		</div>					
+	</div>
+	<div class="wl-detail">
+		<div class="text">本数据由<span>快递鸟</span>提供</div>
+		<div class="wl-state">
+			<volist name="info" id="vv">
+			<div class="state">
+				<p>{$vv.info}</p>
+				<p class="ft-12">{$vv.time}</p>
+			</div>
+			</volist>
+		</div>
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

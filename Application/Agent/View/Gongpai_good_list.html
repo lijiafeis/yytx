@@ -1,0 +1,10 @@
+
+<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">选择特定商品</label>
+<div class="col-sm-6 col-lg-4">
+	<select multiple name="gongpai_good_id"  class="form-control">
+	  <volist name="good_info" id="vv">
+	  <option value="{$vv.good_id}" {$str}>「商品ID、{$vv.good_id}」{$vv.good_name}</option>
+	  </volist>
+	</select>
+</div>
+

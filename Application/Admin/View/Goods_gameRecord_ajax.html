@@ -1,0 +1,49 @@
+<table class="table table-bordered table-hover">
+	<th width="5%">订单号</th>
+	<th>创建时间</th>
+	<th>收货人</th>
+	<th>升级状态</th>
+	<th>用户选择</th>
+	<th>结果</th>
+	<volist name="recordInfo" id="vv" key="kk">
+	<tr id="{$kk}">
+		<td width="5%">{$vv.order_sn}</td>
+		<td>{$vv.create_time|date="Y-m-d H:i:s",###}</td>
+		<td>{$vv.name}</td>
+		<if condition="$vv.type eq 1">
+			<td width="30%">升级成功</td>
+			<elseif condition="$vv.type eq 0"/>
+			<td width="30%">升级失败</td>
+		</if>
+		<if condition="$vv.user_select eq 0">
+			<td>藕</td>
+			<elseif condition="$vv.user_select eq 1"/>
+			<td>鸡</td>
+		</if>
+		<td>{$vv.game_number}</td>
+	</tr>
+	</volist>
+</table>
+<div class="pagelist">{$page}</div>
+<script>
+	function confirm(order_id){
+	    $.ajax({
+	        type:"post",
+	       url:"{:U('orderConfirm')}",
+			dataType:"json",
+			data:{
+	            order_id:order_id,
+			},
+			success:function (data) {
+				if(data == 0){
+				    layer.msg('确认订单成功');
+				    setTimeout(function () {
+						history.go(0);
+                    },1000);
+				}else{
+				    layer.msg('未知错误');
+				}
+            }
+		});
+	}
+</script>

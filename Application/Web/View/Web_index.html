@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>茅台文化</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/home/css/intro.css"/>
+</head>
+<body>
+<div class="app_container bg" style="position: absolute;bottom: .91rem;max-width: 640px;left: 0;right: 0;margin:auto ;">
+<if condition="$Think.session.agent_token eq OZfBaUKX">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>茅台文化</span>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</header>
+</if>	
+	<div class="box_ani">
+		<a href="{:U('xcsp')}?agent_id={$Think.get.agent_id}" class="div1 f_left">宣传视频</a>
+		<a href="{:U('about')}?agent_id={$Think.get.agent_id}" class="div2 f_right">公司介绍</a>
+		<div class="clear"></div>
+		<a href="{:U('master')}?agent_id={$Think.get.agent_id}" class="div1 f_left">䣽酒大师</a>
+		<a href="{:U('tech')}?agent_id={$Think.get.agent_id}" class="div2 f_right">酿造工艺</a>
+		<div class="clear"></div>
+		<a href="{:U('mzsm')}?agent_id={$Think.get.agent_id}" class="div1 f_left">免责声明</a>
+		<a href="{:U('story')}?agent_id={$Think.get.agent_id}" class="div2 f_right">䣽酒的故事</a>
+		<div class="clear"></div>
+		<a href="{:U('renzheng')}?agent_id={$Think.get.agent_id}" class="div2 f_right">质量认证</a>
+		<div class="clear"></div>
+	</div>
+	<footer class="fixed">
+		<a href="{:U('/Home/Index/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/mt-1.png"/>
+			<div>茅台䣽酒</div>
+		</a>
+		<a href="" class="foot-active">
+			<img src="__PUBLIC__/home1/user-img/foot-img/jj-2.png"/>
+			<div>茅台文化</div>
+		</a>
+		<a href="{:U('Home/Goods/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/shop-1.png"/>
+			<div>商城</div>
+		</a>
+		<a href="{:U('/Home/User/index')}?agent_id={$Think.get.agent_id}" >
+			<img src="__PUBLIC__/home1/user-img/foot-img/user-1.png"/>
+			<div>个人中心</div>
+		</a>
+		<div class="clear"></div>
+	</footer>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+</html>

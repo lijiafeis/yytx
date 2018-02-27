@@ -1,0 +1,335 @@
+/*收支明细*/
+body {
+	font-family: "Microsoft YaHei";
+	letter-spacing: 1px;
+	background: #f0f0f0;
+}
+
+.top_bar {
+	width: 100%;
+	position: relative;
+	top: 0;
+	color: #fff;
+	padding: 14px 0;
+	text-align: center;
+}
+
+.top_bar1 {
+	background: #FF6766;
+}
+
+.top_bar .left {
+	position: absolute;
+	left: 10px;
+	top: 12px;
+}
+
+.top_bar .right {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	color: #fff;
+	font-size: 12px;
+	padding: 8px 18px;
+	background: #6DC1E5;
+	border-radius: 4px;
+}
+
+.table_wrap {
+	padding: 0 15px;
+}
+
+.table_wrap table {
+	border-collapse: collapse;
+	width: 100%;
+	border: 0;
+}
+
+.table_wrap table th ,td {
+	border: 0;
+	text-align: left;
+	padding: 10px 0;
+}
+
+.table_wrap table .lx {
+	text-align: center;
+}
+
+.table_wrap table .jy {
+	text-align: right;
+}
+
+.table_wrap table tr {
+	border-bottom: 1px #EAEAEC solid;
+}
+
+/*我的钱包*/
+
+.top_bar .icon-angle-left {
+	font-size: 25px;
+}
+
+.top_bar2 {
+	background: #C20000;
+	border-bottom: 1px #9D0809 solid;
+}
+
+
+.red_bg {
+	background: #C20000;
+	padding: 20px;
+	color: #fff;
+}
+
+.tixian_button {
+	background: #FF7828;
+	width: 70px;
+	height: 35px;
+	border: 0;
+	outline: none;
+	color: #fff;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	border-radius: 4px;
+	letter-spacing: 2px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+
+.xf_info {
+	background: #fff;
+	border-top: 1px #DCDCDC solid;
+	color: #717171;
+}
+
+.xf_info li {
+	float: left;
+	width: 25%;
+	text-align: center;
+	border-right: 1px #DCDCDC solid;
+	box-sizing: border-box;
+	line-height: 2.3;
+}
+
+.xf_info li:nth-of-type(4n) {
+	border-right: 0;
+}
+
+.hongbao {
+	margin-top: 10px;
+	background: #fff;
+}
+
+.hongbao_title {
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	border-bottom: 1px #DCDCDC solid;
+}
+
+.hongbao table {
+	width: 100%;
+	border: 0;
+	border-collapse: collapse;
+	color: #131313;
+}
+
+.hongbao table td {
+	border: 0;
+	padding: 10px 0;
+}
+
+.hongbao table tr {
+	border-bottom: 1px #DCDCDC solid;
+}
+
+.hongbao .img {
+	padding-left: 10px;
+	padding-right: 20px;
+}
+/*提现*/
+
+.top_bar .icon-angle-left {
+	font-size: 25px;
+}
+
+.top_bar3 {
+	background: #FF6766;
+	border-bottom: 1px #EA9E9E solid;
+}
+
+
+.tixian_bg {
+	background: url(../img/success_bg4.jpg) 50% 50% no-repeat;
+	width: 100%;
+	padding: 30px 0;
+	text-align: center;
+	color: #fff;
+}
+
+.tx {
+	height: 50px;
+	line-height: 50px;
+	background: #fff;
+	padding-left: 10px;
+	margin-bottom: 1px;
+}
+
+.tx_weixin {
+	background: #fff;
+	padding: 10px;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.tx_weixin .weixin_logo {
+	width: 30px;
+	vertical-align: middle;
+}
+
+.tx_weixin span {
+	vertical-align: middle;
+	margin-left: 30px;
+}
+
+.tx_weixin .money_img {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+	width: 20px;
+}
+
+.tx_jine {
+	background: #fff;
+	padding: 14px 10px;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.tx_jine .input_wrap {
+	margin-left: 30px;
+	position: absolute;
+	top: 16px;
+}
+
+.tx_jine input {
+	font-size: 14px;
+	color: #C6C7D4;
+	border: 0;
+	outline: none;
+	padding-top: -5px;
+}
+
+.tx_jine .yuan {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+}
+
+.input_list {
+	background: #fff;
+	position: relative;
+	height: 50px;
+	line-height: 50px;
+}
+
+.input_list span {
+	color: #09090A;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+.input_list input {
+	color: #C6C7D4;
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	font-size: 14px;
+	text-align: right;
+	border: 0;
+	outline: none;
+}
+
+.tel_wrap {
+	margin-top: 1px;
+}
+
+.apply_btn {
+	padding: 20px 10px;
+}
+
+.apply_btn div {
+	line-height: 45px;
+	text-align: center;
+	color: #fff;
+	height: 45px;
+	background: #FF6766;
+	font-size: 16px;
+	border-radius: 4px;
+}
+
+.btn_wrap {
+	padding: 20px 10px;
+}
+
+.btn_wrap div {
+	line-height: 45px;
+	text-align: center;
+	color: #fff;
+	height: 45px;
+	background: #FF6766;
+	font-size: 16px;
+	border-radius: 4px;
+}
+/*提现成功*/
+
+.success_bg {
+	background: url(../img/success_bg3.jpg) no-repeat;
+	text-align: center;
+	padding: 30px 0;
+	color: #fff;
+	background-size: 100%;
+}
+
+.success_bg img {
+	width: 60px;
+}
+
+.success_bg div {
+	margin-top: 20px;
+	font-size: 16px;
+}
+
+.tx_info_box {
+	padding: 10px;
+	font-size: 15px;
+}
+
+.tx_info_box .tx_info {
+	border-bottom: 1px dashed #F0F0F0;
+	background: #fff;
+	padding: 15px;
+	color: #121212;
+	line-height: 2;
+}
+
+.tx_info_1 {
+	position: relative;
+}
+
+.tx_info_1 a {
+	position: absolute;
+	right: 0;
+	border: 1px #CBCBCB solid;
+	padding: 2px 3px;
+	font-size: 14px;
+	border-radius: 3px;
+	line-height: 1.5;
+}
+
+.tx_intro {
+	background: #fff;
+	padding: 15px;
+	line-height: 1.5;
+	color: #848484;
+}

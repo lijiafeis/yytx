@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>我的钱包</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+<div class="app_container" style="background:#fff;">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>我的钱包</span>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</header>
+	<div class="qianbao_wrap">
+		<div class="qb_top">
+			<a href="{:U('tixianShow')}?agent_id={$Think.get.agent_id}">提现记录</a>
+			<div class="f_left" style="width:2rem;height:2rem;">
+				<img src="__PUBLIC__/home1/img/wodeqianbao.png" style="width:2rem;"/>
+			</div>
+			<div class="f_left"style="margin-top:.3rem;">
+				<span>积分额度 : <br /><em>{$info['money']}</em></span>
+				<span>复消积分 : <br /><em>{$info['fxmoney']}</em></span>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="qianbao">
+			<div class="pay-system">
+				方式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<i class="icon_pay selected">银行卡</i>
+				<i class="icon_pay">支付宝</i>
+				<input type="hidden" id="tixian_type" value="1"/>
+			</div>
+			<div class="input-box">
+				<div class="input-wrap">
+					<span class="input-wrap-addon">姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="text" id="user_name" value="{$bank.user_name}"  placeholder="收款人姓名">
+				</div>
+			</div>
+			<div class="input-box">
+				<div class="input-wrap">
+					<span class="input-wrap-addon">手机号&nbsp;&nbsp;&nbsp;</span>
+					<input type="text" id="tel" value="{$bank.tel}"  placeholder="收款人手机号">
+				</div>
+			</div>
+			<div class="panes">
+				<div class="bank pane">
+					<div class="input-box">
+						<div class="input-wrap">
+							<span class="input-wrap-addon">开户行&nbsp;&nbsp;&nbsp;</span>
+							<input type="text" id="bank_name" value="{$bank.bank_name}"  placeholder="例 : 中国建设银行">
+						</div>
+					</div>
+					<div class="input-box">
+						<div class="input-wrap">
+							<span class="input-wrap-addon">银行卡号</span>
+							<input type="text" id="bank_number" value="{$bank.bank_number}"  placeholder="收款人卡号">
+						</div>
+					</div>
+				</div>
+				<div class="zhifubao pane">
+					<div class="input-box">
+						<div class="input-wrap">
+							<span class="input-wrap-addon">支付宝号</span>
+							<input type="text" id="alipay_number" value="{$bank.alipay_number}"  placeholder="支付宝号">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="input-box">
+			<div class="input-wrap">
+				<span class="input-wrap-addon">金额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<input type="text" id="tixian_money"  placeholder="输入要提交的金额">
+			</div>
+		</div>
+		<div class="tips">
+			<p>余额申请转出，成功后24小时内到账(如遇节假日可能会延时)<br />
+			提现收取5%税费，5%复消积分，复消积分可抵扣现金使用
+			</p>
+		</div>
+
+		<button  type="" onclick="tixian_out()" id="out">立即转出</button>
+
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){
+		$('.icon_pay').click(function(){
+			$(this).addClass('selected').siblings().removeClass('selected');
+			$('.panes>.pane:eq('+$(this).index()+')').show().siblings().hide();
+			val = $("#tixian_type").val();
+			val = val == 1? 2 : 1;
+            $("#tixian_type").val(val);
+		})
+	})
+    function tixian_out(){
+
+        var money = $('#tixian_money').val();if(money == ''){
+            layer.msg('请输入取款金额');
+            exit;
+        }
+        if(money < 10){
+            layer.msg('提现金额不能小于10元');return;
+        }
+        fee = money % 100;
+        if(fee != 0){
+            layer.msg('提现金额必须是100的整数倍');return;
+		}
+        var user_name = $('#user_name').val();if(user_name == ''){layer.msg('请输入收款人真实姓名');exit;}
+        var tel = $('#tel').val();if(tel == ''){
+            layer.msg('请输入手机号码');exit;}
+        var pay_type = $('#tixian_type').val();
+       // alert(pay_type);
+        if(pay_type == 1){
+            var bank_name = $('#bank_name').val();if(bank_name == ''){
+                layer.msg('请输入开户行信息');exit;}
+            var bank_number = $('#bank_number').val();if(bank_number == ''){
+                layer.msg('请输入银行卡卡号');exit;}
+        }else{
+            var alipay_number = $('#alipay_number').val();if(alipay_number == ''){
+                layer.msg('请输入支付宝账号信息');exit;}
+        }
+        var old_bank_id = $('#old_bank_id').val();
+        $.ajax({
+            type: "POST",
+            url: "{:U('user_tixian')}",
+            dataType: "json",
+            data: {"money":money,'pay_type':pay_type,'old_bank_id':old_bank_id,'user_name':user_name,'tel':tel,'bank_name':bank_name,'bank_number':bank_number,'alipay_number':alipay_number},
+            success: function(json){
+                if(json == -1){
+                    layer.msg('账户余额不足');
+                }
+                if(json == 0){
+                    layer.msg('您的提现申请以成功');
+                    setTimeout(function(){
+                        location.href = "{:U('index')}?agent_id={$Think.get.agent_id}";
+                    },1000);
+                }
+                if(json == -2){
+                    layer.msg('未知错误，请稍后再试');
+                }
+                if(json == -4){
+                    layer.msg('你有未处理的提现');
+				}
+            },
+            error:function(){
+            }
+        });
+
+        //location.href="{:U('broke_tixian')}?money="+money;
+    }
+</script>
+</html>

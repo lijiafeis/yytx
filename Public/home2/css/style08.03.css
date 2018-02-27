@@ -1,0 +1,159 @@
+/*****************添加收货地址****************/
+.set_default {
+	padding: .25rem .2rem;
+	background: #fff;
+	margin-top: .2rem;
+	border-bottom: .01rem solid #f0f0f0;
+}
+
+.set_default .addr_select {
+	vertical-align: middle;
+	margin-top: .05rem;
+}
+
+.set_default .solve {
+	padding: .05rem .2rem;
+	border: .01rem #ECAD68 solid;
+	border-radius: .1rem;
+	color: #ECAD68;
+}
+
+.area_select {
+	padding: .15rem 0;
+}
+
+.area_select select {
+	margin-right: .2rem;
+	color:#5a5a5a;
+	border:0;
+	outline:none;
+	border:1px #ccc solid;
+	
+}
+
+.addr_select:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: .1rem;
+	background: url(../img/icon/addr_unselected.png) no-repeat 0 0;
+	width: .4rem;
+	height: .4rem;
+	background-size: .4rem .4rem;
+}
+
+.addr_selected:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: .1rem;
+	background: url(../img/icon/addr_selected.png) no-repeat 0 0;
+	width: .4rem;
+	height: .4rem;
+	background-size: .4rem .4rem;
+}
+
+/**************管理收货地址****************/
+.addr_list {
+	padding: 0 .2rem;
+}
+
+.addr_infor {
+	background: #fff;
+	margin-bottom: .2rem;
+}
+
+.set_default {
+	padding: .25rem .2rem;
+	background: #fff;
+	margin-top: .2rem;
+	border-bottom: .01rem solid #f0f0f0;
+}
+
+.addr_inner {
+	display: flex;
+}
+
+.fixed_bottom {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	max-width: 640px;
+	margin: auto;
+	background: #ECAD68;
+}
+
+.add_addr {
+	color: #fff;
+	padding: .25rem;
+	box-sizing: border-box;
+	display: block;
+	text-align: center;
+	font-size: .3rem;
+}
+
+.l_infor {
+	flex: 3;
+	font-size: .3rem;
+	padding: .2rem;
+}
+
+.l_infor .address {
+	margin-top: .1rem;
+}
+
+.r_action {
+	width: 1.2rem;
+	padding: .2rem;
+	border-left: .01rem #f0f0f0 solid;
+}
+
+.addr_select:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: .1rem;
+	background: url(../img/icon/addr_unselected.png) no-repeat 0 0;
+	width: .4rem;
+	height: .4rem;
+	background-size: .4rem .4rem;
+}
+
+.edit:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: .1rem;
+	background: url(../img/icon/edit.png) no-repeat 0 0;
+	width: .4rem;
+	height: .4rem;
+	background-size: .4rem .4rem;
+}
+
+.edit {
+	margin: .2rem 0;
+}
+
+.delete:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: .1rem;
+	background: url(../img/icon/delete.png) no-repeat 0 0;
+	width: .4rem;
+	height: .4rem;
+	background-size: .4rem .4rem;
+}
+
+.addr_selected:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: .1rem;
+	background: url(../img/icon/addr_selected.png) no-repeat 0 0;
+	width: .4rem;
+	height: .4rem;
+	background-size: .4rem .4rem;
+}

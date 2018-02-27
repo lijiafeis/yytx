@@ -1,0 +1,68 @@
+[ 2017-12-12T08:40:54+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 45 行.
+
+[ 2017-12-12T08:40:54+08:00 ] 127.0.0.1 HTTP://www.yytx.com/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 45 行.
+
+[ 2017-12-12T08:40:54+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 45 行.
+
+[ 2017-12-12T08:40:55+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 45 行.
+
+[ 2017-12-12T09:18:13+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+
+[ 2017-12-12T10:23:40+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+
+[ 2017-12-12T10:56:02+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 45 行.
+

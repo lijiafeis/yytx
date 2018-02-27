@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<style>
+.btn-default{background:#44b549;color:#fff;}
+.form-group1:hover{background:#fff;}
+</style>
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>积分专区--积分规则</div>
+	<div class="main-content">
+  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active"><a href="#jifen" aria-controls="jifen" role="tab" data-toggle="tab">基本配置</a></li>
+	  </ul>
+<style>
+.table tr td img{height:40px;cursor:hand;}
+.code:hover{cursor:hand;}
+</style>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+
+</script>
+
+
+<include file="./Application/Admin/View/Public_switch.html" />
+	  <!-- Tab panes -->
+	  <div class="tab-content well" style="margin-top:30px">
+		<div role="tabpanel" class="tab-pane active" id="jifen">
+			
+			<form class="form-horizontal" action="__SELF__" method="post">
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">关注积分</label>
+				<div class="switch has-switch col-sm-2 col-lg-1"  style="height:30px">
+					<input name="subscribe_switch" value="1" type="checkbox"  <if condition="$jifen_info['subscribe_switch'] eq 1">checked</if>  data-on-color="warning"  data-on-text="开启"  data-off-text="关闭" />
+				</div>
+				<div class="col-sm-5 col-lg-3" style="margin-bottom:10px;">
+				<div class="input-group has-warning">
+				  <span class="input-group-addon" id="basic-addon1">奖励积分数</span>
+				  <input type="number" class="form-control" id="" name="subscribe_number" value="{$jifen_info['subscribe_number']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">正整数</span>
+				</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">签到积分</label>
+				<div class="switch has-switch col-sm-2 col-lg-1"  style="height:30px">
+					<input name="qiandao_switch" value="1" type="checkbox"  <if condition="$jifen_info['qiandao_switch'] eq 1">checked</if>  data-on-color="success"  data-on-text="开启"  data-off-text="关闭" />
+				</div>
+				<div class="col-sm-5 col-lg-3" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">每日积分数</span>
+				  <input type="number" class="form-control" id="" name="qiandao_number" value="{$jifen_info['qiandao_number']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">正整数</span>
+				</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1"></label>
+				<div class="col-sm-4 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">周期数</span>
+				  <input type="number" class="form-control" id="" name="qiandao_week" value="{$jifen_info['qiandao_week']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">正整数</span>
+				</div>
+				</div>
+				<div class="col-sm-4 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">连续奖励</span>
+				  <input type="number" class="form-control" id="" name="more_number" value="{$jifen_info['more_number']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">正整数</span>
+				</div>
+				</div>
+			</div>
+			
+			
+			
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">加分提示语</label>
+				<div class="col-sm-6 col-lg-4">
+					<input type="text" class="form-control" name="subscribe_word" value="{$jifen_info.subscribe_word}" id="" placeholder="">
+					<p class="help-text" style="color:#777">开启关注送积分后，关注时会发送提示语，可用变量<literal><font color="Red">{$jifen}</font> [关注时奖励积分数]</literal></p>
+				</div>
+				
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">购买比例</label>
+				<div class="col-sm-5 col-lg-3" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">1元余额等于</span>
+				  <input type="number" class="form-control" id="" name="buy_per" value="{$jifen_info['buy_per']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">个积分</span>
+				</div>
+				</div>
+				
+			</div>
+			
+			<input type="hidden" name="jifen" value="{$jifen_info.id}">
+			<button type="submit" class="btn btn-success">保存配置信息</button>
+			</form>
+
+
+
+
+
+		</div>
+		
+	  </div>	
+	</div>
+</div>
+
+<script>
+
+</script>

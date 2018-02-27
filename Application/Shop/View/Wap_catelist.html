@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title> {$app_info[0]['wxname']}商城</title>		
+	<link rel="stylesheet" href="__PUBLIC__/shop/css/basic.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/footer.css">
+	<link rel="stylesheet" href="__PUBLIC__/shop/css/flexslider.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/iconfont/0727/iconfont.css">
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/zload.js"></script>
+	<script>
+		
+	 $(document).ready(function(){
+		 $(".col_3 img").lazyload({ 
+			effect : "fadeIn",
+			threshold : 200
+		});
+	 })
+	 
+	</script>
+	<style>
+		.col_3 p{margin-top:10px;}
+		
+	</style>
+</head>
+<body style="padding-bottom:100px;">
+
+<div class="wrap">
+	<div class="top_wrap" style="z-index: 3;">		
+		<header id="header" class="" style="height:40px;font-size:16px;text-align:center;line-height:40px;color:#000;background:#fff;border-bottom:1px solid #e8e8e8;">
+		 商品分类
+		 <i class="icon iconfont" style="float:left;margin-left:10px;font-size:22px;color:#777;" onclick="history.go(-1);">&#xe6d7;</i>
+		 <a href="{:U('index')}"><i class="icon iconfont" style="float:right;margin-right:10px;font-size:22px;color:#777">&#xe6b8;</i></a>
+		</header>
+	</div>
+	<div class="content" style="position: relative;height: 100%;"> 
+		 <div class="left_wrap" style="position: absolute;left: 0;width: 86px; height: 100%;z-index: 1;"> 
+			 <div class="left" style="position: fixed;top: 50px;left:0;width: 86px;background:#edf1f4;text-align: left;color: #333;height: 100%;z-index: 1;font-size:12px;"> 
+				<ul>
+					<volist name="categrey" id="v" key="k">
+				     	<li class="tab <if condition="$k eq 1">active</if>" style="margin:0;" data-name="{$v.cate_id}">{$v.cate_name}</li>
+					</volist>
+				     					     		
+				</ul>
+			 </div> 
+		</div> 
+		<div class="right_wrap" style="width: 100%;z-index: 2;"> 
+			<div class="right" style="position: absolute;left: 96px;float: right;background:#eee;"> 
+			
+			</div> 
+		</div>			
+	</div>
+</div>
+<div style="position:fixed;bottom:0;z-index:2;"><include file="./Application/Shop/View/wap_footer.html" /></div>
+			
+		
+</body>
+	<script type="text/javascript" src="__PUBLIC__/shop/css/jquery.js"></script>
+	<script>
+		$(document).ready(function(){		
+			//进入页面时首页状态指定
+			var first_name = $('.active').attr('data-name');
+			nav_load(first_name);
+			$('.tab').click(function(){
+			var name=$(this).attr('data-name');
+			var classname =  $(this).attr('class');
+			if(classname.indexOf("active") > 0){
+				return;
+			}
+			nav_load(name);
+			//用each 遍历 让所有的 tab 恢复默认
+			$('.tab').each(function(){
+				//让所有的indextab遍历后恢复默认状态
+				$(this).removeClass('active');
+			});
+			//现在正被点击的dom发生变化
+			$(this).addClass('active');
+			})
+		});
+		function nav_load(name){		
+			$('.right_wrap').load("{:U('children_catelist')}?id="+name);	
+		}	
+	</script>
+</html>

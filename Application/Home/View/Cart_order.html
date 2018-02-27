@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>确认订单</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui-reset.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+	<style>
+		.fuxiao:before{
+			content: '';
+			display: inline-block;
+			vertical-align: middle;
+			background: url(__PUBLIC__/home1/img/images/choose.png) no-repeat 0 0;
+			width: .4rem;
+			height: .38rem;
+			background-size: .4rem .38rem;
+		}
+	</style>
+</head>
+<body>
+<div class="app_container">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>确认订单</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>	
+	<div class="weui-panel__ft addr">
+		<a href="{:U('address')}" class="weui-cell weui-cell_access weui-cell_link">
+		    <div class="location"><img class="icon-img" src="__PUBLIC__/home1/img/images/confirm-place.png" style="display: inline-block;"/></div>
+		    <div class="weui-cell__bd">
+		    	<p>收货人 : {$add.username}  <span>{$add.telphone}</span></p>
+	       		<p>收货地址 : {$add.city}{$add.address}</p>
+		    </div>
+		    <span class="weui-cell__ft"></span>
+		</a>    
+	</div>
+	<div class="order">
+		<volist name="data" id="v">
+		<div class="order-inner">
+			<div class="goods-img-box">
+				<img src="{$v.pic_url}"/>
+			</div>
+			<div class="order-infor">
+				<div class="goods-name over2">{$v.good_name}</div>
+				<div class="goodsinfo">
+					<div class="f_left quantity">{$v.good_num}件</div>
+					<div class="f_left quantity">&nbsp;&nbsp;&nbsp;{$v.type}</div>
+					<div class="f_right price">￥{$v.good_price}</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		</volist>
+		<div class="order-num">
+			<span class="f_left">订单号 : {$info.time}</span>
+			<span class="f_right">包邮</span>
+			<div class="clear"></div>
+		</div>
+
+	</div>
+
+	<div class="pay-wrap">
+		<div class="pay-system">
+			付款方式 : 			
+			<i class="icon_pay selected" data-flag="1">微信</i>
+			<i class="icon_pay" data-flag="2">支付宝</i>
+		</div>
+		<!--<if condition="$fxmoney neq null">-->
+			<!--<if condition="$info.zonge neq 0">-->
+		<!--<div class="pay-system">-->
+			<!--复消积分:{$fxmoney}&nbsp;&nbsp;使用复消积分<input data-money="1" style="text-align: center" type="checkbox" name="fuxiao" value="">-->
+		<!--</div>-->
+			<!--</if>-->
+		<!--</if>-->
+		<div>总计 : <span class="price">￥<span id="fee">{$info.zonge}</span></span>
+			<if condition="$info.fxmoney neq 0">
+				<span>复消积分抵消:{$info.fxmoney}</span>
+			</if>
+		</div>
+	</div>
+	<input type="hidden" value="{$add.address_id}" id="addid"/>
+	<input type="hidden" value="" id="daijin"/>
+	<input type="hidden" value="{$info.id}" id="order_id"/>
+	<input type="hidden" value="0" id="is_pay"/>
+	<input type="hidden" value="{$info.zonge}" id="fxmoney"/>
+	<a onclick="pass1({$is_wx})" id="pay">确认付款</a>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+<script>
+	$(function(){	
+		$('.icon_pay').click(function(){
+			$(this).addClass('selected').siblings().removeClass('selected');
+			val = $("#is_pay").val();
+			val = val == 0 ? 1 : 0;
+            $("#is_pay").val(val);
+		})
+	});
+
+
+
+    function pass1(is_weixin){
+        b = $("#addid").val();
+        if(!b){
+            layer.open({content:'请设置您的收货地址',skin:'msg',shadeClose:false,time:3});
+            //layer.msg('请设置你的收货地址');
+        }else{
+            fee = $("#fee").html();
+            if(fee == 0){
+                //说明使用复消积分
+				setFee(fee);return;
+			}
+            //判断点击的选择是微信还是支付宝
+//			is_pay = $("#is_pay").val();
+			is_pay = $(".selected").data('flag');
+//			alert(is_pay);
+			if(is_pay == 1){
+				//微信支付,判断扫码还是别的
+				if(is_weixin == 1){
+                    pass();
+				}else{
+                    weixin();
+				}
+			}else{
+			    //支付宝支付
+                zhifubao();
+			}
+        }
+	}
+
+	function setFee(fee){
+        var shade = layer.open({type:2,content:'正在提交申请',shadeClose:false,time:3});
+        order_id = $('#order_id').val();
+        $.ajax({
+            type: "POST",
+            url: "{:U('fxZhifu')}",
+            dataType: "json",
+            data: {
+                money:fee,
+                order_id:order_id,
+            },
+            success: function(json){
+                layer.close(shade);
+                if(json == 0){
+                    layer.open({content:'购买成功',skin:'msg',shadeClose:false,time:3});
+                    setTimeout(function () {
+						location.href = "{:U('Index/index')}?agent_id={$Think.get.agent_id}";
+                    },1000);
+                }
+                if(json == -1){
+                    layer.open({content:'未知错误，请稍后再试',skin:'msg',shadeClose:false,time:3});
+                }
+            },
+            error : function() {
+//					dialog2("暂时无法购买噢");layer.close(shade)
+            }
+        });
+	}
+	
+</script>
+<script>
+    $('input:checkbox').click(function () {
+        flag = $(this).is(':checked');
+        order_id = $('#order_id').val();
+//    	alert(flag);
+        if(flag){
+            //减少价格
+            money = $("#fxmoney").val();
+            money = parseFloat(money);
+            money = money - {$fxmoney};
+            $("#fxmoney").val(money);
+            if(money <= 0){
+                money = 0;
+        	}
+			money = Math.floor(money * 1000) / 1000;
+            $.ajax({
+                type: "POST",
+                url: "{:U('setFuXiao')}",
+                dataType: "json",
+                data: {
+                    money:money,
+					zonge:{$info['zonge']},
+                    order_id:order_id,
+					flag:1
+                },
+                success: function(json){
+                    if(json == 0){
+                        $("#fee").html(money);
+					}
+                },
+                error : function() {
+//					dialog2("暂时无法购买噢");layer.close(shade)
+                }
+            });
+
+        }else{
+            //价格加上
+            money = $("#fxmoney").val();
+            money = parseFloat(money);
+            money = money + {$fxmoney};
+            $("#fxmoney").val(money);
+            money = Math.floor(money * 1000) / 1000;
+
+            $.ajax({
+                type: "POST",
+                url: "{:U('setFuXiao')}",
+                dataType: "json",
+                data: {
+                    money:money,
+					zonge:{$info['zonge']},
+                    order_id:order_id,
+                    flag:0
+                },
+                success: function(json){
+                    if(json == 0){
+                        $("#fee").html(money);
+                    }
+                }
+            });
+
+
+        }
+    });
+</script>
+<script>
+    function weixin(){
+        a = $("#fee").html();
+        fh_name = $('#fh_name').val();
+        fh_tel = $('#fh_tel').val();
+        if(fh_name == ''){
+            fh_name = "亿赢天下";
+        }
+        if(fh_tel == ''){
+            fh_tel = '1234566';
+        }
+        b = $("#addid").val();
+        order_id = $('#order_id').val();
+        if(!b){
+            layer.open({content:'请设置您的收货地址',skin:'msg',shadeClose:false,time:3});
+            //layer.msg('请设置你的收货地址');
+        }else{
+            order_id = $('#order_id').val();
+            location.href = "{:U('weixin')}?sn=" + order_id + "&agent_id={$Think.get.agent_id}";
+        }
+
+    }
+
+    function zhifubao(){
+        a = $("#fee").html();
+        fh_name = $('#fh_name').val();
+        fh_tel = $('#fh_tel').val();
+        if(fh_name == ''){
+            fh_name = "亿赢天下";
+        }
+        if(fh_tel == ''){
+            fh_tel = '1234566';
+        }
+        // alert(fh_name);
+        //return;
+        $b = $("#addid").val();
+        order_id = $('#order_id').val();
+        if(!$b){
+            layer.open({content:'请设置您的收货地址',skin:'msg',shadeClose:false,time:3});
+            //layer.msg('请设置你的收货地址');
+        }else{
+            order_id = $('#order_id').val();
+            location.href = "{:U('/pay/alipay/pay')}?sn=" + order_id + "&agent_id={$Think.get.agent_id}";
+        }
+    }
+
+    function pass(){
+        a = $("#fee").html();
+        fh_name = $('#fh_name').val();
+        fh_tel = $('#fh_tel').val();
+        if(fh_name == ''){
+            fh_name = "亿赢天下";
+        }
+        if(fh_tel == ''){
+            fh_tel = '1234566';
+        }
+        // alert(fh_name);
+        //return;
+        $b = $("#addid").val();
+        order_id = $('#order_id').val();
+        if(!$b){
+            layer.open({content:'请设置您的收货地址',skin:'msg',shadeClose:false,time:3});
+            //layer.msg('请设置你的收货地址');
+        }else{
+            var shade = layer.open({type:2,content:'正在提交申请',shadeClose:false,time:3});
+            //var abc = layer.load();
+            $.ajax({
+                type: "POST",
+                url: "{:U('zhifu')}",
+                dataType: "json",
+                data: {
+                    money:a,
+                    order_id:order_id,
+                    fh_name:fh_name,
+                    fh_tel:fh_tel
+
+                },
+                success: function(json){
+                    if(json.success==1){
+                        layer.close(shade);
+                        onBridgeReady(json);
+
+                    }else if(json.success==0){
+                        layer.open({content:'您已经购买成功',skin:'msg',shadeClose:false,time:3});
+                    }
+                    if(json.success == -4){
+                        // layer.msg('购买成功');
+                        layer.open({content:'购买成功',skin:'msg',shadeClose:false,time:3});
+                        setTimeout(function () {
+                            location.href = "{:U('User/Index')}";
+                        },2000);
+
+                    }
+                },
+                error : function() {
+//					dialog2("暂时无法购买噢");layer.close(shade)
+                }
+            });
+        }
+    }
+    function onBridgeReady(json){
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest',{"appId" : json.appid,
+                "timeStamp":json.timeStamp,
+                "nonceStr" : json.nonceStr,
+                "package" : 'prepay_id='+json.prepay_id,
+                "signType" :"MD5",
+                "paySign" : json.paySign, //微信签名
+            },
+            function(res){
+                if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                    location.href="{:U('User/Index')}?agent_id={$Think.get.agent_id}";
+                }else{
+
+                }
+
+            }
+        );
+    }
+</script>
+</html>

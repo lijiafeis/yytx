@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>我的订单</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/121/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/121/css/style.css"/>
+<style>
+.fixed-nav{height: .9rem;}
+.fixed-nav .flex-wrap{position: fixed;top: .81rem;left: 0;right: 0;width: 100%;margin: auto;max-width: 640px;}
+</style>
+</head>
+<body style="background: #f8f8f8;">
+<div class="app_container">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">				
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/121/img/left-white.png"/></span>
+				<span>我的订单</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>
+	<div class="fixed-nav">
+		<div class="flex-wrap">
+			<div class="flex order-tab order-tab-active" data-state="1">待付款</div>
+			<div class="flex order-tab" data-state="2">待发货</div>
+			<div class="flex order-tab" data-state="3">待收货</div>
+			<div class="flex order-tab" data-state="4">已完成</div>
+		</div>
+	</div>
+	
+	<div class="orders">
+	</div>
+</div>	
+</body>
+<script src="__PUBLIC__/121/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/121/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/js/xigua_pageload.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+	$(function(){	
+		$('.order-tab').click(function(){
+			$(this).addClass('order-tab-active').siblings().removeClass('order-tab-active');
+            $(".orders").empty();
+            $("#bb").data('page',1);
+            $("#bb").data('state',1);
+            type = $(this).data('state');
+			scroll_data.t_data = {"state":type};
+			get_page(1);
+		})
+	})
+</script>
+<script>
+	/*初始化相关参数，请求url地址时用的$.post()方法*/
+    var scroll_data = {
+        'url':"{:U('myOrderList')}?",//如果不传token值，直接后加一个 ？，当前&后为get参数p，在后台接收处理
+        'parentId':$('.orders'),//要加载的父元素DOM
+        't_data':{'state':'1','name2':'一些必要的判断条件2','name3':'一些必要的判断条件3'}//异步要传的参数，json
+    };
+</script>
+<script>
+    get_page(1)
+</script>
+</html>

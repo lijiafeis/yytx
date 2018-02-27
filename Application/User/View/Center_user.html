@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>用户中心</title>
+	
+	<link rel="stylesheet" href="__PUBLIC__/css/cardinal.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font1/iconfont.css">
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();
+});
+</script>
+	<script>
+	function qr(){
+		loading('正在请求');
+		$.ajax({
+			type: "POST",
+			url: "{:U('qr')}",
+			dataType: "json",
+			data: {},
+			success: function(json){
+				if(json.success==1){
+					loadingclose();wx.closeWindow();
+				}else{
+					dialog2(json.info);	loadingclose();			
+				}
+			},
+			error:function(){
+				dialog2("发生通信错误！请重新打开尝试！");loadingclose();
+			}
+		});
+	}
+	
+	function setting(){
+		centerset(1);
+		$('#weui_actionsheet').animate({bottom:'0px'});
+	}
+	function updtuserinfo(){
+	centersetclose();loading('正在更新…');
+	$.ajax({
+			type: "POST",
+			url: "{:U('updtuserinfo')}",
+			dataType: "json",
+			data: {},
+			success: function(json){
+				if(json.success==1){
+					dialog2(json.info);	loadingclose();	
+				}else{
+					dialog2(json.info);	loadingclose();			
+				}
+			},
+			error:function(){
+				dialog2("发生网络通信错误，请稍后重试！");loadingclose();
+			}
+		});
+}
+function resetqr(){
+	centersetclose();loading('正在重置…');
+	$.ajax({
+			type: "POST",
+			url: "{:U('resetqr')}",
+			dataType: "json",
+			data: {},
+			success: function(json){
+				if(json.success==1){
+					dialog2(json.info);	loadingclose();	
+				}else{
+					dialog2(json.info);	loadingclose();			
+				}
+			},
+			error:function(){
+				dialog2("发生网络通信错误，请稍后重试！");loadingclose();
+			}
+		});
+
+}
+	</script>
+	<style>
+	.grid-item{position:relative;}
+	.grid-item .right-num{display:block;position:absolute;right:20px;top:10px;font-size:10px;background:{:C('WAP_COLOR')};color:#fff;text-align:center;line-height:20px;width:20px;height:20px;border-radius:10px;}
+	#weui_actionsheet{bottom:-30px;}
+	</style>
+</head>
+<body style="background:#f0f0f0;padding-bottom:100px;">
+<div class="user_header" style="background:-webkit-gradient(linear, 0% 0%, 100% 100%, from({:C('WAP_COLOR')}), to({:C('WAP_JIANBIAN_COLOR')}));">
+<div class="left" style="width:25%"><img src="{$user_info.headimgurl}" class="head_pic"></div>
+<div class="left" style="width:60%;padding:10px 10px;">
+	<span style="font-size:16px;">{$user_info.nickname}</span>
+	<span class="agent" style="font-size:12px;height:25px;line-height:25px;"><i class="icon iconfont" style="font-size:12px;">&#xe60f;</i> {$user_info.agent_name}</span>
+</div>
+
+<div class="setting left"  onclick="setting()"><i class="icon iconfont" style="font-size:22px;">&#xe68a;</i></div>
+<div class="clear"></div>
+</div>
+<!--用户信息概要-->
+<div class="grid gutter-1px mb user-well">
+	<div class="grid-item 4/12" onclick="shop_url(this)" data-url="{:U('system_notice')}"><div class="box tc bottom-nav"><p class="number" style="line-height:30px;">{$system_notice_num}</p>系统消息</div></div>
+	<div class="grid-item 4/12" onclick="shop_url(this)" data-url="{:U('team')}"><div class="box tc bottom-nav"><p class="icon iconfont">&#xe622;</p>我的团队</div></div>
+	<div class="grid-item 4/12" onclick="qr()"><div class="box tc bottom-nav"><p class="icon iconfont">&#xe6b0;</p>我的二维码</div></div>
+</div>
+<div class="grid gutter-1px mb user-well" style="background:#fff;margin-top:-20px;">
+	<div class="grid-item 12/12 title" onclick="shop_url(this)" data-url="{:U('order')}">
+		<div class="box tc bottom-nav" style="font-size:14px;">我的订单</div>
+	</div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('order')}?state=all"><div class="box tc bottom-nav"><p class="icon iconfont">&#xe791;</p>全部订单</div></div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('order')}?state=pay">
+		<if condition="$pay_num neq 0"><span class="right-num">{$pay_num}</span></if>
+		<div class="box tc bottom-nav"><p class="icon iconfont">&#xe673;</p>待付款</div>
+	</div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('order')}?state=wuliu">
+		<if condition="$wuliu_num neq 0"><span class="right-num">{$wuliu_num}</span></if>
+		<div class="box tc bottom-nav"><p class="icon iconfont">&#xe671;</p>待收货</div>
+	</div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('order')}?state=zan">
+		
+		<div class="box tc bottom-nav"><p class="icon iconfont">&#xe672;</p>待评价</div>
+	</div>
+</div>
+<div class="grid gutter-1px mb user-well" style="background:#E8E8E8;margin-top:-20px;">
+	<div class="grid-item 12/12 title"><div class="box tc bottom-nav" style="font-size:14px;">我的钱包</div></div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('/pay/pay/user_money')}?state=money"><div class="box tc bottom-nav"><p class="icon money" style="font-size:14px;color:{:C('WAP_COLOR')};">{$user_info.shop_income}</p>余额</div></div>
+	<div class="grid-item 3/12"><div class="box tc bottom-nav"><p class="icon money" style="font-size:14px;color:{:C('WAP_COLOR')};">{$hb_fee}</p>红包</div></div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('/user/jifen/index')}"><div class="box tc bottom-nav"><p class="icon money" style="font-size:14px;color:{:C('WAP_COLOR')};">{$user_info.jifen}</p>积分</div></div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('/user/daijin/center')}?state=pay"><div class="box tc bottom-nav"><p class="icon iconfont money" style="font-size:22px;color:{:C('WAP_COLOR')};">&#xe623;</p>代金券</div></div>
+</div>
+<div style="background:#fff;margin-top:-20px;">
+<div class="grid gutter-1px mb user-well">
+	<div class="grid-item 12/12 title"><div class="box tc bottom-nav" style="font-size:14px;">我的应用</div></div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('gongpai/index')}"><div class="box tc bottom-nav"><p class="icon iconfont" style="font-size:35px;">&#xe61e;</p>公排复制</div></div>
+	<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('profit')}"><div class="box tc bottom-nav"><p class="icon iconfont" style="font-size:35px;">&#xe60e;</p>团队分红</div></div>
+	<!-- <div class="grid-item 3/12"><div class="box tc bottom-nav"><p class="icon iconfont" style="font-size:35px;">&#xe732;</p>抢积分</div></div>
+	<div class="grid-item 3/12"><div class="box tc bottom-nav"><p class="icon iconfont" style="font-size:25px;">&#xe615;</p>装B神器</div></div>
+	<div class="grid-item 3/12"><div class="box tc bottom-nav"><p class="icon iconfont" style="font-size:25px;">&#xe623;</p>文章广告</div></div> -->
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+<include file="./Application/Shop/View/wap_footer.html" />
+</body>
+</html>

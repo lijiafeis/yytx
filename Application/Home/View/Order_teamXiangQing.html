@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>确认订单</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui-reset.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+<div class="app_container">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>确认订单</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>	
+	<div class="weui-panel__ft addr">
+		<a  class="weui-cell weui-cell_access weui-cell_link">
+		    <div class="location"><img class="icon-img" src="__PUBLIC__/home1/img/images/confirm-place.png" style="display: inline-block;"/></div>
+		    <div class="weui-cell__bd">
+		    	<p>收货人 : {$add.username}  <span>{$add.telphone}</span></p>
+	       		<p>收货地址 : {$add.city}{$add.address}</p>
+		    </div>
+		    <span class="weui-cell__ft"></span>
+		</a>    
+	</div>
+	<div class="order">
+		<volist name="data" id="v">
+		<div class="order-inner">
+			<div class="goods-img-box">
+				<img src="{$v.pic_url}"/>
+			</div>
+			<div class="order-infor">
+				<div class="goods-name over2">{$v.good_name}</div>
+				<div class="goodsinfo">
+					<div class="f_left quantity">{$v.good_num}件</div>
+					<div class="f_left quantity">&nbsp;&nbsp;&nbsp;{$v.type}</div>
+					<div class="f_right price">￥{$v.good_price}</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		</volist>
+		<div class="order-num">
+			<span class="f_left">订单号 : {$info.order_sn}</span>
+			<span class="f_right">包邮</span>
+			<div class="clear"></div>
+		</div>
+
+	</div>
+
+	<div class="pay-wrap">
+		<div class="pay-system">
+		</div>
+		<div>总计 : <span class="price">￥<span id="fee">{$info.zonge}</span></span>
+			<if condition="$info.fxmoney neq 0">
+				<span>复消积分抵消:{$info.fxmoney}</span>
+			</if>
+		</div>
+	</div>
+	<div class="order-bottom">
+		<if condition="$type eq 0">
+
+		<elseif condition="$type eq 2"/>
+		<a href="{:U('getWuliu')}?order_id={$info.id}&agent_id={$Think.get.agent_id}" class="grey-border">查看物流</a>
+		</if>
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){	
+		$('.icon_pay').click(function(){
+			$(this).addClass('selected').siblings().removeClass('selected');
+			val = $("#is_pay").val();
+			val = val == 0 ? 1 : 0;
+            $("#is_pay").val(val);
+		})
+	})
+</script>
+
+</html>

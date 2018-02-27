@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/121/game/css/common.css"/>
+<style>
+body{height: 100%;}
+.app_container{background: #292621;height: 100%; overflow-y: scroll;}
+.img-block{display: block;width: 100%;}
+.title-img{width: 50%;text-align: center;margin:0px auto 40px;padding-top:30px;}
+.goods-wrap{margin-bottom: 50px;}
+.good-bg{background: url(__PUBLIC__/121/game/img/game-img/good-bg.png) repeat;width:100%;height: 135%;background-size: 100% 135%;
+max-width: 640px;margin: auto;}
+.goods-bg{background: url(__PUBLIC__/121/game/img/game-img/goods-bg2.png) no-repeat;width:100%;height: 2rem;background-size: 100% 2rem;margin-bottom: 25px;
+position: relative;max-width: 640px;margin: auto;}
+.left-image{position: absolute;top: -0.25rem;left: 18%;}
+.left-image img,.right-image img{width: 1.6rem;height: 1.48rem;}
+.right-image{position: absolute;top: -0.25rem;right: 18%;}
+.left-name{position: absolute;bottom: -0.096rem;left: 16%;}
+.right-name{position: absolute;bottom: -0.096rem;right: 15%;}
+.left-name p,.right-name p{width: 1.9rem;text-align: center;color: #E5CF99;font-size: 13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.left-price{background: url(__PUBLIC__/121/game/img/game-img/price.png) no-repeat;width: 1.6rem;height: 0.512rem;background-size: 1.6rem 0.512rem;
+position: absolute;top: .925rem;left: 18%; text-align: center;line-height:0.576rem;color: #F98B1A;font-size: .27rem;}
+.right-price{background: url(__PUBLIC__/121/game/img/game-img/price.png) no-repeat;width: 1.6rem;height: 0.512rem;background-size: 1.6rem 0.512rem;
+position: absolute;top: .925rem;right: 18%; text-align: center;line-height:0.576rem;color: #F98B1A;}
+.app_container::-webkit-scrollbar{display: none;}
+</style>
+</head>
+<body>
+<div class="app_container">
+	<!--<header style="height: 0.8rem;">
+		<div class="fixed header_inner" style="border-bottom: 0;">
+			<div class="head" style="background:#292621;">				
+				<span class="left_arrow"><img src="__PUBLIC__/121/game/img/left-white.png"/></span>
+				<span>标题</span>	
+				<div class="clear"></div>					
+			</div>
+		</div>
+	</header>-->
+	<img class="img-block" src="__PUBLIC__/121/game/img/banner-img.png"/>
+	<div class="good-bg">
+		<img class="img-block title-img" src="__PUBLIC__/121/game/img/game-img/home-title.png"/>
+		<volist name="info" id="vv">
+		<div class="goods-wrap">
+			<div class="goods-bg" onclick="jumpGoodInfo({$vv.id})">
+				<div class="left-image"><img src="{$vv.pic}"/></div>
+				<div class="left-price"><p>￥{$vv.good_price}</p></div>
+				<div class="left-name"><p>{$vv.good_name}</p></div>
+				<div class="right-image"><img src="{$vv.game_pic}"/></div>
+				<div class="right-price"><p>￥{$vv['good_price']*2}.00</p></div>
+				<div class="right-name"><p>{$vv.good_name}</p></div>
+			</div>	
+		</div>
+		</volist>
+	</div>
+</div>	
+</body>
+<script src="__PUBLIC__/121/game/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/121/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+	function jumpGoodInfo(good_id){
+	    if(!good_id){
+	        layer.msg('缺少产品信息');
+		}
+		layer.load(2,{
+		    shade:[0.6,"#000"]
+		});
+	    location.href = "{:U('Goods/goodInfo')}?good_id=" + good_id + "&order_type=1";
+	}
+</script>
+</html>

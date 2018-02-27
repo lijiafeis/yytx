@@ -1,0 +1,39 @@
+<table class="table table-striped" style="font-size:14px;">
+			<th>编号</th>
+			<th>代金券信息</th>
+			<th>购买人</th>
+			<th>成交价</th>
+			<th>支付情况</th>
+			<th>购买时间</th>
+			<th>使用情况</th>
+			<!-- <th>操作</th> -->
+<volist name="info" id="vv">
+			<tr>
+				<td>{$vv.order_id}</td>
+				<td><button class="btn btn-link btn-sm">「ID:{$vv.daijin_id}」{$vv.name}元代金券</button></td>
+				<td>
+				{$vv.total_fee}
+				</td>
+				<td>「{$vv.user_id}」{$vv.user.nickname}</td>
+				<td>
+				<if condition="$vv['is_true'] eq 1">已支付
+				<else />
+				<font color="red">待支付</font>
+				</if>
+				</td>
+				<td>
+				{$vv.time}
+				</td>
+				
+				<td><if condition="$vv['state'] eq 1">已使用
+				<else />
+				<font color="red">未使用</font>
+				</if></td>
+				<!-- <td>
+				<a href="{:U('add')}?daijin_id={$vv.daijin_id}"><button class="btn btn-warning btn-sm">修改</button></a>
+				<button class="btn btn-danger btn-sm" onclick="del(this,'{$vv.type_id}','type_del')">删除</button>
+				</td> -->
+			</tr>
+			</volist>
+			</table>
+			<div class="pagelist">{$page}</div>

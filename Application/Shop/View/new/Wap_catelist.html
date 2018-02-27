@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)//classify.html -->
+<html>
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>
+      {$app_info[0]['wxname']}商城
+    </title>
+    <link rel="stylesheet" href="__PUBLIC__/shop/css/3c30a65871.layout.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/iconfont/0727/iconfont.css">
+    <script>
+      __STAT.add('head_load');
+    </script>
+    <script src="__PUBLIC__/shop/css/562a4c0e89.jquery-2.1.0.min.js">
+    </script>
+  </head>
+  
+  <body class=" hAndroid hPC" style="padding-bottom:40px;">
+    <include file="./Application/Shop/View/Index_wxjs.html" />
+    <!-- 地理位置 -->
+    <script>
+      var downloadAppConfig = {
+        cls: 'KexSirug',
+        url: '//service-download.html',
+        page: 'classify'
+      }
+    </script>
+    <header id="header" class="" style="height:40px;font-size:16px;text-align:center;line-height:40px;color:#000;background:#fff;border-bottom:1px solid #e8e8e8;">
+     商品分类
+	 <i class="icon iconfont" style="float:left;margin-left:10px;font-size:22px;color:#777;" onclick="history.go(-1);">&#xe6d7;</i>
+	 <a href="{:U('index')}"><i class="icon iconfont" style="float:right;margin-right:10px;font-size:22px;color:#777">&#xe6b8;</i></a>
+    </header>
+	<style>
+	.title .box{text-align:left !important;padding-left:10px;font-size:14px;}
+	.good .box{background:#fff;}
+	</style>
+	<volist name="categrey" id="vv" empty="无商品分类">
+	<div class="grid gutter-6px mb" style="background:#fff;padding-bottom:-20px;">
+		<div class="grid-item 12/12 title"><div class="box tc bottom-nav" style="font-size:14px;padding:5px;">
+		<i class="icon iconfont" style="font-size:16px;color:{:C('WAP_COLOR')};">&#xe751;</i> {$vv.cate_name}
+		</div></div>
+		<div style="width:96%;margin:0 auto;">
+		<volist name="vv.arr" id="kk" empty='$empty'>
+		<div class="grid-item 3/12 good" onclick="shop_url(this)" data-url="{:U('search')}?pid={$kk.cate_id}"><div class="box tc bottom-nav">
+		<figure style="margin-bottom:10px;"><img  src="/{$kk.pic_url}" alt="Image alt text"></figure>
+		<div style="white-space:nowrap;overflow:hidden;color:#555;">{$kk.cate_name}</div>
+		</div></div>
+		</volist>
+		<div style="clear:both"></div>
+		</div>
+		
+		
+	</div>
+</volist>
+    
+	
+    <div class="layout-login-area" style="padding：6px;margin:10px 0;">
+         
+          <div style="font-size:12px;color:#999;">
+            © {:C('COPYRIGHT')}
+          </div>
+        </div>
+      
+    
+    <div style="position:fixed;bottom:0;">
+     <include file="./Application/Shop/View/wap_footer.html" />
+    </div>
+	
+    <a href="" class="u-backtop" mars_sead="home_foot_top_btn">
+    </a>
+	
+    <!--以下是浮于显示屏左下角的购物袋-->
+    <script src="__PUBLIC__/shop/css/c6d4147a04.page.classify.top.min.js">
+    </script>
+  </body>
+
+</html>

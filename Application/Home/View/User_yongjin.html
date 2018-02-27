@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>奖励</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+<div class="app_container" style="background:#0B0A09;">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">				
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>奖励</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>
+	<ul class="tabs">
+		<li class="tab tab-active" data-info="0">销售奖</li>
+		<li class="tab" data-info="1">管理奖</li>
+		<li class="tab" data-info="2">分红</li>
+		<li class="tab" data-info="3">感恩奖</li>
+		<div class="clear"></div>
+	</ul>
+	<div class="panes">
+		<div class="pane">
+			<table class="goods_wrap">
+
+			</table>
+		</div>
+
+	</div>
+	<input type="hidden" id="type" value="0">
+	<input type="hidden" id="page" value="1">
+	<input type="hidden" id="isshow" value="0">
+	<footer class="fixed">
+		<a href="{:U('Index/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/mt-1.png"/>
+			<div>茅台䣽酒</div>
+		</a>
+		<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+			<div>茅台文化</div>
+		</a>
+		<a href="{:U('Goods/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/shop-1.png"/>
+			<div>商城</div>
+		</a>
+		<a href="{:U('User/index')}?agent_id={$Think.get.agent_id}" class="foot-active">
+			<img src="__PUBLIC__/home1/user-img/foot-img/user-2.png"/>
+			<div>个人中心</div>
+		</a>					
+		<div class="clear"></div>			
+	</footer>
+	<input type="hidden" id="one" value="{$one}"/>
+	<input type="hidden" id="two" value="{$two}"/>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){	
+		$('.tab').click(function(){
+			$(this).addClass('tab-active').siblings().removeClass('tab-active');
+			$('.panes>.pane:eq('+$(this).index()+')').show().siblings().hide();
+			val = $(this).data('info');
+            $("#page").val(1);
+            $('#type').val(val);
+            $('#isshow').val(0);
+            $('.goods_wrap').empty();
+            setData(val);
+
+		});
+        setData(0);
+	});
+
+    $(window).scroll(function() {
+        //$(document).scrollTop() 获取垂直滚动的距离、$(document).scrollLeft() 这是获取水平滚动条的距离
+        if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+            //$('body').append('下滑了')
+            val = $('#type').val();
+            get_page(val)
+        }
+    });
+</script>
+<script src="__PUBLIC__/home/js5/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    //设置分页的参数
+    function setData(val){
+        if($(document).scrollTop() == 0 && $(document).height()  ==  $(window).height()){
+			/*首次打开页面加载*/
+            get_page(val)
+        }
+        $(window).scroll(function() {
+            //$(document).scrollTop() 获取垂直滚动的距离、$(document).scrollLeft() 这是获取水平滚动条的距离
+            if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                //$('body').append('下滑了')
+
+                get_page(val)
+            }
+        });
+    }
+    function get_page(val){
+        //alert(val);
+		/*初始化相关参数，请求url地址时用的$.post()方法*/
+        var scroll_data = {
+            'url':"{:U('yongjinbb')}?",//如果不传token值，直接后加一个 ？，当前&后为get参数p，在后台接收处理
+            'parentId':$('.goods_wrap'),//要加载的父元素DOM
+            't_data':{'type':val,'name2':'一些必要的判断条件2','name3':'一些必要的判断条件3'}//异步要传的参数，json
+        };
+        var page_load = '<div class="weui-loadmore load_more" data-page="1" data-state="1" style="display: block;"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div>';
+        var page_none = '<tr ><td colspan="3" style="">没有更多了</td></tr>';
+        var flag = 0;
+        var load_more = scroll_data.parentId.find('.load_more');
+        if(load_more.length == 0){
+            scroll_data.parentId.append(page_load)
+            load_more = scroll_data.parentId.find('.load_more')
+        }
+        // 判断上一个请求是否执行完
+        var state = load_more.data('state')
+        if(state == 0){return}else{load_more.data('state',0)}
+        load_more.show()
+        type = $('#type').val();
+        var page = $("#page").val();
+        var one = $("#one").val();
+        var two = $("#two").val();
+        $.post(scroll_data.url+"p="+page,scroll_data.t_data,function(data){
+            str = '';
+            isshow = $("#isshow").val();
+            if(isshow == 0){
+                if(type == 0){
+                    str += '<tr><th  class="txt_left" style="width:30%;">姓名</th><th class="txt_center"  style="width:30%;">金额</th><th  class="txt_right "  style="width:40%;">时间</th></tr>';
+                }else{
+                    str += '<tr><th  class="txt_left">金额</th><th class="txt_right">时间</th></tr>';
+                }
+                $("#isshow").val(1);
+			}
+
+//            console.log(data);
+            for(var i = 0;i < data.length;i++){
+				if(type == 0){
+                    if(data[i]['time1'] != ''){
+                        money1 = data[i]['money'] * one;
+                        money2 = data[i]['money'] * two;
+                        money1 = money1.toFixed(2)
+                        money2 = money2.toFixed(2)
+                        str += '<tr><td  class="txt_left" style="width:30%;">'+data[i]['name']+'</td><td  class="txt_center"  style="width:30%;">￥'+money1+'</td><td   class="txt_right "  style="width:40%;">'+data[i]['time']+'</td></tr>'
+                        str += '<tr><td  class="txt_left" style="width:30%;">'+data[i]['name']+'</td><td  class="txt_center"  style="width:30%;">￥'+money2+'</td><td   class="txt_right "  style="width:40%;">'+data[i]['time1']+'</td></tr>'
+                    }else{
+                        str += '<tr><td  class="txt_left" style="width:30%;">'+data[i]['name']+'</td><td  class="txt_center"  style="width:30%;">￥'+data[i]['money']+'</td><td   class="txt_right "  style="width:40%;">'+data[i]['time']+'</td></tr>'
+                    }
+				}else{
+                    str += '<tr><td   class="txt_left">￥'+data[i]['money']+'</td><td class="txt_right">'+data[i]['time']+'</td></tr>'
+
+                }
+            }
+            load_more.hide().data('page',page*1+1).before(str)
+            $("#page").val(page * 1 + 1);
+            if(data == ''){
+                load_more.before(page_none)
+            }else{
+                load_more.data('state',1)
+            }
+        })
+    }
+</script>
+<script src="__PUBLIC__/home/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+</html>

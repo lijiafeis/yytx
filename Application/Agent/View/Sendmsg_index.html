@@ -1,0 +1,393 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<style>
+body .layui-layer{position:fixed!important;top:20%!important;}
+.file {position: relative;margin:10px 0;display: inline-block;background: #f0ad4e;border: 1px solid #f0ad4e;border-radius: 4px;padding: 4px 12px;overflow: hidden;
+		color: #fff;text-decoration: none;text-indent: 0;line-height: 25px;}
+.file input {position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0;}
+.file:hover {background: #f0ad4e;border-color: #f0ad4e;color: #fff;text-decoration: none;}
+</style>
+<div class="container-fluid main" style="position:relative;">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>应用中心--群发消息</div>
+	<div class="main-content">
+
+		<div>
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">编辑群发</a></li>		    
+		    <li role="presentation"><a href="" onclick="to()" aria-controls="" role="tab" data-toggle="tab">群发历史</a></li>		    
+		    <li role="presentation"><a href="" onclick="yun()" aria-controls="" role="tab" data-toggle="tab">应用市场</a></li>		    
+		  </ul>
+		  
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="home">
+				
+				<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+					信息群发，支持发送文字，图片，图文，语音，视频
+				</div>
+				
+				<div style="font-size:16px;margin-bottom:10px;"><span class="caret"></span>群发对象</div>
+				<div class="form-group col-sm-3" style="margin-left:20px;">
+					<label class="control-label" style="text-align:left;" for="exampleInputEmail1">发送入口</label>
+					<label class="control-label col-sm-12 text-left" for="exampleInputEmail1"></label>
+					<div class="col-sm-10">
+					<select multiple class="form-control" id="type">
+					  <option value="1">公众平台粉丝</option>
+					  <option value="2" selected>系统后台粉丝</option>
+					</select>
+					</div>
+				</div>
+				<div class="form-group col-sm-3" id="sex_view">
+					<label class="control-label" style="text-align:left;" for="exampleInputEmail1">性别</label>
+					<label class="control-label col-sm-12 text-left" for="exampleInputEmail1"></label>
+					<div class="col-sm-10">
+					<select multiple class="form-control" name="sex" id="sex">
+					  <option value="3" selected>全部</option>
+					  <option value="1">男</option>
+					  <option value="2">女</option>
+					  <option value="0">未知</option>
+					</select>
+					</div>
+				</div>
+				<div class="form-group col-sm-3" id="agent_view">
+					<label class="control-label" style="text-align:left;" for="exampleInputEmail1">会员级别</label>
+					<label class="control-label col-sm-12 text-left" for="exampleInputEmail1"></label>
+					<div class="col-sm-10">
+					<select multiple class="form-control" name="agent" id="agent">
+					  <option value="2" selected>全部</option>
+					  <option value="0">普通会员</option>
+					  <option value="1">分销商会员</option>
+					</select>
+					</div>
+				</div>
+				
+				 <div style="clear:both"></div>
+				 <div style="font-size:16px;margin-top:20px;margin-bottom:10px;"><span class="caret"></span>群发内容</div>
+				 <div class="col-sm-9" style="border-bottom:1px solid #ccc;border-top:1px solid #ccc;padding-top:20px;min-height:200px;">
+					<ul class="nav nav-tabs" role="tablist1">
+						<li role="presentation" class="active"><a href="#text_view" aria-controls="text_view" role="tab" data-toggle="tab" onclick="change_send_type('text')">文本</a></li>		    
+						<li role="presentation"><a href="#news_view" aria-controls="news_view" role="tab" data-toggle="tab" onclick="change_send_type('news')">图文</a></li>		    
+						<li role="presentation"><a href="#image_view" aria-controls="image_view" role="tab" data-toggle="tab" onclick="change_send_type('image')">图片</a></li>		    
+						<li role="presentation"><a href="#radio_view" aria-controls="radio_view" role="tab" data-toggle="tab" onclick="change_send_type('radio')">语音</a></li>		    
+						<li role="presentation"><a href="#video_view" aria-controls="video_view" role="tab" data-toggle="tab" onclick="change_send_type('vedio')">视频</a></li>		    
+						<!-- <li role="presentation"><a href="#card_view" aria-controls="card_view" role="tab" data-toggle="tab" onclick="change_send_type('card')">卡券</a></li>		     -->
+							
+					</ul>
+					<div class="tab-content">
+						<div role="tabpane2" class="tab-pane active" style="padding:20px 0;" id="text_view">
+							
+							<textarea class="form-control" rows="5" id="text"></textarea>
+							
+						</div>
+						<div role="tabpane2" class="tab-pane" style="padding:20px 0;" id="news_view">
+						
+							
+							
+							<div id="add"></div>
+							<div  id="item" style="display:none;" >
+							<div style="padding:5px;border-bottom:1px dashed #ccc" class="demo">
+								<input class="hidden" type="text" name="input" value=''>
+								<div class="pull-left" style="width:10%"><img src="__PUBLIC__/head.jpg" class="img-thumbnail pic" style="height:40px"></div>
+								<div class="pull-left" style="width:50%;margin-left:10px;">
+								<h4 class="title" style="line-height:25px;font-size:18px;">这是一篇图文文章，现在要推送</h4>
+								</div>
+								<div class="pull-left" style="width:30%;text-align:right;">
+								<button class="btn btn-link" onclick="moveup(this);"><i class="glyphicon glyphicon-chevron-up"></i>上移</button>
+								<button class="btn btn-link" onclick="movedown(this);"><i class="glyphicon glyphicon-chevron-down"></i>下移</button>
+								<button class="btn btn-link" onclick="del_news(this);">移除</button>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+							</div>
+							<div style="text-align:center;">
+							<button class="btn btn-warning" onclick="add_news();" style="width:200px;margin:20px auto;">加入图文</button>
+							</div>
+							
+						</div>
+						<div role="tabpane2" class="tab-pane" style="padding:20px 0;" id="image_view">
+							<input type="hidden" name="images_input" value="" id="images_input" style="width:300px">
+							<img src="" alt="..." class="img-rounded" width="200px" id="send_pic_image" style="display:none;margin:0 auto;">
+							<div style="text-align:center;">
+							<button class="btn btn-warning" onclick="upload(this);" style="width:200px;margin:20px auto;">选择发送图片</button>
+							</div>
+						</div>
+						<div role="tabpane2" class="tab-pane" style="padding:20px 0;text-align:center;" id="radio_view">
+							<div id="radio_contro" style="display:none;"><audio src="" controls="controls" class="audio" autoplay="autoplay"></audio></div>
+							<a href="javascript:;" class="file"><input type="file" name="file" id="file" accept="audio/*" />上传mp3格式语音文件</a>
+							<p>语音文件格式支持mp3，不超过5M，时间不超过60s</p>
+							
+
+							
+						</div>
+						<div role="tabpane2" class="tab-pane" style="padding:20px 0;text-align:center;" id="video_view">
+							<div id="vedio_contro" style="display:none;"><video src="" controls="controls" class="vedio" autoplay="autoplay"></video></div>
+							<a href="javascript:;" class="file"><input type="file" name="file1" id="file1" accept="video/*" />上传mp4格式视频文件</a>
+							<p>视频文件格式支持mp4，不超过10M</p>
+						</div>
+						<div role="tabpane2" class="tab-pane" style="padding:20px 0;" id="card">
+							2222
+							
+						</div>
+					</div>
+				</div>
+				
+				<div style="clear:both"></div>
+				 <div style="font-size:16px;margin-top:20px;margin-bottom:10px;"><span class="caret"></span>备选</div>
+				 <div class="form-group">
+					<div class="col-sm-4">
+						<label class="radio-inline">
+						  <input type="radio" name="system_show" id="" value="1" checked > 显示在系统消息中
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="system_show" id="" value="0"> 不显示
+						</label>
+					</div>
+				</div>
+				<div style="clear:both"></div>
+				<button type="button" class="btn btn-success" style="margin:20px;padding:5px 30px;margin-bottom:100px;" id="send_message" onclick="send_message(this)" data-loading-text="正在核算人数，稍等...">
+				确定发送
+				</button>
+				<input type="hidden" name="sure" id="sure" >
+				<input type="hidden" name="input" id="input" >
+		    </div>
+		
+		  </div>
+		</div>
+		
+	</div>
+	<div id="sending_view" style="display:none">
+	<div style="z-index:22;position:absolute;background:rgba(0,0,0,0.5);width:100%;height:100%;top:0;"></div>
+	<div style="z-index:23;position:absolute;background:#fff;width:300px;height:50px;top:0;margin-top:20%;margin-left:35%;border-radius:10px;">
+		<a href="#" target="_blank" onclick="location.reload();" type="button" class="btn btn-warning" style="width:100%;line-height:50px;font-size:18px;" id="sending_url">
+				点击打开新窗口执行任务
+				</a>
+	</div>
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script src="__PUBLIC__/admin/js/ajaxfileupload.js"></script>
+<script>
+var i = 0;
+function add_news(obj){
+	var item_num = 0;
+	$('.demo').each(function(){
+		item_num++;
+	});
+	if(item_num > 8){layer.msg('最多可以发送8篇图文！');exit;}
+	//var par = $(obj).parent().parent().parent().attr("id");
+	//alert(par);
+	layer.open({
+		type: 2,
+		area: ['700px', '530px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: "{:U('newslist')}?type=1",
+		end:function(){
+			if($('#sure').val() == 1 ){
+				$('#item .demo').attr('id','item'+i);
+				$('#item .demo input').attr('name','input'+i);
+				$('#item .demo input').attr('id','input'+i);
+				var item = $('#item').html();
+				$('#add').before(item);
+				var input_value = $('#input').val();
+				$('#input'+i).val(input_value);i++;
+			}
+			$('#sure').val('0');
+			
+			
+		}
+	});
+}
+function moveup(obj){
+	var parent = $(obj).parent().parent();
+	var before_obj = parent.prev();
+	if(before_obj.attr('class') != 'demo'){
+		layer.msg("已经是第一个了！");exit;
+	}else{
+		$(parent).insertBefore(before_obj);
+	}
+}
+function movedown(obj){
+	var parent = $(obj).parent().parent();
+	var after_obj = parent.next();
+	if(after_obj.attr('class') != 'demo'){
+		layer.msg("已经是最后一个了！");exit;
+	}else{
+		$(parent).insertAfter(after_obj);
+	}
+}
+function del_news(obj){
+	var parent = $(obj).parent().parent(); parent.remove();
+}
+function upload(obj){
+//alert(num);
+	layer.open({
+	  type: 2,
+	  skin:'demo',
+	  title:'上传图片--西瓜科技上传插件',
+	  area: ['520px', '430px'],
+	  fix: false, //不固定
+	  //maxmin: true,
+	  content: "{:U('Img/index')}?id=images_input",
+	  end: function(){	
+			var url = $("#images_input").val();
+			if(url != ''){
+				$('#send_pic_image').attr('src',url);
+				$('#send_pic_image').css('display','block');
+			}
+		}
+	});
+}
+
+var send_type = 'text';var send_jindu = 0;
+$(function(){
+	send_group();
+	$('#type').bind('change',function(){send_group();});
+	$("#file").on('change',function(e){
+		var file = document.getElementById("file").files[0]; 
+		var file_type = file.type;
+		var file_size = file.size;if(file_size > 5242848){layer.msg("文件超过5M！"); exit;}
+		if(file_type.indexOf('mp3') <= 0){
+			layer.msg("请选择mp3格式上传");  
+			return false;  
+		}
+		layer.load();//exit;
+		$.ajaxFileUpload({
+			url: "{:U('file_upload')}", //用于文件上传的服务器端请求地址
+			secureuri: false, //一般设置为false
+			fileElementId: 'file', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+			dataType: 'json', //返回值类型 一般设置为json
+			success: function (data, status){
+				if(data.success == 0){layer.msg(data.info);exit;}
+				//$("#file").bind('change',function(){});
+				$('#radio_contro').css('display','block');
+				$('#radio_contro .audio').attr('src',data.info);
+				layer.closeAll();
+				//alert(data);//xigua_upload(xigua);
+			},
+			error: function (data, status, e){
+				alert(status);
+			}
+        });
+	});
+	$("#file1").bind('change',function(e){
+		var file = document.getElementById("file1").files[0]; 
+		var file_type = file.type;
+		var file_size = file.size;if(file_size > 10485697){layer.msg("文件超过10M！"); exit;}
+		if(file_type.indexOf('mp4') <= 0){
+			layer.msg("请选择mp4格式上传");  
+			return false;  
+		}
+		layer.load();//exit;
+		$.ajaxFileUpload({
+			url: "{:U('file_upload1')}", //用于文件上传的服务器端请求地址
+			secureuri: false, //一般设置为false
+			fileElementId: 'file1', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+			dataType: 'json', //返回值类型 一般设置为json
+			success: function (data, status){
+				if(data.success == 0){layer.msg(data.info);exit;}
+				//$("#file").bind('change',function(){});
+				$('#vedio_contro').css('display','block');
+				$('#vedio_contro .vedio').attr('src',data.info);
+				layer.closeAll();
+				//alert(data);//xigua_upload(xigua);
+			},
+			error: function (data, status, e){
+				alert(status);
+			}
+        });
+	});
+});
+function send_group(){
+	var type = $('#type').val();
+	if(type == 1){
+		$('#sex_view').css('display','none');
+		$('#agent_view').css('display','none');
+	}else{
+		$('#sex_view').css('display','block');
+		$('#agent_view').css('display','block');
+	}
+}
+function change_send_type(str){
+	send_type = str;
+}
+function send_message(obj){
+	layer.msg('正在核算人数，稍等', {icon: 16});
+	$(obj).button('loading');
+	var type = $('#type').val();
+	var sex = $('#sex').val();
+	var agent = $('#agent').val();
+	$.ajax({
+		type:'post',
+		url:"{:U('get_send_fans_list')}?time="+new Date(),
+		dataType:'json',
+		data:{type:type,sex:sex,agent:agent},
+		success:function(data){
+			if(data.num == 0){
+				layer.msg('群发对象中粉丝数为0，无法发送');
+			}else{
+				layer.closeAll();
+				$(obj).button('reset');
+				layer.confirm('群发对象共有'+data.num+'人，是否确认发送？', {
+				  btn: ['发送','取消'] //按钮
+				}, function(){
+					send_now(data);
+				}, function(){
+				 
+				});
+			}
+		},
+		error:function(){
+			layer.msg('发生错误！');
+		}
+	});
+}
+function send_now(json){
+	
+	if(send_type == 'text'){
+		var content = $('#text').val();
+	}else if(send_type == 'news'){
+		var content = '';
+		$('#news_view input').each(function(){
+			var value = $(this).val();
+			if(value != ''){
+			content = content + value + ',';
+			}
+			
+		});
+	}else if(send_type == 'image'){
+		var content = $('#images_input').val();
+	}else if(send_type == 'radio'){
+		var content = $('#radio_contro .audio').attr('src');//layer.msg(content);exit;
+	}else if(send_type == 'vedio'){
+		var content = $('#vedio_contro .vedio').attr('src');
+	}else if(send_type == 'card'){
+		var content = '';layer.msg('暂时不支持~');exit;
+	}
+	var system_show = $('input[name="system_show"]:checked').val();
+	if(content == ''){layer.msg('发送内容不能为空！');exit;}
+	layer.msg('正在发送！请勿操作', {icon: 16});
+	
+	$.ajax({
+		type:'post',
+		url:"{:U('send_message')}",
+		dataType:'json',
+		data:{type:send_type,content:content,system_show:system_show},
+		success:function(data){
+			if(data.success == 0){layer.msg(data.info);exit;}
+			$('#sending_url').attr('href',"{:U(sending)}?id="+data.id);
+			$('#sending_view').css('display','block');
+			layer.closeAll();
+		},
+		error:function(){
+			layer.msg('发生错误！');
+			layer.closeAll();
+		}
+	});
+}
+function to(){location.href="{:U('record')}";}
+function yun(){location.href="{:U('yingyong/index')}";}
+</script>

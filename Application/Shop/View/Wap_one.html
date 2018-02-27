@@ -1,0 +1,22 @@
+
+
+<div class="right_wrap" style="width: 100%;z-index: 2;"> 
+	<div class="right" style="position: absolute;left: 86px;float: right;background:#fff;"> 
+			
+			<div class="col_wrap_3"> 
+				<div class="col_3">
+					<div class="title" style="color: #000;"><span style="font-size: 14px;">{$parent_name}</span></div>
+					<ul> 
+						<volist name="children_list" id="vv" empty="$empty">
+						 <li style="margin:0;text-align:center;"  onclick="shop_url(this)" data-url="{:U('search')}?pid={$vv.cate_id}">
+							<div><img src="/{$vv.pic_url}"  style="width:80%;border:1px #ddd solid;adver_box-sizing:border-box;"/></div>
+							<p style="font-size:12px;">{$vv.cate_name}</p>
+							
+						 </li> 
+						 </volist>
+						 <div class="clear"></div> 
+					</ul> 
+				</div> 
+			</div> 						   			  		   
+	</div> 
+</div>

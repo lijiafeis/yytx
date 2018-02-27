@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/bg.css"/>
+<script>
+    $(function(){
+        buju()
+    })
+    window.onresize=function(){
+                buju()
+                
+    }
+     function buju(){
+        var b_width = document.body.clientWidth
+        $('body').height(b_width/900*1338)
+     }
+</script>
+</head>
+<body>
+<div class="">
+	<div class="login">
+		<div style="text-align: center;font-size: 18px;margin-bottom: 20px;">Welcome to 「䣽」</div>
+		<div  class="form">
+			<input class="input" type="number" name="telphone" id="telphone" value="{$data.username}" pattern="[0-9]*" placeholder="输入手机号"/>
+			<input class="input" type="password" name="passward" id="password" value="{$data.password}" placeholder="输入密码"/>
+			<button type="" onclick="check_form()" id="login_btn">登录</button>
+		</div>
+		<div class="link_2">
+			<a href="{:U('register')}?agent_id={$Think.get.agent_id}"  class="link_register" style="font-size:14px;">注册</a>
+			<a href="{:U('chongzhi')}?agent_id={$Think.get.agent_id}" class="link_forget" style="font-size:14px;">忘记密码?</a>
+			<div class="clear"></div>
+		</div>
+	</div>	
+</div>
+</body>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/js/base.js"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+<script>
+    function check_form(){
+        var tel = form_error_info('telphone','请输入正确手机号码');
+		
+        var pwd1 = form_error_info('password','请输入密码');
+        var index = layer.open({type:2,shadeClose: false,content:"正在登录…"});
+//        alert(tel);
+//        alert(pwd1);
+        $.ajax({
+            type:'post',url:"{:U('user_login')}",dataType:'json',data:{tel:tel,pwd1:pwd1},
+            success:function(json){
+                console.log(json);
+                //alert(1);
+                if(json['success'] == 1){
+                    layer.open({content:'登录成功，即将前往用户页…',skin:'msg',time:3});
+//					if("{$redirect_uri}" == '0'){
+                    //var redirect_uri = "{:U('Center/index')}";
+                    location.href="{:U('Home/Index/index')}?agent_id={$Think.get.agent_id}";return;
+//					}else{
+//						var redirect_uri = '<php>echo urldecode($redirect_uri);</php>';
+//					}
+
+//					setTimeout(function(){location.href= redirect_uri;},2000);
+                }else{
+                    layer.open({content:json.error_info,skin:'msg',time:3});layer.close(index);
+                }
+            },
+            error:function(){ layer.open({content:'请稍后重试',skin:'msg',time:2});layer.close(index);}
+        });
+    }
+	/*系统错误信息弹出*/
+    function system_error_info(str){
+        $('#error_info').remove();
+        $('body').append('<div class="weui-toptips weui-toptips_warn js_tooltips" id="error_info" style="display: block;">'+str+'</div>')
+    }
+	/*input表框值判断*/
+    function  form_error_info(id,str){
+        var value = $('#'+id).val();
+        if(value == ''){
+            system_error_info(str)
+            $('#'+id).parent().parent().addClass('weui-cell_warn')
+            return;
+        }else{
+            $('#error_info').remove();
+            $('#'+id).parent().parent().removeClass('weui-cell_warn')
+            return value
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,613 @@
+[ 2017-12-28T11:57:10+08:00 ] 127.0.0.1 /admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-12-28T13:38:29+08:00 ] 127.0.0.1 /admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T13:42:06+08:00 ] 127.0.0.1 /admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-12-28T14:23:23+08:00 ] 127.0.0.1 /Admin/User/check.html?time=Thu%20Dec%2028%202017%2014:23:22%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `wx_admin` [ RunTime:0.0280s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\phpStudy\WWW\yytx\Application\Admin\Controller\UserController.class.php on line 12 and defined D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 285 行.
+NOTIC: [8] Undefined variable: name D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 287 行.
+NOTIC: [8] Undefined variable: name D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 292 行.
+NOTIC: [8] Undefined variable: name D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 353 行.
+SQL: SELECT * FROM `wx_admin` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wx_admin` [ RunTime:0.0240s ]
+SQL: UPDATE `wx_admin` SET `last_time`='1514442203' WHERE ( id = '1' ) [ RunTime:0.0120s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-12-28T14:23:25+08:00 ] 127.0.0.1 /Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: shop_url D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\6fedbbe541e195344bf1450076482852.php 第 21 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-12-28T14:23:25+08:00 ] 127.0.0.1 /Admin/Index/top.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:23:25+08:00 ] 127.0.0.1 /Admin/Index/left.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:23:25+08:00 ] 127.0.0.1 /Admin/Main/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order` [ RunTime:0.0240s ]
+SQL: SELECT SUM(zonge) AS tp_sum FROM `wx_shop_order` WHERE ( state = 1 ) LIMIT 1   [ RunTime:0.0270s ]
+SQL: select sum(zonge) a from wx_shop_order where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0070s ]
+SQL: select sum(good_num) a from wx_shop_order_detail where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order_detail` [ RunTime:0.0160s ]
+SQL: SELECT sum(good_num) as a FROM `wx_shop_order_detail` WHERE ( state = 1 )  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `wx_tixian` [ RunTime:0.0170s ]
+SQL: SELECT sum(sjmoney) as a FROM `wx_tixian` WHERE ( type = 1 )  [ RunTime:0.0050s ]
+SQL: select sum(sjmoney) a from wx_tixian where type = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `wx_user` [ RunTime:0.0190s ]
+SQL: SELECT sum(money) as a FROM `wx_user`  [ RunTime:0.0020s ]
+SQL: select sum(money) a from wx_yongjin where from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0450s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'z%' )  [ RunTime:0.0060s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'w%' )  [ RunTime:0.0010s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 's%' )  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wx_goods_order` [ RunTime:0.0330s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE ( state = 1 and pay_type in (0,1) ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 AND `pay_type` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 0 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: select sum(price) a from wx_goods_order where state = 1 and  from_unixtime(
+pay_time,'%Y-%m-%d') = current_date(); [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:23:30+08:00 ] 127.0.0.1 /Admin/User/check.html?time=Thu%20Dec%2028%202017%2014:23:30%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wx_admin` [ RunTime:0.0240s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\phpStudy\WWW\yytx\Application\Admin\Controller\UserController.class.php on line 12 and defined D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 285 行.
+NOTIC: [8] Undefined variable: name D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 287 行.
+NOTIC: [8] Undefined variable: name D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 292 行.
+NOTIC: [8] Undefined variable: name D:\phpStudy\WWW\yytx\Xigua\Common\functions.php 第 353 行.
+SQL: SELECT * FROM `wx_admin` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wx_admin` [ RunTime:0.0140s ]
+SQL: UPDATE `wx_admin` SET `last_time`='1514442210' WHERE ( id = '1' ) [ RunTime:0.0050s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-12-28T14:23:32+08:00 ] 127.0.0.1 /Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: shop_url D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\6fedbbe541e195344bf1450076482852.php 第 21 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:23:32+08:00 ] 127.0.0.1 /Admin/Index/left.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:23:32+08:00 ] 127.0.0.1 /Admin/Index/top.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-12-28T14:23:32+08:00 ] 127.0.0.1 /Admin/Main/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order` [ RunTime:0.0200s ]
+SQL: SELECT SUM(zonge) AS tp_sum FROM `wx_shop_order` WHERE ( state = 1 ) LIMIT 1   [ RunTime:0.0040s ]
+SQL: select sum(zonge) a from wx_shop_order where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0040s ]
+SQL: select sum(good_num) a from wx_shop_order_detail where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order_detail` [ RunTime:0.0190s ]
+SQL: SELECT sum(good_num) as a FROM `wx_shop_order_detail` WHERE ( state = 1 )  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `wx_tixian` [ RunTime:0.0330s ]
+SQL: SELECT sum(sjmoney) as a FROM `wx_tixian` WHERE ( type = 1 )  [ RunTime:0.0040s ]
+SQL: select sum(sjmoney) a from wx_tixian where type = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `wx_user` [ RunTime:0.0270s ]
+SQL: SELECT sum(money) as a FROM `wx_user`  [ RunTime:0.0010s ]
+SQL: select sum(money) a from wx_yongjin where from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0620s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'z%' )  [ RunTime:0.0020s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'w%' )  [ RunTime:0.0010s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 's%' )  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wx_goods_order` [ RunTime:0.0150s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE ( state = 1 and pay_type in (0,1) ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 AND `pay_type` = 2 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 0 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 2 LIMIT 1   [ RunTime:0.0000s ]
+SQL: select sum(price) a from wx_goods_order where state = 1 and  from_unixtime(
+pay_time,'%Y-%m-%d') = current_date(); [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:40:22+08:00 ] 127.0.0.1 /Admin/Index/main.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-12-28T14:40:23+08:00 ] 127.0.0.1 /Admin/Index/main.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:42:42+08:00 ] 127.0.0.1 /Admin/Index/main.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2017-12-28T14:42:53+08:00 ] 127.0.0.1 /Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: shop_url D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\6fedbbe541e195344bf1450076482852.php 第 21 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:42:53+08:00 ] 127.0.0.1 /Admin/Index/top.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T14:42:54+08:00 ] 127.0.0.1 /Admin/Index/left.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
+
+[ 2017-12-28T14:42:54+08:00 ] 127.0.0.1 /Admin/Main/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order` [ RunTime:0.0110s ]
+SQL: SELECT SUM(zonge) AS tp_sum FROM `wx_shop_order` WHERE ( state = 1 ) LIMIT 1   [ RunTime:0.0030s ]
+SQL: select sum(zonge) a from wx_shop_order where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0050s ]
+SQL: select sum(good_num) a from wx_shop_order_detail where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order_detail` [ RunTime:0.0090s ]
+SQL: SELECT sum(good_num) as a FROM `wx_shop_order_detail` WHERE ( state = 1 )  [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wx_tixian` [ RunTime:0.0140s ]
+SQL: SELECT sum(sjmoney) as a FROM `wx_tixian` WHERE ( type = 1 )  [ RunTime:0.0030s ]
+SQL: select sum(sjmoney) a from wx_tixian where type = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `wx_user` [ RunTime:0.0240s ]
+SQL: SELECT sum(money) as a FROM `wx_user`  [ RunTime:0.0010s ]
+SQL: select sum(money) a from wx_yongjin where from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0540s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'z%' )  [ RunTime:0.0060s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'w%' )  [ RunTime:0.0030s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 's%' )  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `wx_goods_order` [ RunTime:0.0240s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE ( state = 1 and pay_type in (0,1) ) LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 AND `pay_type` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 0 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 2 LIMIT 1   [ RunTime:0.0000s ]
+SQL: select sum(price) a from wx_goods_order where state = 1 and  from_unixtime(
+pay_time,'%Y-%m-%d') = current_date(); [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-12-28T15:00:42+08:00 ] 127.0.0.1 /Admin/Canshu/setPassword.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: data D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\3b44bd0b1874379a332e6394a6955e71.php 第 25 行.
+NOTIC: [8] Undefined variable: data D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\3b44bd0b1874379a332e6394a6955e71.php 第 33 行.
+NOTIC: [8] Undefined variable: daili D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\3b44bd0b1874379a332e6394a6955e71.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T15:01:30+08:00 ] 127.0.0.1 /Admin/Canshu/setPassword.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: data D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\3b44bd0b1874379a332e6394a6955e71.php 第 25 行.
+NOTIC: [8] Undefined variable: data D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\3b44bd0b1874379a332e6394a6955e71.php 第 33 行.
+NOTIC: [8] Undefined variable: daili D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\3b44bd0b1874379a332e6394a6955e71.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T15:14:57+08:00 ] 127.0.0.1 /Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: shop_url D:\phpStudy\WWW\yytx\Application\Runtime\Cache\Admin\6fedbbe541e195344bf1450076482852.php 第 21 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T15:14:57+08:00 ] 127.0.0.1 /Admin/Index/left.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2017-12-28T15:14:57+08:00 ] 127.0.0.1 /Admin/Index/top.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.011000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-12-28T15:14:57+08:00 ] 127.0.0.1 /Admin/Main/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order` [ RunTime:0.0140s ]
+SQL: SELECT SUM(zonge) AS tp_sum FROM `wx_shop_order` WHERE ( state = 1 ) LIMIT 1   [ RunTime:0.0030s ]
+SQL: select sum(zonge) a from wx_shop_order where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0030s ]
+SQL: select sum(good_num) a from wx_shop_order_detail where state = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `wx_shop_order_detail` [ RunTime:0.0130s ]
+SQL: SELECT sum(good_num) as a FROM `wx_shop_order_detail` WHERE ( state = 1 )  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `wx_tixian` [ RunTime:0.0140s ]
+SQL: SELECT sum(sjmoney) as a FROM `wx_tixian` WHERE ( type = 1 )  [ RunTime:0.0030s ]
+SQL: select sum(sjmoney) a from wx_tixian where type = 1 and  from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0120s ]
+SQL: SHOW COLUMNS FROM `wx_user` [ RunTime:0.0180s ]
+SQL: SELECT sum(money) as a FROM `wx_user`  [ RunTime:0.0020s ]
+SQL: select sum(money) a from wx_yongjin where from_unixtime(
+time,'%Y-%m-%d') = current_date(); [ RunTime:0.0590s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'z%' )  [ RunTime:0.0050s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 'w%' )  [ RunTime:0.0020s ]
+SQL: SELECT sum(zonge) as a FROM `wx_shop_order` left join wx_order_sn as b on wx_shop_order.id = b.order_id  WHERE ( state = 1 and b.order_sn like 's%' )  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `wx_goods_order` [ RunTime:0.0200s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE ( state = 1 and pay_type in (0,1) ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT SUM(price) AS tp_sum FROM `wx_goods_order` WHERE `state` = 1 AND `pay_type` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 0 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `wx_goods_order` WHERE `state` = 1 AND `type` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: select sum(price) a from wx_goods_order where state = 1 and  from_unixtime(
+pay_time,'%Y-%m-%d') = current_date(); [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

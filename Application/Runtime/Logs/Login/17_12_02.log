@@ -1,0 +1,19 @@
+[ 2017-12-02T09:21:25+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+
+[ 2017-12-02T09:21:26+08:00 ] 127.0.0.1 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: agent_id D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 15 行.
+NOTIC: [8] Undefined index: HTTP_USER_AGENT D:\phpStudy\WWW\yytx\Application\Login\Controller\UserController.class.php 第 45 行.
+

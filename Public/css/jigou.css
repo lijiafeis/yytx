@@ -1,0 +1,214 @@
+@charset "utf-8";
+/*导师页面*/
+/*头部样式*/
+			.top_wrap {				
+				width: 100%;
+				position: relative;
+				top: 0;
+				background: #42A3CD;
+				color: #fff;
+				padding: 12px 0;
+				text-align: center;
+				border-bottom: 1px #f0f0f0 solid;
+			}			
+			.top_wrap .left {
+				position: absolute;
+				left: 10px;
+				top: 8px;
+			}
+			.teacher_info .des-over{
+				height:60px;
+				text-overflow: -o-ellipsis-lastline;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 3;
+				-webkit-box-orient: vertical;
+				font-size: 12px;
+				color: #BCB6B6;
+			}
+			.teacher_info{
+				position: relative;
+				padding:13px 10px 10px;
+				border-bottom: 1px #e5e5e5 solid;
+			}
+			.teacher_info .header_img{
+				border: 1px #e5e5e5 solid;
+				border-radius: 3px;
+				box-sizing: border-box;
+				width:80px;
+				height:100px;
+			}
+			.teacher_info .r_info{
+				position: absolute;
+				left: 110px;
+				top: 10px;
+				right: 10px;
+				line-height: 1.7;
+			}
+			/*机构首页*/
+			/*头部样式*/
+			.search_wrap {				
+				width: 100%;
+				position: relative;
+				top: 0;
+				background: #fff;
+				color: #fff;
+				padding: 10px;
+				text-align: center;
+				border-bottom: 1px #f0f0f0 solid;
+				z-index:2;
+			}			
+			
+			/*三列布局*/
+			.col_wrap_3{
+				padding: 10px;
+				background: #f0f0f0;
+			}
+			.col_3{
+				padding-right: 10px;
+				margin-bottom:0px;
+			}
+			.col_3 img{
+				width: 100%;
+			}
+			.col_3 li{
+				float: left;
+				width: 33.33%;
+				margin-right: 5px;
+			}
+			.col_3 li:nth-of-type(3n){
+				margin-right: -10px;
+				/*float: right;*/
+			}
+			.all_info .des-over{
+				height:40px;
+				text-overflow: -o-ellipsis-lastline;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				font-size: 12px;
+				color: #BCB6B6;
+			}
+			 .search{	
+				position: absolute;
+				left: 20px;
+				top:20px;
+				content: "";
+				width: 20px;
+				height: 20px;
+				background:url('../img/search.png') no-repeat;
+				background-size: 20px 20px;
+				cursor:pointer;
+			}
+			.clear_img{	
+				position: absolute;
+				right: 20px;
+				top:20px;
+				content: "";
+				width: 20px;
+				height: 20px;
+				background:url('../img/del.svg')no-repeat;
+				background-size: 20px 20px;
+				cursor:pointer;
+				display: none;
+			}
+			.form-control{
+				height: 40px;
+				padding: 6px 12px 6px 40px;
+				
+			}
+			.all_info .r_info{
+				position: absolute;
+				left: 110px;
+				top: 10px;
+				right: 10px;
+				line-height: 1.7;
+			}
+			.all_info{
+				position: relative;
+				padding:13px 10px 10px;
+				border-bottom: 1px #f0f0f0 solid;
+			}
+			.all_info img{
+				border: 1px #e5e5e5 solid;
+				border-radius: 3px;
+				box-sizing: border-box;
+				padding: 2px;
+				width:80px;
+				height:80px;				
+			}
+			.date{
+				color: #FA6A13;
+				font-size: 12px;
+			}
+			
+			.col_wrap_2{
+				padding: 10px;
+				background: #f0f0f0;
+			}
+			.col_2{
+				padding-right: 10px;
+			}
+			.col_2 img{
+				width: 100%;
+			}
+			.col_2 li{
+				float: left;
+				width: 50%;
+			}
+			.col_2 li:nth-child(2n){
+				float: right;
+				margin-right: -10px;
+			}
+			/*课程详情页*/
+			.top-bg2 .header {
+				padding: 10px 0;
+				text-align: center;
+				border-bottom: 1px #fff solid;
+				margin-bottom: 20px;
+				position: relative;
+			}
+			
+			.top-bg2 .header .left {
+				position: absolute;
+				left: 10px;
+				top: 3px;
+			}
+			
+			.top-bg2 .header .tit {
+				color: #fff;
+			}
+			
+			.top-bg2 .icon-angle-left {
+				font-size: 28px;
+				color: #fff;
+			}
+			
+			.top-bg2 {
+				background: url(../img/header_blur.jpg) no-repeat;
+				background-size: 100%;
+			}
+			
+			.top-bg2 .left-touxiang {
+				float: left;
+				margin-left: 20px;
+				margin-bottom:20px;
+			}
+			
+			.top-bg2 .left-touxiang img {
+				width: 70px;
+				height: 70px;
+				border-radius: 8px;
+				border: 2px #fff solid;	
+			}
+			
+			.top-bg2 .right-info {
+				float: left;
+				margin-left: 10px;
+				line-height: 1.5;
+				font-size: 12px;
+				color: #fff;
+			}

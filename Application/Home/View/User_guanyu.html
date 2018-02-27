@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>关于我们</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/home/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/home/css/ewm.css"/>
+</head>
+<body>
+<div class="app_container qr_wrap">
+	<if condition="$Think.session.agent_token eq OZfBaUKX">
+		<header>
+			<div class="fixed header_inner">
+				<div class="head">
+					<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home2/img/left-white.png"/></span>
+					<span>联系客服</span>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</header>
+	</if>
+	<div class="qr_inner">
+		<div class="qr_box">
+			<img class="qr" src="__PUBLIC__/shanghu/{$agent_id}.jpg"/>
+		</div>
+		<div class="qr_tips">
+			<p>扫一扫关注我们</p>
+			<p class="small_text">没有关注公众号？快来关注我吧</p>
+		</div>
+	</div>
+	<div class="qr_bg_wrap">
+		<div class="qr_bg"></div>
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/home1/home/js/font.js" type="text/javascript" charset="utf-8"></script>
+</html>

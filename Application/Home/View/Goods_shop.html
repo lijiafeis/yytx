@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>所有商品</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/121/css/common.css"/>
+<style>
+body{background: #f8f8f8;}
+.navbar_wrap{position: fixed;left: 0;right: 0;top: 0.81rem;width: 100%;max-width: 640px;margin: auto;z-index: 9999;border-bottom: 1px #f8f8f8 solid;}
+.bottom-btn{position: fixed;left: 0;right: 0;bottom: 0;max-width: 640px;width: 100%;text-align: center;
+height: 50px;line-height: 50px;margin: auto;background: #FE8425;color: #fff;background: #FE9422;font-size: .3rem;}
+/*.to-orders-wrap{position: fixed;left: 0;right: 0;bottom: 1rem;max-width: 640px;width: 100%;margin: auto;}
+.to-orders{position: absolute;right: 10px;bottom:10px;z-index: 9999;background: rgba(253,147,38,.8);
+width: 50px;height: 50px;border-radius: 50%;text-align: center;max-width: 640px;margin: auto;}
+.to-orders img{width: 26px;height: 29px;margin-top: 10px;}*/
+.navbar{background:#fff;display:flex;text-align: center;/*height: .8rem;line-height: .8rem;*/font-size: .26rem;padding: .3rem 0;}
+.navbar div{flex: 1;border-right: 1px #e5e5e5 solid;}
+.navbar div:last-child{border-right: 0;}
+.tab-active{color: red;}
+.goods-wrap{padding: 10px 10px 50px;margin-top: 1rem;}
+.goods-wrap .goods-lists{padding-right: 10px;box-sizing: border-box;}
+.goods-lists a{display: block;float: left;width: 50%;margin-right: 10px;box-sizing: border-box;box-sizing: border-box;margin-bottom: 10px;background: #fff;}
+.goods-lists a:nth-of-type(2n){margin-right: -10px;}
+.goods-lists a .goods-img{width: 100%;display: block;}
+.goods-lists .goods-info{padding-left:10px;padding-top:10px;}
+/*.goods-lists .goods-name{font-size: .25rem;}*/
+.goods-lists .bottom-info{position: relative;margin-top:10px;}
+.f-left{float: left;margin-bottom: 10px;color: red;}
+.f-left em{font-size: .32rem;font-style: normal;}
+.f-right {position: absolute;right: 3px; bottom: 0;width: 40px;height: 40px;background: url(__PUBLIC__/121/img/glist_icon.png) no-repeat;background-size: 40px auto;background-position: 0 -198px;z-index: 10;}
+</style>
+</head>
+<body>
+<div class="app_container" style="height: auto;">
+	<header>
+			<div class="fixed header_inner">
+				<div class="head">				
+					<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/121/img/left-white.png"/></span>
+					<span>所有商品</span>	
+					<!--<span class="r-icon"><img src="user-__PUBLIC__/121/img/gwc_top.png"/></span>-->
+					<div class="clear"></div>					
+				</div>
+			</div>
+	</header>
+	<div class="navbar_wrap">
+		<div class="navbar">
+			<div class="tab tab-active">综合</div>
+			<div class="tab">销量</div>
+			<div class="tab">新品</div>
+			<div class="tab">价格</div>
+		</div>
+	</div>
+	<div class="goods-wrap">
+		<div class="goods-lists">
+			<volist name="info" id="vv">
+			<a href="{:U('goodInfo')}?good_id={$vv.id}">
+			 <img class="goods-img" src="{$vv.pic}"/>
+			 <div class="goods-info">
+				 <div class="goods-name">{$vv.good_name}</div>
+				 <div class="bottom-info">
+					 <span  class="f-left"><em style="font-size: 14px;"><span style="font-size: 14px;color:black">官方售价:</span>¥{$vv.good_price}</em></span>
+				 	<!--<span class="f-right"></span>-->
+				 	<div class="clear"></div>
+				 </div>
+			 </div>
+			</a>
+			</volist>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!--<a class="bottom-btn" href="order.html" style="z-index: 9999;">我的订单</a>-->
+	<!--<div class="to-orders-wrap">
+		<a href="{:U('myOrder')}" class="to-orders"><img src="__PUBLIC__/121/img/order.png"/></a>
+	</div>-->
+	<footer class="fixed">
+		<a href="{:U('Index/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/mt-1.png"/>
+			<div>茅台䣽酒</div>
+		</a>
+		<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+			<div>茅台文化</div>
+		</a>
+		<a class="foot-active" href="">
+			<img src="__PUBLIC__/home1/user-img/foot-img/shop-2.png"/>
+			<div>商城</div>
+		</a>
+		<a href="{:U('User/index')}?agent_id={$Think.get.agent_id}" >
+			<img src="__PUBLIC__/home1/user-img/foot-img/user-1.png"/>
+			<div>个人中心</div>
+		</a>
+		<div class="clear"></div>
+	</footer>
+</div>
+</body>
+<script src="__PUBLIC__/121/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/121/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){	
+		$('.tab').click(function(){
+			$(this).addClass('tab-active').siblings().removeClass('tab-active');
+			//$('.panes>.pane:eq('+$(this).index()+')').show().siblings().hide();	
+		})
+	})
+</script> 
+</html>

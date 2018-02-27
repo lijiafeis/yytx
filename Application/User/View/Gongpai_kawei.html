@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>卡位ID「{$dianwei_id}」详情</title>
+   <!--  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/iconfont/0727/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+
+	
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	<script src="__PUBLIC__/js/echarts-all.js"></script>
+	<style>
+	.group-header{background:#ff6666;width:100%;padding-bottom:2px;padding-top:10px;text-align:center;
+				background:-webkit-gradient(linear, 0% 0%, 100% 100%, from({:C('WAP_COLOR')}), to({:C('WAP_JIANBIAN_COLOR')}));}
+	.group-header .group{width:33.3%;color:#fff;text-align:center;padding:20px 0 0 0;font-size:14px;}
+	.group-header .weui_cell_bd span{font-size:14px;color:#fff}
+	.weui_cell{font-size:14px;}
+	.weui_cell:focus{background:#efedf1}
+	</style>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();//alert('<?php echo $paysign["timeStamp"];?>');
+});
+</script>
+</head>
+<body  style="background: #efedf1;margin-bottom:70px;">
+	<div class="group-header">
+		
+		<div id="main" style="height:300px;"></div>
+		
+	</div>
+	
+	
+	
+	
+	<div class="weui_panel" style="margin:15px 0;">
+        <div class="weui_panel_hd">红包列表</div>
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg">
+                <div class="weui_cells">
+                    
+                   
+					
+					
+                </div>
+				
+				<div id="list" onclick="getpage()"  style="line-height:50px;width:100%;border-top:1px solid #ccc;font-size:14px;text-align:center;"><i class="icon iconfont">&#xe6e0;</i>加载更多</div>
+				
+				   
+            </div>
+        </div>
+    </div>
+
+<script>
+var p = 1;
+getpage(p);
+function getpage(){
+	$('#list').html('<div style="text-align:center;margin:0 auto;width:15%;margin-top:30px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$.get("{:U('hongbao_list')}?dianwei_id={$dianwei_id}&p="+p,function(data,status){
+      //alert("数据: " + data + "\n状态: " + status);
+	  if(data == ''){
+		$('#list').html('<i class="icon iconfont">&#xe621;</i> 没有更多了…');
+	  }else{
+		  $('#list').html('<i class="icon iconfont">&#xe6e0;</i>加载更多');
+		  $('.weui_cells').append(data);
+		  p++;
+	  }
+	  
+	  
+    });
+}
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('main')); 
+    
+    var option = {
+        tooltip : {
+            formatter: "{a} <br/>{b} : {c}人"
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: false},
+                restore : {show: true},
+                saveAsImage : {show: false}
+            }
+        },
+        series : [
+            {
+                name:'下排总人数',
+                type:'gauge',				
+				min:0,
+				max:{$chuju_all_num},            
+                splitNumber: {$gongpai_state},       // 分割段数，默认为5
+                axisLine: {            // 坐标轴线
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        color: [[0.2, '#428bca'],[0.8, '#f0ad4e'],[1, '#5cb85c']], 
+                        width: 8
+                    }
+                },
+                axisTick: {          // 坐标轴小标记
+                    splitNumber: 10,   // 每份split细分多少段
+                    length :12,        // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        color: 'auto'
+                    }
+                },
+                axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        color: 'auto'
+                    }
+                },
+                splitLine: {           // 分隔线
+                    show: true,        // 默认显示，属性show控制显示与否
+                    length :30,         // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                        color: 'auto'
+                    }
+                },
+                pointer : {
+                    width : 5
+                },
+                title : {
+                    show : true,
+                    offsetCenter: [0, '-40%'],       // x, y，单位px
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder',color:'#fff'
+                    }
+                },
+                detail : {
+                    formatter:'{value}人',
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        color: 'auto',
+						fontSize:18,
+                        //fontWeight: 'bolder'
+                    }
+                },
+                data:[{value: 50, name: '{$name}'}]
+            }
+        ]
+    };
+
+    // 为echarts对象加载数据 
+	option.series[0].data[0].value = {$now_num};
+    myChart.setOption(option);
+    /*
+    setInterval(function (){
+        option.series[0].data[0].value = (Math.random()*100).toFixed(2) - 0;
+        myChart.setOption(option,true);
+    },2000);
+	*/
+</script>
+	
+	
+	
+</body>
+<script>
+function send(obj,id){
+		loading("正在请求");
+		$.ajax({
+			type: "POST",
+			url: "{:U('send_hongbao')}",
+			dataType: "json",
+			data: {"id":id},
+			success: function(json){
+				if(json.success==1){
+					dialog2("红包发放成功！");send_over(obj);
+				}else{
+					 dialog2(json.err_info);loadingclose();	
+				}
+			},
+			error:function(){
+				 dialog2("网络出现异常！请稍后再试");loadingclose();
+			}
+		});	
+	}
+	function send_over(obj){
+		$(obj).css("color","#999");
+		$(obj).css("border","1px solid #999");
+		$(obj).attr("onclick","");
+		$(obj).text("已领取");
+		loadingclose();
+	}
+</script>
+</html>

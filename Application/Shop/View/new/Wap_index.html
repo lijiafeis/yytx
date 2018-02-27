@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>
+      {$app_info[0]['wxname']}商城
+    </title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/home.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/reset.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/common1.css" media="all">
+	<link rel="stylesheet" href="__PUBLIC__/shop/css/basic.css">
+    <!--首页幻灯js-->
+    <script type="text/javascript" src="__PUBLIC__/shop/css/zepto.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/shop/css/swipe.js"></script>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/zload.js"></script>
+	<style>
+		.good_list .title .box{	border-bottom:0;}					
+		.gutter-1px > .grid-item{padding-left: 10px;padding-left: 5rem;}							
+		.banner{margin-bottom:0;}						
+		.good_list .box{background:#fff;padding:5px;text-align:left;}
+		.good_list .title .box{text-align:left !important;border-bottom:1px solid #E8E8E8;line-height:30px;}
+		.good div{text-align:left !important;}		
+	</style>
+	<script>
+		$(function() {
+		$(".good_list img").lazyload({ 
+				effect : "fadeIn",
+				threshold : 200
+			});
+		});
+		$(function(){					
+			var height = 5;
+			$(".test2 img").each(function(){					
+			height = height + $(this).height();
+			});					
+			$(".test1").css("height",height) ;
+		})
+		$(function() {
+			  new Swipe(document.getElementById('banner_box'), {
+				speed: 500,
+				auto: 3000,
+				callback: function() {
+				  var lis = $(this.element).next("ol").children();
+				  lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			  });
+			  $('#input-main-nav-search').click(function() {
+				$('#none').css('display', 'block');
+			  });
+			  $('#input-main-nav-search').blur(function() {
+				$('#none').css('display', 'none');
+			  });
+		});
+	</script> 
+  </head>
+  
+  <body style="background:#e8e8e8;padding-bottom:40px;">
+    <include file="./Application/Shop/View/Index_wxjs.html" />
+    <div style="position:fixed;z-index:999;width:100%;height:100%;background:rgba(0,0,0,0.6);display:none;" id="none"></div>
+	<!--banner 开始-->
+    <div class="banner openwebview" style="height:auto !important;position:relative;">
+		<div style="overflow:hidden;">
+		  <div class="searchnew" id="searchContainer" style="width:100%;padding:10px 0;position:absolute;top:0;">
+			<div class="products-search-item" style="margin-top:0;">
+			  <div class="main-nav-search ">
+				<form action="{:U('search')}" method="post">
+				  <div class="input-group" style="z-index:1000;">
+					<input autocomplete="off" id="input-main-nav-search" class="form-control"
+					name="keyword" value="" style="width:98%;height:100%;border-radius:50px;border:0;background:rgba(255,255,255,0.8);" title="产品搜索" placeholder="输入产品名称"
+					type="search">
+					<span class="input-group-btn">
+					  <button class="btn5 submit" type="submit" id="btnSearch" style="height:100%;background:rgba(255,255,255,0);border:0;">
+						<i class="icon iconfont" style="color:#fff;font-size:20px;">&#xe602;</i>
+					  </button>
+					</span>
+				  </div>
+				</form>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div style="-webkit-transform:translate3d(0,0,0);">
+			<div id="banner_box" class="box_swipe">
+			  <ul style="list-style: none outside none; transition-duration: 500ms;">
+				<volist name="bannar_info" id="vv">
+				  <li>
+					<a onClick="return false;">
+					  <img src="{$vv.pic_url}" alt="2" style="width:100%;">
+					</a>
+				  </li>
+				</volist>
+			  </ul>			 
+			</div>
+		</div>		
+    </div>
+	<!--banner 结束-->	
+	
+	<!--广告位布局开始-->
+	<div class="adver_box" style="background:#fff;margin-top:-25px;">
+		<!--1广告位布局-->
+		<div><img src="__PUBLIC__/images/test_img/test2.jpg" style="width:100%;margin-top:5px; "/></div>
+		<!--2广告位布局-->
+		<div class="" style="padding-right: 5px;">
+			<div class="adver" style="text-align: center;padding-top: 5px ;">
+				<div  style="float:left;width: 50%;text-align: right;">
+					<img  class="test1" src="__PUBLIC__/images/test_img/111.jpg">
+				</div>
+				<div class="test2" style="float: right;width: 50%;text-align: left;margin-right: -5px;">
+					<img src="__PUBLIC__/images/test_img/555.jpg" style="display:block;margin-bottom: 5px;" >
+					<img src="__PUBLIC__/images/test_img/555.jpg" style="display:block;">
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<!--两列广告位布局-->
+		<div class="col_wrap_adver">
+			<div class="col_adver">
+				<div class="two"><img src="__PUBLIC__/images/test_img/test2.jpg"/></div>
+				<div class="two"><img src="__PUBLIC__/images/test_img/test2.jpg"/></div>
+				<div class="two"><img src="__PUBLIC__/images/test_img/test2.jpg"/></div>
+				<div class="two"><img src="__PUBLIC__/images/test_img/test2.jpg"/></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<!--三列广告位布局-->				
+		<div class="col_adver_3">				
+			<div class="thr"><img src="__PUBLIC__/images/test_img/777.jpg"/></div>
+			<div class="thr"><img src="__PUBLIC__/images/test_img/777.jpg"/></div>
+			<div class="thr"><img src="__PUBLIC__/images/test_img/777.jpg"/></div>							
+			<div class="clear"></div>
+		</div>				
+	</div>			
+	<!--广告位布局结束-->									
+						
+	<!--商品列表开始-->	
+	<div class="good_list" id="good_list" >
+		<if condition="$best_list neq null ">
+		<div class="grid gutter-1px mb" style="background:#fff;padding:0 10px 5px;">
+			<div class="grid-item 12/12 title"><div class="box tc bottom-nav" style="border:0;">
+			 精选推送
+			</div></div>
+			<volist name="best_list" id="vv">
+			<div class="grid-item 6/12 good" onclick="shop_url(this)" data-url="{:U('good')}?good_id={$vv.good_id}">
+				<div class="box tc bottom-nav"  style="font-size:16px;box-sizing:border-box;">
+					<figure style="margin-bottom:10px;border:1px #ddd solid;box-sizing:border-box;"><img src="__PUBLIC__/images/shop_load.gif" data-original="{$vv.pic_url}" alt="Image alt text"></figure>
+					<div style="white-space:nowrap;overflow:hidden;color:#555;text-overflow:ellipsis;font-size:12px;margin-left:5px;">{$vv.good_name}</div>
+					<div class="" style="font-size:14px;color:{:C('WAP_COLOR')};margin-left:5px;"><span style="font-size:18px;"> ¥</span> {$vv.good_price}</div>
+				</div>
+			</div>
+			</volist>
+		</div>
+		</if>
+		<if condition="$hot_list neq null ">
+		<div class="grid gutter-1px mb" style="background:#fff;margin-top:-20px;padding:0 10px 5px;">
+			<div class="grid-item 12/12 title"><div class="box tc bottom-nav" style="border:0;" >
+			 热卖商品
+			</div></div>
+			<volist name="hot_list" id="vv">
+			<div class="grid-item 6/12 good" onclick="shop_url(this)" data-url="{:U('good')}?good_id={$vv.good_id}"><div class="box tc bottom-nav">
+			<figure style="margin-bottom:10px;border:1px #ddd solid;box-sizing:border-box;"><img src="__PUBLIC__/images/shop_load.gif" data-original="{$vv.pic_url}" alt="Image alt text"></figure>
+			<div style="white-space:nowrap;overflow:hidden;color:#555;text-overflow:ellipsis;font-size:12px;margin-left:5px;">{$vv.good_name}</div>
+			<div class="" style="font-size:14px;color:{:C('WAP_COLOR')};margin-left:5px;"><span style="font-size:18px;"> ¥</span> {$vv.good_price}</div>
+			</div></div>
+			</volist>
+		</div>
+		</if>
+		<if condition="$new_list neq null ">
+		<div class="grid gutter-1px mb" style="background:#fff;padding:0 10px 5px;margin-top:-20px;">
+			<div class="grid-item 12/12 title"><div class="box tc bottom-nav"style="border:0;" >
+			 新品推荐
+			</div></div>
+			<volist name="new_list" id="vv">
+			<div class="grid-item 6/12 good" onclick="shop_url(this)" data-url="{:U('good')}?good_id={$vv.good_id}"><div class="box tc bottom-nav">
+			<figure style="margin-bottom:10px;border:1px #ddd solid;box-sizing:border-box;"><img src="__PUBLIC__/images/shop_load.gif" data-original="{$vv.pic_url}" alt="Image alt text"></figure>
+			<div style="white-space:nowrap;overflow:hidden;color:#555;text-overflow:ellipsis;font-size:12px;margin-left:5px;">{$vv.good_name}</div>
+			<div class="" style="font-size:14px;color:{:C('WAP_COLOR')};margin-left:5px;"><span style="font-size:18px;"> ¥</span>{$vv.good_price}</div>
+			</div></div>
+			</volist>
+		</div>
+		</if>
+	</div>
+	<!--商品列表结束-->
+	
+	<!--底部版权/菜单开始-->	
+        <div class="layout-login-area" style="padding:6px;margin:10px 0;margin-top:-20px;margin-bottom:20px;">        
+			<div style="font-size:12px;color:#999;">© {:C('COPYRIGHT')}</div>							  
+        </div>       
+		<div style="position:fixed;bottom:0;"><include file="./Application/Shop/View/wap_footer.html" /></div>	
+	<!--底部版权/菜单结束-->		
+  </body>
+
+</html>

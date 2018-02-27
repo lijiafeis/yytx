@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta content="telephone=no" name="format-detection">
+    <title>逸风天贸</title>
+    <link rel="stylesheet" href="__PUBLIC__/cs/weui.min.css"/>
+	<include file="Application/Login/View/Public_header.html" />
+	<link rel="stylesheet" href="__PUBLIC__/cs/style.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/shop/css/basic.css">
+	<script src="__PUBLIC__/admin/js/ajaxfileupload.js"></script>
+	<style>
+	#uploadSpan input {position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0;}
+	.weui-uploader__file_status:before {background-color: rgba(0,0,0,0); border-radius: 50%;} 
+	.weui-label,.weui-input{font-size: 14px;text-align: left;}
+	</style>
+<script>
+var state = 0;
+$(document).ready(function(){
+	//监听上传文件变更
+	$('body').on('change','#file',function(e){
+		var file = document.getElementById("file").files[0];  
+		if(!/image\/\w+/.test(file.type)){
+			//layer.msg("请选择图片上传");  
+			return false;  
+		}
+		upload_jindu(0)
+		//layer.open({content:'正在上传', type:1});//exit;
+		$.ajaxFileUpload({
+			url: "{:U('pic_upload')}", //用于文件上传的服务器端请求地址
+			secureuri: false, //一般设置为false
+			fileElementId: 'file', //文件上传空间的id属性  <input type="file" id="file" name="file" />
+			dataType: 'json', //返回值类型 一般设置为json
+			success: function (data, status){
+				state = 1;$('#jindu').text('100%');
+				setTimeout(function(){
+					$('#jindu').css('display','none');
+					var parent = $('#jindu').parent()
+					if(data != null){
+						parent.css({'background-image':'url('+data+')'}).removeClass('weui-uploader__file_status')
+						var html=document.getElementById('uploadSpan').innerHTML;
+						document.getElementById('uploadSpan').innerHTML=html; 
+						$('#headimgurl').val(data);
+					}	
+				},1000)
+			},
+			error: function (data, status, e){
+				alert(1);
+			}
+	        	});
+	});
+}) 
+function upload_jindu(bar){
+	$('#jindu').css('display','block');
+	$('#jindu').text(bar+'%');bar = bar + 2;
+	setTimeout(function(){
+		if(bar < 99 && state == 0){
+			upload_jindu(bar)
+		}
+	},200);
+}
+function check_form(){
+    pass1 = $('#password').val();
+    pass2 = $('#password1').val();
+    if(pass1 != pass2){
+        layer.open({content:'两次密码不一样',skin:'msg',time:3});return false;
+    }else{
+        return true;
+    }
+//	//var headimgurl = $('#headimgurl').val();if(headimgurl == ''){error_info('over','headimgurl','头像没有上传哦！');return false;}
+//	var nickname = $('#nickname').val();error_info(nickname,'nickname','用户名不能为空哦！');if(nickname == ''){return false;}
+//	var birthday = $('#birthday').val();error_info(birthday,'birthday','输入您的生日哦！');if(birthday == ''){return false;}
+//	//var pass = $('#pass').val();error_info(pass,'pass','请修改密码！');if(pass == ''){return false;}
+//	//var password = $('#password').val();error_info(password,'password','请填写新的密码！');if(password == ''){return false;}
+}
+/*input表框值判断*/
+function  error_info(value,id,str){
+	if(value == 'over'){ layer.open({content:str,skin:'msg',time:3})}
+	if(value == ''){
+		 $('#'+id).parent().parent().addClass('weui-cell_warn')
+		 layer.open({content:str,skin:'msg',time:3})
+	}else{
+		$('#'+id).parent().parent().removeClass('weui-cell_warn')
+	}
+}
+/*链接跳转函数*/
+function jump_url(obj){
+	 layer.open({type: 2,shadeClose: false,content: '正在前往请求页面'});
+	 var url = $(obj).attr('data-url');
+	 setTimeout(function(){location.href=url},1000);
+}
+</script>
+</head>
+<body style="position: relative;text-align: center;">
+<div class="wrap">
+	<div class="wap-header">
+		<i class="left iconfont icon-xiangzuo" onclick="history.go(-1);"></i>
+		<span>个人资料</span>
+		<i class="right iconfont icon-zhuye" onclick="jump_url(this)" data-url="{:U('/user/center/user')}"></i>
+		<div class="clear"></div>
+	</div>
+	<div class="weui-cells weui-cells_form">
+          
+    <form action="{:U('xiugai_ajax')}" method="post" onsubmit="return check_form();">
+	<div class="weui-cells weui-cells_form">
+
+            <div class="weui-cell ">
+                <div class="weui-cell__hd"><label class="weui-label">新密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" id="password" name="password" placeholder="请输入新密码">
+                </div>
+            </div>
+            <div class="weui-cell ">
+                <div class="weui-cell__hd"><label class="weui-label">新密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" id="password1" name="password1" placeholder="请输入新密码">
+                </div>
+            </div>
+    </div>
+        <div style="padding:20px;text-align: center;">
+
+        	<button type="submit" class="weui-btn weui-btn_xigua_success" style="width: 60%;margin: 0 auto;">保存</button>
+        </div>
+	</form>
+        </div>
+	<div class="weui-footer">
+	   <p class="weui-footer__text"></p>
+	</div>
+</div>	
+</body>
+<script>
+</script>
+</html>

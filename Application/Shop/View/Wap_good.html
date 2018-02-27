@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>{$app_info[0]['wxname']}商城</title>
+<script src="__PUBLIC__/shop/css/alog.mobile.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/3c30a65871.layout.min.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/86fe49ca90.common.min.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/flexslider.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/basic.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/cart.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/footer.css">
+<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+<link rel="stylesheet" href="__PUBLIC__/css/ali_font1/iconfont.css">
+<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">
+<script>__STAT.add('head_load');</script>
+</head>
+<body class=" hAndroid hPC" style="padding-bottom: 40px;"><include file="./Application/Shop/View/Index_wxjs.html" />
+	
+<script src="__PUBLIC__/shop/css/562a4c0e89.jquery-2.1.0.min.js"></script>
+<!--首页幻灯js-->
+<script type="text/javascript" src="__PUBLIC__/shop/css/zepto.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/shop/css/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/shop/css/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/shop/css/jquery.easing.min.js"></script>
+<!--首页幻灯js end-->
+<!--加入购物车动画效果-->
+<style>
+.addcategrey{width:100%;position:fixed;top:0px;z-index:2;text-align:center;display:none;}
+.catemove{
+	-webkit-animation:mymove 1s 1 forwards;
+	}
+@-webkit-keyframes mymove
+	{
+	from {top:0px;width:100%;}
+	to {top:100%;width:10%;left:10%;}
+	}
+	
+.flex-control-nav{
+	bottom:5px;
+}
+.flex-control-paging li a{
+	background: rgba(0,0,0,0.3);
+}
+.flex-viewport{
+	border-bottom: 1px #ddd solid;
+}
+.option_selected:after {
+	content: '';
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	right: -1px;
+	bottom: -1px;
+	background: url(__PUBLIC__/images/goods-img/box_icon.png) no-repeat;
+	background-size: 100px auto;
+	background-position: -80px -106px;
+}
+.flexslider{
+	margin-bottom:0px;
+}
+.flex-direction-nav a{
+	display:none;
+}
+body .weui_actionsheet{bottom:-500px;}
+</style>
+<script>
+	
+</script>
+<div id="catemove" class="addcategrey">
+	<img src="{$good_info['good_pic'][0]['pic_url']}" width="80%">
+</div>
+<header id="header" class="u-header clearfix">
+	<div class="u-hd-left f-left">
+		<a href="javascript:void(0)" onclick="history.go(-1);" mars_sead="brand-detail-back_btn" class="J_backToPrev"><span class="u-icon i-hd-back"></span></a>
+	</div>
+	<div class="u-hd-tit"><span>{$good_info.good_name}</span></div>
+	<div class="u-hd-right f-right"><a href="{:U('index')}" mars_sead="nav_home_btn"><span class="u-icon i-hd-home"></span></a></div>
+</header>
+	
+<div class="space10"></div>
+<!--产品详细页的图片及介绍-->
+<div style="padding:10px;">	
+	<div class="flexslider">
+		<ul class="slides">
+			<volist name="good_info.good_pic" id="vv">
+			<li><img src="{$vv.pic_url}" width="100%"/></li>
+			</volist>
+		</ul>
+	</div>	
+</div>
+<div class="wrap"style="height: 100%;">		
+    <div class="bd spacing" >
+	    
+		
+		<div id="actionSheet_wrap" style="display: none;">
+		    <div class="weui_mask_transition weui_fade_toggle" id="mask" style="display: block;"  onclick="close_actionsheet()"></div>
+		    <div class="weui_actionsheet weui_actionsheet_toggle" id="weui_actionsheet">
+		           
+		<div class="wrap">
+			
+			<div class="content">
+				<div class="top">
+					<div class="info" >
+						<div class="info_l" >
+							<p style="white-space:nowrap;overflow:hidden;text-overflow: ellipsis;">{$good_info.good_name}</p>
+							<div style="font-size: 14px;color: #E4393C;">¥<span style="font-size: 20px;">{$good_info.good_price}</span></div>
+						</div>
+						<div class="img" ><img src="{$good_info.good_pic.0.pic_url}" /></div>
+						<div class="clear"></div>
+					</div>
+					<div style="position: absolute;right: 10px;top: 10px;margin-left:10px" onclick="close_actionsheet()"><img src="__PUBLIC__/images/goods-img/icon_del.png"width="22" height="22"/></div>
+				</div>
+				
+				
+				<if condition="$type_info neq null ">
+				
+				<volist name="type_info" id="vv" key="j">
+				<!-- <div class="title type_title">{$vv.spec_name}</div> -->
+				<div class="tit">{$vv.spec_name}:</div>
+				<div>
+				<volist name="vv.info" id="kk">
+				<if condition="$kk neq '' ">
+				<!-- <div class="spec-3x"><button class="btn btn-default type_value type_value{$j}" alt="type_value{$j}">{$kk}</button></div> -->
+				<span class="type_value{$j} option" alt="type_value{$j}">{$kk}</span>
+				</if>
+				
+				</volist>
+				<div style="clear:both"></div>
+				<input type="hidden" name="{$vv.spec_name}" value="" class="type_input" >
+				</div>
+				</volist>
+				
+				
+				<!-- <div class="color">
+					<div class="tit">颜色:</div>
+					<span class="option">蓝色</span>
+					<span class="option">绿色</span>
+					<span class="option">白色</span>
+					<span class="option">黑色</span>
+					<span class="option">红色</span>
+					<div class="clear"></div>
+				</div>
+				<div class="size">
+					<div class="tit">尺寸:</div>
+					<span class="option-size">S</span>
+					<span class="option-size">M</span>
+					<span class="option-size">L</span>
+					<span class="option-size">XL</span>
+					<span class="option-size">XXL</span>
+					<div class="clear"></div>
+				</div> -->
+				<div class="number" >
+					<div class="tit">数量:</div>
+					<div class="num_wrap">
+						<span class="minus" id="min"></span>
+						<input class="num" id="text_box" name="" type="text" value="1" />
+						<span class="plus" id="add"></span>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</if>
+			</div>
+			<!--两列布局-->			
+			<div class="col_wrap_2">
+				<div class="col_2">
+					<ul>
+						<li style="background:#e6242b;"><span  onclick="select_type(1)">加入购物车</span></li>
+						<li style="background:#e6242b;"><span onclick="select_type(2)">立即购买</span></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</div>
+		    </div>
+		</div>		
+	</div>
+	</div>		
+<div class="container goods_detail_wrapper">
+  <div id="goods_detail" class="aposition">
+	
+    <div class="goods_info" style="border-bottom:1px #ccc dashed;padding-bottom:10px;">
+        <p style="font-weight:normal;font-size:14px;">{$good_info.good_name}</p>
+         <p class="new_pricediv clearfix">
+				<span class="g_d_price" style="color:Red;"><span style="font-size:18px;"> ¥</span>{$good_info.good_price}</span>
+        <span class="fontstyle prf05">¥{$good_info.market_price}</span>
+      <!-- <span class="discount"><?php echo round($good_info['good_price']/$good_info['market_price'],2);?>折</span> -->
+        </p>
+		<p class="space5"></p>
+        <p class="clear"></p>
+        
+    </div>
+	
+  </div>
+  <!---点击按钮加载更多 <a href="javascript:;" data-getdetail="more" data-merchandise="normal" class="up_more" style="display: none;"><span class="icon_up_more"></span><p>上拉加载更多商品详情哦</p></a> -->
+<p class="space5"></p>
+  <!-- 详情 -->
+  <div class="product_detail" style="margin-top:20px;"><!-- data-GetDetail="more"-->
+    <div class="tab_content pro_detail_info">
+		<div class="M_detail" style="width:1000px">
+			<div class="M_detailCon">	
+				{$good_info.good_desc}
+				
+			</div>
+		</div>
+	</div>
+	<div class="space10"></div>
+  </div>
+
+
+</div>
+<div class="space10"></div>
+<!--固定在页面底部浮动的购买按钮-->
+<div class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container nav-current-box detail-box" style="padding:0;">    
+    <div class="navbar-brand" style="width:100%;z-index:9999999">	       
+			<a href="javascript:;" class="weui_btn weui_btn_primary  " id="showActionSheet"  style="margin: 10px;background:#e6242b;font-size:16px;padding:5px 0;">加入购物车</a>			
+     </div>
+  </div>
+</div>
+
+<div id="type"  style="position:fixed;bottom:0px;background:rgba(0,0,0,0.5);width:100%;height:100%;z-index:999999;display:none;">
+<style>
+.title{font-size:16px;padding:10px 15px;border-top:1px solid #e8e8e8;}
+.spec-3x{width:25%;float:left;text-align:center;margin-bottom:5px;}
+.btn-default{padding:3px 6px;}
+.btn-success{background:red;color:#fff;}
+</style>
+	
+	
+</div>
+<!--以下是底部样式-->
+
+  	<div class="layout-login-area" style="padding:10px 0 10px;width:100%;margin-bottom:20px;">
+         
+          <div style="font-size:12px;color:#999;">
+            © {:C('COPYRIGHT')}
+          </div>
+        </div>
+      <a href="" class="u-backtop" mars_sead="home_foot_top_btn" style="right: 10px; bottom: 68px;"></a>
+    <!--以下是浮于显示屏左下角的购物袋-->
+  
+<div class="u-shopbag" data-shopcart="true">
+<a mars_sead="floating-cart_btn" href="javascript:void()" onclick="shop_url(this)" data-url="{:U('categrey')}">
+<span class="u-icon i-flow-carticon"></span>
+<span class="u-flow-cartnum" id="cate_num" <if condition="$num eq 0 ">style="display:none"</if> >{$num}</span>
+<span class="u-flow-carttime hide"></span>
+</a>
+</div>
+
+
+
+<script src="__PUBLIC__/shop/css/e76e972aa6.all.min.js"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+<script type="text/javascript">
+var good_id = "{$good_info.good_id}";
+
+function shop_url(obj){
+	var url = $(obj).data('url');
+	layer.open({type: 2,shadeClose: false});
+	setTimeout(function(){location.href=url;},500);
+}
+function select_type(type){
+	if({$good_info.number} == 0){layer.open({content:'该商品目前缺货，请等待~',skin:'msg',time:5});exit;}
+	if(type == 1){
+		addcategrey();
+	}else{
+		buynow();
+	}
+}
+function close_type(){
+	$("#type").css('display','none');$("#type_more").animate({bottom:'-80px',opacity: 'hidden'});
+}
+function check_type(){
+	var str = '';
+	$('.type_input').each(function(){
+		var name = $(this).attr('name');
+		var value = $(this).val();
+		if(name == ''){layer.open({content: '请选择商品属性',skin:'msg', time: 3});exit;}
+		if(value == ''){layer.open({content: '请选择'+name+'分类',skin:'msg', time: 3});exit;}
+		if(str == ''){
+			str = name+':'+value;
+		}else{
+			str = str+','+name+':'+value;
+		}
+		
+	});
+	close_actionsheet();
+	return str;
+}
+$('.type_value').click(function(){
+	
+	var name = $(this).attr('alt');
+	var value = $(this).text();
+	$(this).parent().parent().find('input').val(value);
+	$('.'+name).each(function(){
+		$(this).removeClass('btn-purple');
+		$(this).removeClass('btn-success');
+		$(this).addClass('btn-default');
+	});
+	$(this).addClass('btn-success');
+});
+function addcategrey(){
+	var type = check_type();
+	$.ajax({
+		type:"POST",
+		url:"{:U('addcategrey')}",
+		dataType:"json",
+		data:{'good_id':good_id,'type':type},
+		success:function(json){
+			if(json.success == 1){
+				$('#catemove').css("display",'block');
+				$('#catemove').addClass("catemove");
+				//增加购物车数字
+				var num = $('#cate_num').text();
+				var newnum = num*1 + 1*1;
+				$('#cate_num').css("display","block");
+				$('#cate_num').text(newnum);
+			}else{
+				layer.open({content: '加入购物车失败，请稍后重试',skin:'msg', time: 3});
+			}
+		},
+		error:function(){
+			layer.open({content: '加入购物车失败，请稍后重试',skin:'msg', time: 3});
+		}
+	});
+	
+}
+function buynow(){
+	var type = check_type();
+	$(this).text("正在前往");
+	$(this).attr("id",'');
+	$(this).css("background",'#999');
+	$.ajax({
+		type:"POST",
+		url:"{:U('addcategrey')}",
+		dataType:"json",
+		data:{'good_id':good_id,'type':type},
+		success:function(json){
+			if(json.success == 1){
+				location.href="{:U('categrey')}";
+			}else{
+				layer.open({content: '发生通信错误，请稍候重试', time: 3});
+			}
+			
+		},
+		error:function(){
+			layer.open({content: '发生通信错误，请稍候重试', time: 3});
+		}
+	});
+}
+</script>
+<script>
+		/*轮播图*/
+		$(function(){
+			$(".flexslider").flexslider({
+				slideshowSpeed:2000,
+				animation:"slide",				
+			})				
+		})
+		/*弹出/关闭购物车*/
+		$(document).ready(function(){			
+			$("#showActionSheet").click(function(){
+				$("#actionSheet_wrap").css("display","block");				
+				$("#weui_actionsheet").animate({bottom:"0"},{ duration:300,easing:'easeOutBounce' });
+				
+				
+			})
+			
+		})
+		function close_actionsheet(){
+			setTimeout(function(){$("#actionSheet_wrap").css("display","none");},300);
+			$("#weui_actionsheet").animate({bottom:"-500px"},{ duration:600 })
+		}
+		$(document).ready(function(){
+			/*颜色选择*/
+			
+			$('.option').click(function(){
+
+
+			
+	/**
+	var value = $(this).text();
+	$(this).parent().parent().find('input').val(value);
+	$('.'+name).each(function(){
+		$(this).removeClass('btn-purple');
+		$(this).removeClass('btn-success');
+		$(this).addClass('btn-default');
+	});
+		**/	
+			var classname =  $(this).attr('class');
+			if(classname.indexOf("active") > 0){
+				return;
+			}
+			var name = $(this).attr('alt');
+			//用each 遍历 让所有的 tab 恢复默认
+			$('.'+name).each(function(){
+				//让所有的indextab遍历后恢复默认状态
+				$(this).removeClass('active');
+				$(this).removeClass('option_selected');
+			});
+			//现在正被点击的dom发生变化
+			$(this).addClass('active');
+			$(this).addClass('option_selected');var value = $(this).text();
+			$(this).parent().find('input').val(value);
+			})
+			
+			/*--------------------------------------*/
+			/*--------------------------------------*/
+			/*尺寸选择*/
+			$('.option-size').click(function(){			
+			var classname =  $(this).attr('class');
+			if(classname.indexOf("active") > 0){
+				return;
+			}			
+			//用each 遍历 让所有的 tab 恢复默认
+			$('.option-size').each(function(){
+				//让所有的indextab遍历后恢复默认状态
+				$(this).removeClass('active');
+				$(this).removeClass('option_selected');
+			});
+			//现在正被点击的dom发生变化
+			$(this).addClass('active');
+			$(this).addClass('option_selected');
+			})
+			
+		});
+		    /*--------------------------------------*/
+			/*--------------------------------------*/
+			/*加减数量*/
+			$(function(){
+				//获得文本框对象
+				var t = $("#text_box");	
+				//数量增加操作
+				$("#add").click(function(){		
+					t.val(parseInt(t.val())+1)
+					if (parseInt(t.val())!=1){
+						$('#min').attr('disabled',false);
+					}
+				})	
+				//数量减少操作
+				$("#min").click(function(){
+					if (parseInt(t.val())>1) {                     //判断数量值大于1时才可以减少  
+		                t.val(parseInt(t.val())-1)  
+		                }
+					else{
+		                $("#min").attr("disabled","disabled")        //当$("#min")为1时，$("#min")不可读状态  
+		               	}  
+				})	
+			})
+</script>
+	
+<script src="__PUBLIC__/shop/css/7fae035d74.swipe.min.js"></script>
+<script src="__PUBLIC__/shop/css/f9ed050a6c.page.item.index.min.js"></script>
+
+<include file="./Application/Shop/View/Index_wxjs.html" />
+</body></html>

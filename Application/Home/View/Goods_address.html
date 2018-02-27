@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>管理收货地址</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home2/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home2/css/style_reset.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home2/css/style08.03.css"/>
+</head>
+<body>
+	<div class="app_container">
+		<header>
+			<div class="fixed header_inner">
+				<div class="head">				
+					<span class="left_arrow"  onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home2/img/left-white.png"/></span>
+					<span>管理收货地址</span>				
+					<div class="clear"></div>				
+				</div>
+			</div>
+		</header>
+
+		<div class="addr_list">
+			<volist name="data" id="v">
+			<div class="addr_infor">
+				<div class="set_default">
+					<if condition="$v['is_true'] eq 1">
+						<i class="addr_select addr_selected" data-addid="{$v.address_id}">设为默认地址</i>
+					<else/>
+						<i class="addr_select" data-addid="{$v.address_id}">设为默认地址</i>
+					</if>
+
+				</div>
+				<div class="addr_inner">
+					<div class="l_infor">
+						<p>
+							<span class="user_name">{$v.username}</span>
+							<span class="tel">{$v.telphone}</span>
+						</p>
+						<div class="address">{$v.city}{$v.address}</div>
+					</div>
+					<div class="r_action">
+						<!--<div class="edit">编辑</div>-->
+						<div onclick="del({$v.address_id});" class="delete">删除</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			</volist>
+		</div>
+		<div class="fixed fixed_bottom">
+			<a href="{:U('add_address')}?agent_id={$Think.get.agent_id}" class="add_addr">添加收货地址</a>
+		</div>
+	</div>
+</body>
+<script src="__PUBLIC__/home2/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home2/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>	
+	$(function(){
+		$('.addr_select').click(function(){
+            $(".addr_select").each(function(index,element){
+				$(element).removeClass('addr_selected');
+			});
+			$(this).addClass('addr_selected').siblings().removeClass('addr_selected');
+//			$('.panes>.pane:eq('+$(this).index()+')').show().siblings().hide();
+            address_id = $(this).data('addid');
+			moren(address_id);
+		})
+	})
+</script>
+<script>
+    function moren(i){
+        $.ajax({
+            type: "post",
+            url: "{:U('add_moren')}",
+            data: {'id':i},
+            success: function(data) {
+                if(data==1){
+                    layer.msg("设置成功!",{icon: 1});
+                    setTimeout(function(){
+						location.href="{:U('order')}?agent_id={$Think.get.agent_id}";
+                    },1000);
+
+                }else if(data==2){
+                    layer.msg("设置失败",{icon: 2});
+                }
+            },
+            error:function(){
+                layer.msg("未知错误",{icon: 2});
+            }
+        });
+
+    }
+    function del(i){
+        layer.confirm('您是否确定删除？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.ajax({
+                type: "post",
+                url: "{:U('add_del')}",
+                data: {'id':i},
+                success: function(data) {
+                    if(data==1){
+                        layer.msg('删除成功', {icon: 1});
+                        setTimeout(function(){
+                            location.href="{:U('address')}?agent_id={$Think.get.agent_id}";
+                        },1000);
+                    }else if(data==2){
+                        layer.msg('删除失败', {icon: 1});
+                    }
+                },
+                error:function(){
+                    layer.msg("未知错误",{icon: 2});
+
+                }
+            });
+        }, function(){
+        });
+    }
+</script>
+</html>

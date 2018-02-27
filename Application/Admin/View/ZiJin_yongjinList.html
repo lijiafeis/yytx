@@ -1,0 +1,100 @@
+<!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+<link href="__PUBLIC__/admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<!--<link href="__PUBLIC__/admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />-->
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>积分记录</div>
+		<div class="main-content">
+			<div>
+				<div class="well">
+					<div class="btn-group" style="">
+
+						<!--<button type="button" class="btn btn-default province all" style="margin:3px 0;" onclick="select_province(this,'17')">所有会员</button>-->
+					</div><br/>
+					<div class="btn-group" style="margin-top:20px;">
+
+						<button type="button" class="btn btn-default">手机号</button>
+						<div class="btn-group">
+							<input type="text" id="user_id" class="form-control">
+						</div>
+						<button type="button"  class="btn btn-default">会员姓名</button>
+						<div class="btn-group">
+							<input type="text" id="name"  class="form-control">
+						</div>
+						<button type="button"  class="btn btn-default">排序</button>
+						<div class="btn-group">
+							<select class="form-control" name="state" id="state">
+								<option value="0">全部</option>
+								<volist name="data" id="vv">
+									<if condition="$vv.wxname neq null">
+										<option value="{$vv.id}">{$vv.wxname}</option>
+									</if>
+								</volist>
+							</select>
+						</div>
+						<button type="button" class="btn btn-warning" onclick="getpage(1)">查询</button>
+					</div>
+				</div>
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">列表</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="home">
+					<div id="list"></div>
+				</div>
+			</div>
+			<div style="text-align:right;">
+			<p style="font-size:15px;margin-right:20px;">总金额:{$money|0}元</p>
+			</div>
+		</div>
+</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+
+<script src="__PUBLIC__/admin/js/fileinput.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/fileinput_locale_zh.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+var cid = '';
+var city_name = '';
+$(document).ready(function(){
+getpage(1)
+});
+
+
+function getpage(p){
+    //得到选中的是什么分类和类型
+	var name = $('#name').val();
+	var id =  $('#user_id').val();
+	var type = $("#state").val();
+	$('#list').html('<div style="text-align:center;margin-top:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="60px" ></div>');
+	$("#list").load(
+		"{:U('yongjinbb')}?p="+p+"&name="+name+"&id="+id + "&type=" + type,
+		function() {}
+	);
+}
+
+$('.all').click()
+$('body').on('click','.all_check',function(){
+    if($(this).is(':checked')){
+        $('body .one_check').each(function(){
+            $(this).prop('checked','checked')
+        })
+    }else{
+        $('body .one_check').each(function(){
+            $(this).removeAttr('checked')
+        })
+    }
+});
+
+function createMan() {
+	location.href="{:U('create')}"
+}
+</script>

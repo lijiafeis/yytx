@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/xiangqing.css"/>
+<link rel="stylesheet" href="__PUBLIC__/home/css/cart.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+<div class="app_container">
+	<!--<header class="header-top">
+		<div class="fixed fixed-top">
+			<div class="head">
+				<span class="l-icon" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home/img/icon-img/left-img.png"/></span>
+				<span>用户评价</span>
+				<div class="clear"></div>				
+			</div>
+		</div>		
+	</header>
+	<div class="pingjia">
+		<div class="pj_box  more_pj">
+			<volist name="pjlist" id="vv">
+				<div>
+					<img src="{$vv.headimgurl}" class="user_header"/>
+					<span class="user_name">{$vv.name}</span>
+				</div>
+				<div class="ratings">
+					<p>{$vv.content}</p>
+				</div>
+				<div class="date">{$vv.time|date="Y-m-d H:i:s",###}</div>
+			</volist>
+		</div>
+	</div>-->
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">				
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>用户评价</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>
+	<div class="ratings">									
+		<div class="user-rate">
+			<volist name="pjlist" id="vv">
+			<div class="user-rate-a">
+				<div>
+					<img class="user-img" src="{$vv.headimgurl}"/>
+					<span>{$vv.name}</span>
+				</div>
+				<div class="rate-info">
+					<p>{$vv.content}</p>
+					<div class="rate_date">{$vv.time|date="Y-m-d H:i:s",###}</div>									
+				</div>
+			</div>
+			</volist>
+		</div>
+		
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+</html>

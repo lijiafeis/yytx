@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link href="__PUBLIC__/admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<div class="container-fluid main">
+	<div id="list">
+	
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+function btn(title,pic_url,id,desc){
+	var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	var type = '{$type}';
+	parent.$('#sure').val('1');
+	parent.$('#input').val(id);
+	//parent.$('.demo .input').val(id);
+	parent.$('#item').find('.title').html(title);
+	parent.$('#item').find('.pic').attr("src",pic_url);
+	parent.layer.close(index);
+}
+getpage(1);
+function getpage(p){
+	var url = "{:U('newslist_ajax')}?p="+p;
+	$('#list').html('<div style="text-align:center;margin:0 auto;width:15%;padding-top:60px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$('#list').load(
+		url,
+		function() {}
+	);
+}
+
+</script>

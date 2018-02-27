@@ -1,0 +1,228 @@
+<style>
+    .order-infor{margin-top:.15rem;}
+    .order-infor .goods-name{margin-bottom:0;}
+    .game{color:red;}
+    .game_state{color:#BD9F69;margin-right: 10px;}
+</style>
+<if condition="$state eq 1">
+    <volist name="data" id="vv">
+        <div class="order">
+            <div class="order-top">
+                <div class="f_left">待付款</div>
+                <div class="f_left" style="margin-left: 20px;">{$vv.create_time|date="Y-m-d H:i:s",###}</div>
+                <div class="f_right" onclick="del({$vv.id})"><img class="del" src="__PUBLIC__/121/img/delete.png"/></div>
+                <div class="clear"></div>
+            </div>
+            <div class="order-inner">
+                <div class="goods-img-box">
+                    <img src="{$vv.good_pic}"/>
+                </div>
+                <div class="order-infor">
+                    <div class="goods-name over2">{$vv.good_name}</div>
+                    <div class="goodsinfo">
+                        <div class="f_left quantity">{$vv.good_num}件 ({$vv.good_spec} )</div><br/>                       
+                        <div class=" price">￥{$vv.price}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-num">
+                订单号 : {$vv.order_sn|default=12345678}
+            </div>
+            <div class="order-bottom">
+                <if condition="$vv.is_game eq 1">
+                    <span class="game">升级促销产品</span>
+                </if>
+                <a href="{:U('order')}?order_id={$vv.id}" class="active-border">付款</a>
+            </div>
+        </div>
+    </volist>
+    <elseif condition = "$state eq 2"/>
+    <volist name="data" id="vv">
+    <div class="order">
+        <div class="order-top">
+            <div class="f_left">待发货</div>
+            <div class="f_left" style="margin-left: 20px;">{$vv.pay_time|date="Y-m-d H:i:s",###}</div>
+            <!--<div class="f_right"><img class="del" src="img/images/delete.png"/></div>-->
+            <div class="clear"></div>
+        </div>
+        <div class="order-inner">
+            <div class="goods-img-box">
+                <img src="{$vv.good_pic}"/>
+            </div>
+            <div class="order-infor">
+                <div class="goods-name over2" style="margin-bottom:0;">{$vv.good_name}</div>
+                <div class="goodsinfo">
+                    <div class="f_left quantity">{$vv.good_num}件 {$vv.good_spec}</div><br/>
+                    <div class=" price">￥{$vv.price}</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="order-num">
+            订单号 : {$vv.order_sn}
+        </div>
+        <div class="order-bottom">
+            <if condition="$vv.is_game eq 1">
+            <if condition="$vv.game_state eq 1">
+                <span class="game_state">升级失败 已提货</span>
+                <elseif condition="$vv.game_state eq 2"/>
+                <span class="game_state">升级成功
+                    <if condition="$vv.game_type eq 1">已提货
+                    <elseif condition="$vv.game_type eq 0"/>未提货
+                    <elseif condition="$vv.game_type eq 2"/>已退款
+                    </if>
+                </span>
+                <elseif condition="$vv.game_state eq 0"/>
+                <if condition="$vv.game_type eq 0">未升级
+                </if>
+            </if>
+            </if>
+            <if condition="$vv.is_game eq 1">
+                <span class="game">升级促销产品</span>
+                <a href="{:U('Goods/orderInfo')}?order_id={$vv.id}" class="active-border">升级</a>
+            </if>
+        </div>
+    </div>
+    </volist>
+    <elseif condition = "$state eq 3"/>
+    <volist name="data" id="vv">
+    <div class="order">
+        <div class="order-top">
+            <div class="f_left">待收货</div>
+            <div class="f_left" style="margin-left: 20px;">{$vv.pay_time|date="Y-m-d H:i:s",###}</div>
+            <!--<div class="f_right"><img class="del" src="img/images/delete.png"/></div>-->
+            <div class="clear"></div>
+        </div>
+        <div class="order-inner">
+            <div class="goods-img-box">
+                <img src="{$vv.good_pic}"/>
+            </div>
+            <div class="order-infor">
+                <div class="goods-name over2">{$vv.good_name}</div>
+                <div class="goodsinfo">
+                    <div class="f_left quantity">{$vv.good_num}件 {$vv.good_spec}</div>
+                    <div class=" price">￥{$vv.price}</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="order-num">
+            订单号 : {$vv.kd_number}
+        </div>
+        <div class="order-bottom">
+            <if condition="$vv.game_state eq 1">
+                <span class="game_state">升级失败</span>
+            <elseif condition="$vv.game_state eq 2"/>
+                <span class="game_state">升级成功</span>
+            </if>
+            <if condition="$vv.is_game eq 1">
+                <span class="game">升级促销产品</span>
+            </if>
+            <a onclick="shouhuo({$vv.id})" class="active-border">确认收货</a>
+
+        </div>
+    </div>
+    </volist>
+    <elseif condition = "$state eq 4"/>
+    <volist name="data" id="vv">
+    <div class="order">
+        <div class="order-top">
+            <div class="f_left">已完成</div>
+            <div class="f_left" style="margin-left: 20px;">{$vv.pay_time|date="Y-m-d H:i:s",###}</div>
+            <!--<div class="f_right"><img class="del" src="img/images/delete.png"/></div>-->
+            <div class="clear"></div>
+        </div>
+        <div class="order-inner">
+            <div class="goods-img-box">
+                <img src="{$vv.good_pic}"/>
+            </div>
+            <div class="order-infor">
+                <div class="goods-name over2">{$vv.good_name}</div>
+                <div class="goodsinfo">
+                    <div class="f_left quantity">{$vv.good_num}件 {$vv.good_spec}</div><br/>
+                    
+                    <div class=" price">￥{$vv.price}</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="order-num">
+            订单号 : {$vv.kd_number}
+        </div>
+        <div class="order-bottom">
+            <if condition="$vv.game_state eq 1">
+                <span class="game_state">升级失败</span>
+            <elseif condition="$vv.game_state eq 2"/>
+                <span class="game_state">升级成功</span>
+            </if>
+            <if condition="$vv.is_game eq 1">
+            <span class="game">升级促销产品</span>
+            </if>
+        </div>
+    </div>
+    </volist>
+</if>
+<script>
+    function del(id){
+        var index = layer.load(2,{
+            shade:[0.6,"#000"]
+        })
+        $.ajax({
+            type:"post",
+            url:"{:U('delOrder')}",
+            dataType:"json",
+            data:{
+                order_id:id
+            },
+            success:function (data) {
+
+                if(data.code ==  1)
+                {
+                    layer.msg('取消订单成功')
+                    setTimeout(function () {
+                        history.go(0);
+                    },600);
+                }else{
+                    layer.close(index)
+                    layer.msg(data.info);
+                }
+            },
+            error:function (data) {
+                layer.close(index)
+                layer.msg('网络错误');
+            }
+        });
+    }
+
+    function shouhuo(order_id){
+        var index = layer.load(2,{
+            shade:[0.6,"#000"]
+        })
+        $.ajax({
+            type:"post",
+            url:"{:U('shouhuo')}",
+            dataType:"json",
+            data:{
+                order_id:order_id
+            },
+            success:function (data) {
+
+                if(data.code ==  1)
+                {
+                    layer.msg('收货成功')
+                    setTimeout(function () {
+                        history.go(0);
+                    },600);
+                }else{
+                    layer.close(index)
+                    layer.msg(data.info);
+                }
+            },
+            error:function (data) {
+                layer.close(index)
+                layer.msg('网络错误');
+            }
+        });
+    }
+</script>

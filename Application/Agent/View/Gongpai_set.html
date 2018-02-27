@@ -1,0 +1,250 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<style>
+.btn-default{background:#44b549;color:#fff;}
+.form-group1:hover{background:#fff;}
+</style>
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>应用中心--公排复制</div>
+	<div class="main-content">
+  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+		<li role="presentation"><a href="#" onclick="index()" aria-controls="" role="tab" data-toggle="tab">公排概览</a></li>
+		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">公排设置</a></li>
+		<li role="presentation"><a href="" onclick="to()" aria-controls="" role="tab" data-toggle="tab">应用中心</a></li>	
+	  </ul>
+<style>
+.table tr td img{height:40px;cursor:hand;}
+.code:hover{cursor:hand;}
+#focusedInput {
+    border-color: #ccc;
+    border-color: rgba(82,168,236,.8);
+    outline: 0;
+    outline: thin dotted\9;
+    -webkit-box-shadow: 0 0 8px rgba(82,168,236,.6);
+    box-shadow: 0 0 8px rgba(82,168,236,.6);
+}
+</style>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+function to(){location.href="{:U('yingyong/index')}";}
+function index(){location.href="{:U('gongpai/index')}";}
+$(document).ready(function(){
+	get_level(13);
+	$('#gongpai_level').bind('change',function(){
+		var value = $(this).val();
+		get_level(value);
+	});
+	var exist = $('#gongpai_exist').val();
+	change_exist(exist);
+	$('#gongpai_exist').bind('change',function(){
+		var value = $(this).val();
+		change_exist(value);
+		if(value == 2){
+		search("{$info['gongpai_good_id']}");
+	}
+	});
+	if("{$info['gongpai_exist']}" == 2){
+		search("{$info['gongpai_good_id']}");
+	}
+});
+function get_level(p){
+	$('#level_list').html('<div style="text-align:center;margin-top:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="60px" ></div>');
+	$("#level_list").load(
+		"{:U('level')}?level="+p,
+		function() {}
+	);
+}
+
+
+
+
+function change_exist(value){
+	$('.exist').each(function(){$(this).css('display','none');});
+	$('#exist'+value).css('display','block');
+}
+function search(good_id){
+if(good_id == null){
+	var keyword = $('#good_name').val();if(keyword == ''){layer.msg('请输入商品名称再查询');exit;}
+	var good_id = '';
+}
+	$('#good_list').html('<div style="text-align:center;margin-top:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="60px" ></div>');
+	$("#good_list").load(
+		"{:U('good_list')}?keyword="+keyword+"&good_id="+good_id,
+		function() {}
+	);
+}
+</script>
+
+
+<include file="./Application/Admin/View/Public_switch.html" />
+	  <!-- Tab panes -->
+	  <div class="tab-content well" style="margin-top:30px">
+		<div role="tabpanel" class="tab-pane active" id="home">
+			<div class="alert alert-danger" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+					活动开启生效后请勿随意更改，否则会发生数据错乱！
+				</div>
+			<form class="form-horizontal" action="__SELF__" method="post">
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">公排状态</label>
+				<div class="switch has-switch col-sm-6 col-lg-4"  style="height:30px">
+					<input name="gongpai_switch" value="1" type="checkbox" <if condition="$info['gongpai_switch'] eq 1">checked</if> data-on-color="warning"  data-on-text="开启"  data-off-text="关闭" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">积分入口</label>
+				<div class="switch has-switch col-sm-2 col-lg-1"  style="height:30px">
+					<input name="jifen_switch" value="1" type="checkbox"  <if condition="$info['jifen_switch'] eq 1">checked</if>  data-on-color="info" data-off-color="danger"  data-on-text="启用"  data-off-text="禁止" />
+				</div>
+				<div class="col-sm-3 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-warning">
+				  <span class="input-group-addon" id="basic-addon1">扣除</span>
+				  <input type="text" class="form-control" id="" name="jifen_fee" value="{$info['jifen_fee']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">积分进入</span>
+				</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">公排入口</label>
+				<div class="col-sm-6 col-lg-4">
+					<select class="form-control" name="gongpai_exist" id="gongpai_exist">
+					  <option value="1" <if condition="$info['gongpai_exist'] eq 1">selected</if> >购买商城内任意产品</option>
+					  <option value="2" <if condition="$info['gongpai_exist'] eq 2">selected</if> >购买商城内指定产品</option>
+					  <option value="3" <if condition="$info['gongpai_exist'] eq 3">selected</if> >购买指定代金券</option>
+					</select>
+				</div>
+			</div>
+			<div class="exist" id="exist2">
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">商品名称查询</label>
+				<div class="col-sm-5 col-lg-3" style="margin-bottom:10px;">
+				<div class="input-group">
+				  <input type="text" class="form-control" id="good_name" name="" value="" placeholder="输入商品名称进行查询，支持模糊查询">
+				  <span class="input-group-addon btn btn-info" style="background:#5bc0de;color:#fff;" onclick="search()">搜索商品库</span>
+				</div>
+				</div>
+			</div>
+			<div class="form-group has-warning" id="good_list">
+				
+			</div>
+			</div>
+			<div class="exist" id="exist3">
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">选择代金券</label>
+				<div class="col-sm-6 col-lg-4">
+					<select multiple name="daijin_id"  class="form-control" id="focusedInput">
+					<volist name="daijin_info" id="vv" empty="$empty" >
+					  <option value="{$vv.daijin_id}"  <if condition="$info['daijin_id'] eq $vv['daijin_id'] ">selected</if> >{$vv.daijin_name}元代金券</option>
+					 </volist> 
+					</select>
+					<p class="help-block" style="color:red">代金券由创建时间由近到远排序</p>
+				</div>
+			</div>
+			<div class="form-group has-warning" id="good_list">
+				
+			</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">多点卡位</label>
+				<div class="switch has-switch col-sm-2 col-lg-1"  style="height:30px">
+					<input name="duodian_switch" value="1" type="checkbox"  <if condition="$info['duodian_switch'] eq 1">checked</if>  data-on-color="info"  data-on-text="允许"  data-off-text="不允许" />
+				</div>
+				<div class="col-sm-3 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-warning">
+				  <span class="input-group-addon" id="basic-addon1">以</span>
+				  <input type="text" class="form-control" id="" name="gongpai_number" value="{$info['gongpai_number']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">递增排位</span>
+				</div>
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">出局层级数</label>
+				<div class="col-sm-6 col-lg-4">
+					<select name="gongpai_level" id="gongpai_level" class="form-control">
+					  <option value="1" <if condition="$info['gongpai_level'] eq 1">selected</if> >1</option>
+					  <option value="2" <if condition="$info['gongpai_level'] eq 2">selected</if> >2</option>
+					  <option value="3" <if condition="$info['gongpai_level'] eq 3">selected</if> >3</option>
+					  <option value="4" <if condition="$info['gongpai_level'] eq 4">selected</if> >4</option>
+					  <option value="5" <if condition="$info['gongpai_level'] eq 5">selected</if> >5</option>
+					  <option value="6" <if condition="$info['gongpai_level'] eq 6">selected</if> >6</option>
+					  <option value="7" <if condition="$info['gongpai_level'] eq 7">selected</if> >7</option>
+					  <option value="8" <if condition="$info['gongpai_level'] eq 8">selected</if> >8</option>
+					  <option value="9" <if condition="$info['gongpai_level'] eq 9">selected</if> >9</option>
+					  <option value="10" <if condition="$info['gongpai_level'] eq 10">selected</if> >10</option>
+					  <option value="11" <if condition="$info['gongpai_level'] eq 11">selected</if> >11</option>
+					  <option value="12" <if condition="$info['gongpai_level'] eq 12">selected</if> >12</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group has-warning">
+				<label for="inputEmail3" class="col-sm-2 col-lg-2 control-label">各层级红包</label>
+				<div class="col-sm-8 col-lg-4" id="level_list">
+					
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">红包返积分</label>
+				<div class="switch has-switch col-sm-2 col-lg-1"  style="height:30px">
+					<input name="tojifen_switch" value="1" type="checkbox"  <if condition="$info['tojifen_switch'] eq 1">checked</if>  data-on-color="info"  data-on-text="使用"  data-off-text="不使用" />
+				</div>
+				<div class="col-sm-3 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-warning">
+				  <input type="text" class="form-control" id="" name="jifen_per" value="{$info['jifen_per']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">%积分</span>
+				</div>
+				</div>
+				<div style="clear:both"></div>
+				<p class="col-sm-5   col-lg-4 help-block text-center" style="color:red">红包乘X%即为得到的积分数</p>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">复排时</label>
+				<div class="col-sm-6 col-lg-4">
+					<select multiple name="gongpai_again"  class="form-control" id="focusedInput">
+					
+					  <option value="1" <if condition="$info['gongpai_again'] eq 1">selected</if> >重复购买进入下一轮排位</option>
+					  <option value="2" <if condition="$info['gongpai_again'] eq 2">selected</if> >免费进入下一轮排位</option>
+					  <option value="3" <if condition="$info['gongpai_again'] eq 3">selected</if> >不支持进行下一轮排位</option>
+					  
+					</select>
+					<p class="help-block" style="color:red">以上三项仅限于单点卡位，如果支持多点卡位则忽略。否则请关闭多点卡位</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">感恩奖</label>
+				<div class="switch has-switch col-sm-2 col-lg-1"  style="height:30px">
+					<input name="ganen_switch" value="1" type="checkbox"  <if condition="$info['ganen_switch'] eq 1">checked</if>  data-on-color="info"  data-on-text="开启"  data-off-text="关闭" />
+				</div>
+				<div class="col-sm-3 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-warning">
+				  <span class="input-group-addon" id="basic-addon1">￥</span>
+				  <input type="text" class="form-control" id="" name="ganen_fee" value="{$info['ganen_fee']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">感恩金额</span>
+				</div>
+				</div>
+			</div>
+			<!-- <div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">提现是否审核</label>
+				<div class="switch has-switch col-sm-6 col-lg-4"  style="height:30px">
+					<input name="tixian_switch" value="1" type="checkbox"  <if condition="$info['tixian_switch'] eq 1">checked</if>  data-on-color="danger"  data-on-text="是"  data-off-text="否" />
+				</div>
+			</div> -->
+			<input type="hidden" name="set" value="1">
+			<button type="submit" class="btn btn-success">保存配置信息</button>
+			</form>
+
+
+
+
+
+		</div>
+		
+	  </div>	
+	</div>
+</div>
+

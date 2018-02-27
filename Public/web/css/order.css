@@ -1,0 +1,816 @@
+/************************************************
+ * ***********************************************
+  订单状态*/
+.order-wrap .buyer-info {
+	background: #fff;
+	padding: 10px;
+	border-bottom: 1px #e5e5e5 solid;
+	color: #080809;
+}
+
+.order-wrap .buyer-info .name {
+	margin-top: 10px;
+}
+
+.order-wrap .buyer-info .tel {
+	margin-left: 15px;
+}
+
+.order-wrap .buyer-info .order-state {
+	padding-bottom: 10px;
+	border-bottom: 1px #f0f0f0 solid;
+}
+
+.order-wrap .buyer-info .order-state img {
+	vertical-align: middle;
+	width: 20px;
+}
+
+.order-wrap .buyer-info .order-state span {
+	vertical-align: middle;
+	font-size: 14px;
+}
+
+.order-wrap .buyer-info .addr {
+	color: #5A5A5A;
+	font-size: 12px;
+}
+
+.order-wrap .buyer-order {
+	margin-top: 10px;
+	border-top: 1px #e5e5e5 solid;
+}
+
+.order-wrap .test {
+	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	font-size: 14px;
+	height: 36px;
+}
+
+.order-wrap .text-over {
+	width: 150px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.order-wrap .seller {
+	background: #fff;
+	padding: 10px;
+}
+
+.order-wrap .seller img {
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+}
+
+.order-wrap .seller .seller-name {
+	vertical-align: middle;
+}
+
+.order-wrap .seller .contact {
+	color: #ff6363;
+	vertical-align: middle;
+	float: right;
+	padding: 2px 5px;
+	border-radius: 3px;
+	border: 1px #FF6363 solid;
+	margin-top: 15px;
+	font-size: 12px;
+}
+
+.marginright60 {
+	margin-right: 60px;
+}
+
+.order-wrap .order-content {
+	padding: 0 10px;
+	background: #fff;
+}
+
+.order-wrap .order-content  .content {
+	position: relative;	
+	background: #fff;
+	padding: 10px 0;
+}
+
+.order-wrap .order-content  .content img {
+	width: 60px;
+	height: 60px;
+	display: block;
+}
+
+.order-wrap .order-content  .content .r-infor {
+	position: absolute;
+	top: 10px;
+	left: 70px;
+	height: 60px;
+	right: 10px;
+}
+
+.order-wrap .order-content  .content .price {
+	position: absolute;
+	right: 0px;
+	top: 10px;
+	font-size: 12px;
+}
+
+.order-wrap .order-content  .content p {
+	font-size: 12px;
+	color: #ccc;
+	margin-top: 5px;
+}
+
+.order-wrap .flex-wrap {
+	display: flex;
+}
+
+.order-wrap .flex {
+	flex: 1;
+}
+
+.order-wrap .flex-2 {
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	border-top: 1px #f0f0f0 solid;
+	color: #080809;
+}
+
+.order-wrap .flex-2 .flex:first-child {
+	text-align: left;
+}
+
+.order-wrap .flex-2 .flex:last-child {
+	text-align: right;
+}
+
+.order-wrap .color1 {
+	color: #ff6363;
+}
+
+.order-wrap .order-bh {
+	background: #fff;
+	margin: 10px 0;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: #777;
+	border-top: 1px #e5e5e5 solid;
+	border-bottom: 1px #e5e5e5 solid;
+}
+
+.order-wrap .bottom {
+	text-align: right;
+	background: #fff;
+	padding: 10px;
+	border-top: 1px #e5e5e5 solid;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.order-wrap .bottom .r-button {
+	height: 40px;
+	line-height: 40px;
+}
+
+.order-wrap .bottom .r-button span {
+	padding: 3px 10px;
+	border-radius: 3px;
+	border: 1px #FF8F09 solid;
+	margin-left: 10px;
+}
+
+.border-color1 {
+	border: 1px #FF6363 solid;
+	color: #FF6363;
+}
+
+.order-wrap .btns-2 {
+	text-align: center;
+	background: #fff;
+	padding: 15px 0;
+	box-sizing: border-box;
+	margin-top: 10px;
+	border-top: 1px #e5e5e5 solid;
+}
+
+.order-wrap .btns-2 .cancel {
+	padding: 3px 25px;
+	border: 1px #e5e5e5 solid;
+	margin: 0 20px;
+	border-radius: 3px;
+}
+
+.order-wrap .btns-2 .pay {
+	padding: 3px 25px;
+	margin: 0 20px;
+	background: #FF3535;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.add-num_wrap {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+.add-num_wrap .num_wrap span,.add-num_wrap .num_wrap input {
+	float: left;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border: 1px #ddd solid;
+	background: #eee;
+	text-align: center;
+	position: relative;
+}
+
+.add-num_wrap .num_wrap .minus,.add-num_wrap .num_wrap .plus {
+	position: relative;
+}
+
+.add-num_wrap .num_wrap .minus:after {
+	content: '';
+	width: 8px;
+	height: 2px;
+	border-radius: 2px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	margin-top: -1px;
+	margin-left: -4px;
+	background: #39312f;
+}
+
+.add-num_wrap .num_wrap .num {
+	font-size: 14px;
+	width: 38px;
+	border-left: 0;
+	border-right: 0;
+	background: #fff;
+}
+
+.add-num_wrap .num_wrap .plus:after {
+	content: '';
+	width: 8px;
+	height: 2px;
+	border-radius: 2px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	margin-top: -1px;
+	margin-left: -4px;
+	background: #39312f;
+}
+
+.add-num_wrap .num_wrap .plus:before {
+	content: '';
+	width: 2px;
+	height: 8px;
+	border-radius: 2px;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	margin-top: -4px;
+	margin-left: -1px;
+	background: #39312f;
+}
+
+.input-bc {
+	margin-top: 10px;
+	background: #fff;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: #777;
+	border-top: 1px #e5e5e5 solid;
+}
+
+.input-bc input {
+	width: 100%;
+	border: 0;
+	outline: none;
+	height: 25px;
+	border: 1px #e5e5e5 solid;
+	border-radius: 3px;
+	padding-left: 5px;
+	box-sizing: border-box;
+}
+
+.bottom-bar {
+	background: #fff;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 12px;
+	color: #777;
+	margin-top: 10px;
+}
+
+.bottom-bar .sum {
+	color: #FF6363;
+}
+
+.bottom-bar .sum span {
+	font-size: 16px;
+}
+
+.bottom-bar .btn-en {
+	text-align: right;
+	margin-top: 3px;
+}
+
+.bottom-bar .btn-en span {
+	padding: 5px 20px;
+	background: #FF3535;
+	color: #fff;
+	border-radius: 3px;
+}
+
+
+/************************************************
+ * ***********************************************
+  退款/售后*/
+.tk-info {
+	margin-top: 10px;
+	background: #fff;
+	padding: 10px;
+}
+
+.tk-info img {
+	width: 15px;
+	vertical-align: middle;
+}
+
+.tk-info .succ {
+	vertical-align: middle;
+}
+
+.tk-info .jine {
+	font-size: 12px;
+	margin: 10px 0 3px;
+}
+
+.tk-info .jine span {
+	color: #8C8C8C;
+}
+
+.tk-info .time {
+	font-size: 12px;
+}
+
+.tk-info .time span {
+	color: #8C8C8C;
+}
+
+/************************************************
+ * ***********************************************
+  我的订单*/
+.my-order .test {
+	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	font-size: 14px;
+	height: 36px;
+}
+
+.my-order .text-over {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.my-order .flex-wrap {
+	display: flex;
+	width: 100%;
+	font-size: 12px;
+}
+
+.my-order .flex {
+	flex: 1;
+	text-align: center;
+}
+
+.my-order .order-tab {
+	height: 40px;
+	line-height: 3px;
+	background: #fff;
+	border-bottom: 1px #e5e5e5 solid;
+	line-height: 40px;
+}
+
+.my-order .active {
+	color: #FF5354;
+	border-bottom: 1px #FF5354 solid;
+}
+
+.my-order .tit {
+	height: 30px;
+	line-height: 30px;
+}
+
+.my-order .state-1 {
+	text-align: left;
+	margin-left: 10px;
+	color: #FF5354;
+}
+
+.my-order .state-2 {
+	text-align: right;
+	margin-right: 10px;
+	color: #ff6363;
+	font-size: 12px;
+}
+
+.marginright50 {
+	margin-right: 50px;
+}
+
+.my-order .order-wrap {
+	padding: 0 10px;
+}
+
+.my-order .order {
+	margin: 10px 0;
+	border: 1px #e5e5e5 solid;
+	display: block;
+}
+
+.my-order .shop-name {
+	background: #fff;
+	height: 30px;
+	line-height: 30px;
+}
+
+.my-order .order-content {
+	padding: 0 10px;
+	background: #fff;
+}
+
+.my-order .order .content {
+	position: relative;
+	border-bottom: 1px #f0f0f0 solid;
+	border-top: 1px #f0f0f0 solid;
+	background: #fff;
+	padding: 10px 0;
+}
+
+.my-order .order .content img {
+	width: 60px;
+	height: 60px;
+	display: block;
+}
+
+.my-order .order .content .r-infor {
+	position: absolute;
+	top: 10px;
+	left: 70px;
+	height: 60px;
+	right: 10px;
+}
+
+.my-order .order .content .price {
+	position: absolute;
+	right: 0px;
+	top: 10px;
+	font-size: 12px;
+}
+
+.my-order .order .content p {
+	font-size: 12px;
+	color: #ccc;
+	margin-top: 5px;
+}
+
+.my-order .bottom-info {
+	height: 40px;
+	line-height: 40px;
+	text-align: right;
+	font-size: 12px;
+}
+
+.my-order .bottom-info span {
+	font-size: 14px;
+	margin-left: 10px;
+	font-size: 12px;
+}
+
+.my-order .border {
+	border: 1px #FF5354 solid;
+	padding: 2px 15px;
+	font-size: 12px;
+	border-radius: 3px;
+}
+
+.my-order .my-order .border-active {
+	border: 1px #ff5454 solid;
+	color: #ff3535;
+}
+
+.my-order .border-grey {
+	border: 1px #7f7f7f solid;
+	color: #262626;
+	border-radius: 3px;
+}
+
+.panes .pane {
+	display: none;
+}
+
+.panes .pane:first-child {
+	display: block;
+}
+
+
+/********************************
+ * **************
+管理收货地址 */
+
+.addr-list {
+	background: #fff;
+}
+
+.addr-list .n-info {
+	height: 40px;
+	line-height: 40px;
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+.addr-list .addr {
+	padding: 0 10px 10px;
+	border-bottom: 1px #f0f0f0 solid;
+	font-size: 12px;
+}
+
+.addr-list .f-l {
+	float: left;
+}
+
+.addr-list .f-l span {
+	vertical-align: middle;
+}
+
+.addr-list .f-r {
+	float: right;
+}
+
+.addr-list .f-l img {
+	width: 12px;
+	vertical-align: middle;
+}
+
+.addr-list .f-r img {
+	width: 12px;
+	vertical-align: middle;
+}
+
+.addr-list .f-r span {
+	vertical-align: middle;
+}
+
+.addr-list .f-r .del {
+	margin-right: 20px;
+}
+
+.font-size12 {
+	font-size: 12px;
+}
+
+.fixed-bottom {
+	bottom: 0;
+	background: #fff;
+	border-top: 1px #e5e5e5 solid;
+}
+
+.margintop50 {
+	margin-top: 50px;
+}
+
+.add-btn {
+	display: block;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #ff6363;
+	color: #fff;
+	font-size: 14px;
+}
+
+/*添加收货地址*******************************************
+ *******************添加收货地址******************/	
+
+.add-addr .tx_jine {
+	background: #fff;
+	padding: 14px 10px;
+	position: relative;
+	margin-bottom: 1px;
+}
+
+.add-addr .tx_jine .input_wrap {
+	margin-left: 30px;
+	position: absolute;
+	top: 16px;
+}
+
+.add-addr .tx_jine .name {
+	margin-left: 47px;
+}
+
+.add-addr .tx_jine input {
+	font-size: 14px;
+	color: #C6C7D4;
+	border: 0;
+	outline: none;
+	padding-top: -5px;
+}
+
+.add-addr .tx_jine .yuan {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+}
+
+.font-size16 {
+	font-size: 16px;
+}
+
+.check-text {
+	font-size: 12px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #fff;
+	margin-top: 10px;
+}
+
+.check-text input {
+	vertical-align: middle;
+}
+
+/*评价*******************************************
+ *******************评价******************/	
+
+
+#star {
+	position: relative;
+	width: 250px;
+	margin: 10px auto;
+}
+
+#star ul,#star span {
+	float: left;
+	display: inline;
+	height: 19px;
+	line-height: 19px;
+}
+
+#star ul {
+	margin: 0 10px;
+}
+
+#star li {
+	float: left;
+	width: 24px;
+	cursor: pointer;
+	text-indent: -9999px;
+	background: url(../images/star1.png) no-repeat;
+}
+
+#star strong {
+	color: #FF2A2A;
+	padding-left: 10px;
+}
+
+#star li.on {
+	background-position: 0 -28px;
+}
+
+#star p {
+	position: absolute;
+	top: 20px;
+	width: 159px;
+	height: 60px;
+	display: none;
+	padding: 7px 10px 0;
+}
+
+#star p em {
+	color: #f60;
+	display: block;
+	font-style: normal;
+}
+
+.textarea-wrap {
+	height: auto;
+	background-color: #f0f0f0;
+}
+
+.textarea-wrap .textarea {
+	position: relative;
+	padding: 10px;
+}
+
+.textarea-wrap .textarea textarea {
+	width: 100%;
+	border: 0;
+	outline: none;
+	border: 0;
+	padding: 0;
+	height: 100px;
+}
+
+.textarea-wrap textarea {
+	width: 99%;
+	outline: none;
+	line-height: 1.6;
+	background: #f0f0f0;
+}
+
+.textarea-wrap input {
+	background: #f0f0f0;
+	font-size: 9pt;
+	color: red;
+	border: 0;
+	text-align: right;
+	font-family: "Microsoft YaHei"
+}
+
+.textarea-wrap .num {
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+}
+
+.goods-star {
+	background: #fff;
+	padding: 10px;
+}
+
+.goods-star .goods {
+	width: 50px;
+	height: 50px;
+	display: block;
+	float: left;
+}
+
+.upload-img {
+	padding: 10px;
+	background: #fff;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+.upload-img .cameral-img {
+	width: 58px;
+	height: 58px;
+}
+
+.upload-img .check-img {
+	margin-top: 5px;
+}
+
+.upload-img .check-img img {
+	width: 15px;
+	vertical-align: middle;
+}
+
+.upload-img .check-img span {
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+.bottom-star {
+	background: #fff;
+	padding: 5px 10px;
+	box-sizing: border-box;
+}
+
+.bottom-star #star {
+	background: #fff;
+	margin-left: 0;
+}
+
+.tijiao {
+	text-align: center;
+	margin: 20px auto;
+}
+
+.tijiao .btn {
+	padding: 6px 30px;
+	background: #FF2A2A;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 4px;
+}

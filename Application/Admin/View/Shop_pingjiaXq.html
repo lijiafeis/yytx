@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link href="__PUBLIC__/admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>评价管理</div>
+	<div class="main-content">
+
+		<div>
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">评价记录</a></li>		    
+		  </ul>
+		  
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="home">
+				
+				<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+					评价记录,可以在此查看各商品评价记录
+				</div>
+				<div id="list">
+				
+				</div>
+		    </div>
+		
+		  </div>
+		</div>
+		<input type="hidden" name="good_id" id="good_id" value="{$good_id}">
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+
+<script src="__PUBLIC__/admin/js/fileinput.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/fileinput_locale_zh.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+	$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+$(document).ready(function(){
+getpage(1);
+});
+function getpage(p){
+    good_id = $('#good_id').val();
+	$('#list').html('<div style="text-align:center;margin-top:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="60px" ></div>');
+	$("#list").load(
+		"{:U('pingjiaXqbb')}&p="+p + "?good_id=" + good_id,
+		function() {}
+	);
+}
+function shenhe(obj,id){
+	layer.confirm('确定审核吗？审核操作后不可逆', {
+		btn: ['确认','取消'] //按钮
+	}, function(){
+		$.ajax({
+			type: "POST",
+			url: "{:U('/admin/agent/broke')}?type=admin",
+			dataType: "json",
+			data: {
+				"id":id,
+			},
+			success: function(json){
+				if(json.success == 0){
+					layer.msg(json.info);
+				}else{
+					layer.msg('请求操作成功！已提现！');
+					$(obj).parent().html('<button class="btn btn-link">已提现</button>');
+				}
+			},
+			error:function(XMLHttpRequest, textStatus, errorThrown){
+				 alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus); // paser error;
+			}
+		});
+	}, function(){
+		
+	});
+}
+function del(pj_id){
+	//alert(id);
+	layer.confirm('删除后无法恢复，确认删除吗', {
+		btn: ['确认','取消'] //按钮
+	}, function(){
+		$.ajax({
+			type: "POST",
+			url: "{:U('delPingJia')}",
+			dataType: "json",
+			data: {
+				"pj_id":pj_id,
+			},
+			success: function(json){
+				if(json == 0){
+					layer.msg("删除成功");
+					history.go(0);
+				}else{
+					layer.msg('删除失败');
+				}
+					
+			},
+			error:function(){	
+			}
+		});
+	}, function(){
+		
+	});
+}
+
+</script>

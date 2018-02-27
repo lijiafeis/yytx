@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>资料验证</title>
+<link rel="stylesheet" href="__PUBLIC__/cs/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/cs/weui.new.css"/>
+<link rel="stylesheet" href="__PUBLIC__/cs/ali_font/iconfont.css">
+<link rel="stylesheet" href="__PUBLIC__/cs/style.css"/>
+<link rel="stylesheet" href="__PUBLIC__/shop/css/basic.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/js/base.js"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+	<script>
+	function check_form(){
+		var tel = form_error_info('telphone','请输入正确手机号码');
+		
+		var verify = form_error_info('verify','请输入验证码');		
+		/*异步提交信息*/
+		var index = layer.open({type:2,shadeClose: false,content:"正在验证…"});
+		$.ajax({
+			type:'post',url:"{:U('yanzheng_ajax')}",dataType:'json',data:{tel:tel,verify:verify,},
+			success:function(json){
+				if(json.success ==1){
+					layer.open({content:'验证成功，即将前往修改页…',skin:'msg',time:3});
+					setTimeout(function(){location.href="{:U('xiugai')}";},2000);
+				}else{
+					layer.open({content:json.error_info,skin:'msg',time:3});layer.close(index);
+				}
+			},
+			error:function(){ system_error_info('后端逻辑出错啦…');layer.close(index);}
+		});
+	}
+	function check_tel(tel,callback){
+		$('#telphone').parent().parent().removeClass('weui-cell_warn')
+		callback();
+	}
+	/*请求验证码*/
+	function get_verify(obj){
+		var tel = form_error_info('telphone','请输入正确手机号码');
+		
+		var last = function(){
+			var type = $(obj).attr('data-type');
+			(type == 'on')?exit:$(obj).attr('data-type','on');
+			var callback = function(i){
+				
+				if(i>0) {$(obj).text(i+'s后重新获取'); $(obj).css('color','#ccc');}else {$(obj).text('重新获取');$(obj).attr('data-type','off'); $(obj).css('color','#555');}
+			}
+			$.post("{:U('get_verify1')}",{tel:tel},function(data){
+				if(data == 'error'){ 
+					layer.open({content:'半小时内已发过验证码，请查看短信记录',skin:'msg',time:3});
+					$(obj).attr('data-type','off')
+					exit;
+				}else{
+					verify_time_out('60',callback)
+				}
+			});		
+		}
+		check_tel(tel,last);	
+	}
+	/*注册验证码60s倒计时程序*/
+	function verify_time_out(i,callback){
+		callback(i);
+		setTimeout(function(){
+			i--;
+			(i>=0)?verify_time_out(i,callback):exit
+		},1000);
+		
+	}
+	/*系统错误信息弹出*/
+	function system_error_info(str){
+		$('#error_info').remove(); 
+		$('body').append('<div class="weui-toptips weui-toptips_warn js_tooltips" id="error_info" style="display: block;">'+str+'</div>')
+	}
+	/*input表框值判断*/
+	function  form_error_info(id,str){
+		var value = $('#'+id).val();
+		if(value == ''){
+			system_error_info(str)
+			 $('#'+id).parent().parent().addClass('weui-cell_warn')
+			exit
+		}else{
+			$('#error_info').remove(); 
+			$('#'+id).parent().parent().removeClass('weui-cell_warn')
+			return value
+		}
+	}
+	/*链接跳转函数*/
+	function jump_url(obj){
+		 layer.open({type: 2,shadeClose: false,content: '正在前往请求页面'});
+		 var url = $(obj).attr('data-url');
+		 setTimeout(function(){location.href=url},1000);
+	}
+	</script>
+</head>
+<body oncontextmenu=self.event.returnValue=false onselectstart="return false">
+<div class="wrap">
+	<div class="logo">
+		<img src="__PUBLIC__/images/money-bag.jpg" alt="" width="100px">
+		<div style="font-size:20px;color:#7F7F7F;font-family: xigua1;">逸风天贸</div>
+		<div style="font-size:14px;color:#E07500;">验证修改资料</div>
+	</div> 
+	<div class="form">
+		<div class="weui-cells weui-cells_form">
+            <div class="weui-cell ">
+                <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="telphone" id="telphone" pattern="[0-9]*" placeholder="">
+                </div>
+                <div class="weui-cell__ft">
+                    <i class="weui-icon-warn"></i>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_vcode">
+                <div class="weui-cell__hd"><label class="weui-label">验&nbsp;&nbsp;证&nbsp;&nbsp;码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="verify" value='' id="verify" placeholder="">
+                </div>
+                <div class="weui-cell__ft">
+                    <button class="weui-vcode-img" style="border-style: none;border-left:1px solid #ccc;background: #fff;color:#555;padding:5px 10px;" onclick="get_verify(this)" data-type='off'>获取验证码</button>
+                </div>
+            </div>		   		          
+		</div>
+		<a href="javascript:check_form();" class="weui-btn weui-btn_xigua_success">立 即 验 证</a>
+	</div>
+	<div class="footer">
+		<div class="weui-footer">
+		    <p class="weui-footer__text">逸风天贸</p>
+		</div>
+	</div>
+</div>	
+</body>
+</html> 

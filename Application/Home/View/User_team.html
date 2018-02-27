@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>我的团队</title>
+<!--<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/home/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+<div class="app_container" style="background:#0B0A09;">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">				
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home2/img/left-white.png"/></span>
+				<span>我的团队</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>							
+	<table class="table">
+
+
+	</table>		
+	</div>
+	<input type="hidden" id="page" value="1">
+	<footer class="fixed">
+		<a href="{:U('Index/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/mt-1.png"/>
+			<div>茅台䣽酒</div>
+		</a>
+		<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+			<div>茅台文化</div>
+		</a>
+		<a href="{:U('Goods/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/shop-1.png"/>
+			<div>商城</div>
+		</a>
+		<a href="{:U('User/index')}?agent_id={$Think.get.agent_id}" class="foot-active">
+			<img src="__PUBLIC__/home1/user-img/foot-img/user-2.png"/>
+			<div>个人中心</div>
+		</a>
+		<div class="clear"></div>
+	</footer>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home2/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){	
+		$('.tab').click(function(){
+			$(this).addClass('tab-active').siblings().removeClass('tab-active');
+			$('.panes>.pane:eq('+$(this).index()+')').show().siblings().hide();	
+		})
+        var rnumber = Math.floor(Math.random()*1000)
+        history.replaceState({mod: rnumber}, 'Title', '?mod='+rnumber);
+    })
+</script>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+	/*初始化相关参数，请求url地址时用的$.post()方法*/
+    var scroll_data = {
+        'url':"{:U('teambb')}?",//如果不传token值，直接后加一个 ？，当前&后为get参数p，在后台接收处理
+        'parentId':$('.table'),//要加载的父元素DOM
+        't_data':{'name1':'一些必要的判断条件1','name2':'一些必要的判断条件2','name3':'一些必要的判断条件3'}//异步要传的参数，json
+    };
+</script>
+<script>
+    var page_load = '<div class="weui-loadmore load_more" data-page="1" data-state="1" style="display: block;"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div>';
+    var page_none = '<tr ><td colspan="4" >没有更多了</td></tr>';
+    var flag = 0;
+    $(function(){
+        if($(document).scrollTop() == 0 && $(document).height()  ==  $(window).height()){
+			/*首次打开页面加载*/
+			$("#page").val(1);
+            get_page()
+        }
+        $(window).scroll(function() {
+            //$(document).scrollTop() 获取垂直滚动的距离、$(document).scrollLeft() 这是获取水平滚动条的距离
+            if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                //$('body').append('下滑了')
+                get_page()
+            }
+        });
+    })
+    function get_page(){
+
+        var load_more = scroll_data.parentId.find('.load_more');
+        if(load_more.length == 0){
+            scroll_data.parentId.append(page_load)
+            load_more = scroll_data.parentId.find('.load_more')
+        }
+        // 判断上一个请求是否执行完
+        var state = load_more.data('state')
+        if(state == 0){return}else{load_more.data('state',0)}
+        load_more.show()
+//        var page = load_more.data('page')
+        type = $('#type').val();
+        var page = $("#page").val();
+        $.post(scroll_data.url+"p="+page,scroll_data.t_data,function(data){
+            console.log(data);
+            str = '';
+            if(flag == 0){
+                str = '<tr><th class="txt_left" style="width:33.33%;">姓名</th><th class="txt_center" style="width:33.33%;">电话</th><th class="txt_right" style="width:33.33%;">详情</th></tr>';
+                flag = flag + 1;
+            }else{
+
+            }
+            for(var i = 0;i < data.length;i++) {
+                if (data[i]['is_order'] == 1) {
+                    str += '<tr>';
+                    str += '';
+                    str += '<td class="txt_left" style="width:33.33%;color:red;">' + data[i]['name'] +'</td>';
+                    str += '<td class="txt_center" style="width:33.33%;">' + data[i]['username'] +'</td>'
+                    str += '<td class="txt_right" style="width:33.33%;"><a href="{:U('Order/team')}?user_id='+data[i]['user_id']+'&agent_id={$Think.get.agent_id}">查看订单</a></td></tr>';
+				}else{
+                    str += '<tr>';
+                    str += '';
+                    str += '<td class="txt_left" style="width:33.33%;">' + data[i]['name'] +'</td>';
+                    str += '<td class="txt_center" style="width:33.33%;">' + data[i]['username'] +'</td>'
+                    str += '<td class="txt_right" style="width:33.33%;"><a href="{:U('Order/team')}?user_id='+data[i]['user_id']+'&agent_id={$Think.get.agent_id}">查看订单</a></td></tr>';
+                }
+            }
+            load_more.hide().data('page',page*1+1).before(str);
+            $("#page").val(page * 1 + 1);
+            if(data == ''){
+                load_more.before(page_none)
+            }else{
+                load_more.data('state',1)
+            }
+        })
+    }
+</script>
+</html>

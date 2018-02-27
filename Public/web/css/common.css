@@ -1,0 +1,116 @@
+.fixed {
+	position: fixed;
+	width: 100%;
+	max-width: 640px;
+	min-width: 320px;
+	z-index: 3;
+}
+
+.footer_wrap {
+	background: #fff;
+	bottom: 0;
+	z-index: 9999;
+	line-height: 1.3;
+	border-top: 1px #e5e5e5 solid;
+}
+
+.footer_wrap a {
+	float: left;
+	width: 25%;
+	text-align: center;
+	background: #fff;
+	padding: 5px 0 3px;
+	font-size: 12px;
+}
+
+.footer_wrap img {
+	width: 20px;
+}
+
+.nav-wrap {
+	background: #fff;
+	padding: 10px 0;
+	margin-bottom: 10px;
+}
+
+.nav {
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+}
+
+.nav a {
+	flex: 1;
+	display: block;
+	text-align: center;
+}
+
+.nav img {
+	width: 15px;
+	height: 15px;
+}
+
+.nav-order-wrap {
+	background: #fff;
+	padding: 6px 0;
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+.header-top {
+	height: 40px;
+	
+}
+
+.fixed {
+	position: fixed;
+	width: 100%;
+	max-width: 640px;
+	min-width: 320px;
+	z-index: 3;
+	margin: 0 auto;
+	
+}
+
+.fixed-top {
+	top: 0;
+	border-bottom: 1px #f0f0f0 solid;
+}
+
+.fixed-top .head {
+	background: #fff;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 10px;
+}
+
+.fixed-top .head .l-icon {
+	float: left;
+	margin-top: -1px;
+}
+
+.fixed-top .head .l-icon img {
+	width: 15px;
+	vertical-align: middle;
+}
+
+.fixed-top .head .r-icon {
+	float: right;
+}
+
+.fixed-top .head .r-icon img {
+	width: 20px;
+	vertical-align: middle;
+}
+
+.panes .pane {
+	display: none;
+}
+
+.panes .pane:first-child {
+	display: block;
+}
+
+
+

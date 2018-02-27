@@ -1,0 +1,134 @@
+.bg{
+	background:#141B1E url(../img/introduction_bg1.png) no-repeat;
+	background-size: 100% 100%;
+}
+.app_content{
+	max-width: 640px;
+	margin:0 auto;
+	background: #141B1E;
+	width: 100%;
+	height: 100%;
+}
+.bg1{	
+	width: 100%;
+	background: #141B1E;
+}
+.bg1 .desc{
+	padding: .4rem .2rem;
+}
+.bg1 .bottom-bg {
+	position: fixed;
+	max-width: 640px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	margin: 0 auto;	
+}
+
+.bg1 .bottom-bg img {
+	display: block;
+	width: 100%;
+}
+.f_left{
+	float: left;
+}
+.f_right{
+	float: right;
+}
+.introduction_links{
+	padding-top: 1.5rem;
+}
+.link{
+	display: block;
+	width: 45%;
+	height: .88rem;
+	line-height:.88rem;
+	/*background: #ECAD68;*/
+	background:rgba(255,149,29,.4);
+	color: #fff;
+	text-align: center;
+	font-size:.3rem;
+}
+.master,.story{
+	border-radius: 0 6px 6px 0;
+}
+.technics ,.introduction{
+	border-radius: 6px 0 0 6px;
+	margin-top: 1rem;
+}
+
+
+
+.desc {
+	color: #fff;
+	font-size: .25rem;
+	padding: .1rem .2rem .4rem;
+	box-sizing: border-box;
+}
+
+.desc .text {
+	text-indent: .58rem;
+	line-height: 2;
+	letter-spacing: .02rem;
+}
+
+.desc .text1 {
+	margin-bottom: .3rem;
+}
+
+.story .desc {
+	color: #fff;
+	font-size: .25rem;
+	padding: .1rem .2rem .4rem;
+}
+
+.story .desc .text {
+	text-indent: .4rem;
+	line-height: 1.8;
+}
+
+.story .desc .text1 {
+	margin-bottom: .3rem;
+}
+
+.story img,.master img {
+	display: block;
+	width: 100%;
+}
+
+/***
+**/
+
+.div1{
+	display: block;
+	width: 45%;
+	height: .88rem;
+	line-height:.88rem;		
+	color: #fff;
+	text-align: center;
+	font-size:.3rem;
+	-webkit-animation: change_r 1s both ;/*both*/
+}
+@-webkit-keyframes change_r{
+	0{-webkit-transform: translateX(-2000px);background: rgba(255,149,29,0);width:0;}
+				  
+	100%{-webkit-transform: translateX(122%);background: rgba(255,149,29,.4);border-radius: 6px 0 0 6px;width: 45%;}
+}			
+
+.div2{
+	display: block;
+	width: 45%;
+	height: .88rem;
+	line-height:.88rem;		
+	color: #fff;
+	text-align: center;
+	font-size:.3rem;
+	-webkit-animation: change_l 1s both ;/*both*/
+}
+@-webkit-keyframes change_l{
+	0{-webkit-transform: translateX(2000px);background: rgba(255,149,29,0);width: 0;}				  
+	100%{-webkit-transform: translateX(-122%);background: rgba(255,149,29,.4);border-radius: 0 6px 6px 0;width: 45%;}
+}			
+.div1{margin-top: .88rem;}
+.box_ani{padding-top: 1.5rem;}

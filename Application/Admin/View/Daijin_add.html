@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link href="__PUBLIC__/admin/css/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>商城管理--代金券管理</div>
+	<div class="main-content">
+<style>
+.table tr td{font-size:12px;vertical-align:middle;}
+</style>
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">代金券编辑</a></li>
+	<li role="presentation"><a href="javascript:void(0);" onclick="history.go(-1);">返回上一页</a></li>		
+  </ul>
+  <include file="./Application/Admin/View/Public_switch.html" />
+  <!-- Tab panes -->
+  <!-- 模板编号	模板名	回复内容	头部颜色	文字颜色	状态	模板ID -->
+  <div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="home">
+		<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+			定义代金券的使用规则、过期时间以及库存
+		</div>
+		<div class="well">
+			<form class="form-horizontal" action="__SELF__" method="post" onsubmit="return check();">
+			  
+			 <div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">代金券名称</label>
+				<div class="col-sm-6 col-lg-4" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">￥</span>
+				  <input type="number" class="form-control" id="daijin_name" name="daijin_name" value="{$info['daijin_name']}"  <if condition="$info neq null ">disabled</if> placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">元代金券</span>
+				</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">使用规则</label>
+				<div class="col-sm-6 col-lg-4">
+					<select class="form-control" name="daijin_rule" id="daijin_rule" <if condition="$info neq null ">disabled</if>>
+					  <option value="1" <if condition="$info['daijin_rule'] eq 1">selected</if> >不限制金额</option>
+					  <option value="2" <if condition="$info['daijin_rule'] eq 2">selected</if> >满金额使用</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group" id="rule-view" style="display:none;">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1"></label>
+				<div class="col-sm-8 col-lg-4" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">商城消费满</span>
+				  <input type="text" class="form-control" id="daijin_line" name="daijin_line" value="{$info['daijin_line']}" placeholder="0">
+				  <span class="input-group-addon" id="basic-addon1">金额可使用</span>
+				</div>
+				</div>
+			</div>
+			<div class="form-group has-error">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">过期规则</label>
+				<div class="switch has-switch col-sm-2 col-lg-1"  style="height:30px">
+					<input name="date_switch" value="1"  <if condition="$info neq null ">disabled</if> type="checkbox"  <if condition="$info['date_switch'] eq 1">checked</if>  data-on-color="success" data-off-color="danger"  data-on-text="永久"  data-off-text="过期" />
+				</div>
+				<label for="inputEmail3" class="col-sm-2 col-lg-1 control-label">过期时间</label>
+				<div class="col-sm-3 col-lg-2" id="level_list">
+					<input type="text" name="daijin_date"  id="daijin_date" value="{$info['daijin_date']}" class=" form-control laydate-icon" style="height:35px;">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2   col-lg-2 control-label" for="exampleInputEmail1">售价</label>
+				<div class="col-sm-2 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">￥</span>
+				  <input type="text" class="form-control" id="daijin_fee" name="daijin_fee" value="{$info['daijin_fee']}" placeholder="0">
+				</div>
+				</div>
+				<div class="col-sm-3 col-lg-2" style="margin-bottom:10px;">
+				<div class="input-group has-success">
+				  <span class="input-group-addon" id="basic-addon1">库存总量</span>
+				  <input type="number" class="form-control" id="daijin_number" name="daijin_number" value="{$info['daijin_number']}" placeholder="0">
+				</div>
+				</div>
+			</div>
+			<input type="hidden" name="id" value="{$info.daijin_id}">
+	  <br/><br/>
+			 <button type="submit" class="btn btn-success">保存配置信息</button>
+			
+		</div>
+		
+		
+	</div>
+	<div role="tabpanel" class="tab-pane active" id="admin">
+	</div>
+  </div>
+</div>
+		
+	</div>
+</div>
+
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script src="__PUBLIC__/laydate/laydate.js"></script>
+<script src="__PUBLIC__/admin/js/jquery.minicolors.min.js" type="text/javascript"></script>
+<script>
+laydate.skin('yalan');
+laydate({
+    elem: '#daijin_date', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+    format: 'YYYY-MM-DD hh:mm:ss',
+    istime: true,
+   event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+});
+</script>
+		
+<script>
+	$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+function check(){
+	var daijin_name = $('#daijin_name').val();if(daijin_name == ''){layer.msg('名称不能为空');return false;}
+	var daijin_fee = $('#daijin_fee').val();if(daijin_fee == ''){layer.msg('售价不能为空');return false;}
+	var daijin_number = $('#daijin_number').val();if(daijin_number == ''){layer.msg('库存不能为空');return false;}
+}
+$(document).ready(function(){
+	$('#daijin_rule').bind('change',function(){
+		if($(this).val() == '2'){$('#rule-view').css('display','block');}
+		if($(this).val() == '1'){$('#rule-view').css('display','none');}
+	});
+});
+</script>

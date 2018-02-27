@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>代金券支付</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<style>
+	.daijin-view{padding:10px;padding-top:20px;background:#fff url(__PUBLIC__/images/daijin_border.png) no-repeat;background-size:100% ;background-position:0 100%;height:150px;}
+	#money{ display:inline-block; 
+		-webkit-animation: move 1s linear 0s 1 alternate running forwards;
+	}
+	#money-view{color:#C2C2C2; 	-webkit-animation: myfirst 2s linear 1s infinite alternate;}
+	@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+from {color: #C2C2C2;}
+to {color: #fff;}
+}
+@-webkit-keyframes move /* Safari 和 Chrome */
+{
+from { -webkit-transform:rotateY(180deg);font-size:16px;}
+to { -webkit-transform:rotateY(0deg);font-size:55px;}
+}
+	</style>
+</head>
+<body style=""><include file="./Application/Shop/View/Index_wxjs.html" />
+<div class="daijin-view">
+		<div style="border-top-right-radius:10px; box-shadow: -3px -5px 3px #555;width:95%;margin:0 auto;height:94%;position:relative;">
+			<div style="float:left;background:{:C('WAP_JIANBIAN_COLOR')};border-radius:10px;color:#fff;width:150px;height:65%;margin-top:5%;margin-left:2%;font-size:55px;text-align:center;" id="money-view"><span id="money">{$daijin_info.daijin_name}</span></div>
+			<div style="float:left;font-size:22px;margin-top:9%;margin-left:5%;">
+			<span>元 代 金 券</span><br/>
+			<span style="font-size:12px;color:{:C('WAP_COLOR')};">
+			<if condition="$daijin_info['daijin_rule'] eq 2 ">
+			商城消费满{$daijin_info.daijin_line}元使用
+			<else />
+			无门槛使用
+			</if>
+			</span><br/>
+			<span style="font-size:12px;color:#777;display:block;line-height:10px;">
+			剩余{$daijin_info.now_number}张
+			</span>
+			</div>
+		</div>
+	</div>
+<div class="bd" style="margin-top:50px;">
+	
+	<a href="javascript:;" class="weui_btn weui_btn_primary wxpay" style="width:80%;" onclick="onBridgeReady()">微信安全支付</a>
+	<a href="javascript:;" class="weui_btn weui_btn_default" style="width:80%;" onclick="morepay()">其它付款方式</a>
+</div>	
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+
+function morepay(){
+	layer.open({content: '暂未开放，请等待',skin: 'footer', time: 3});
+}
+
+function onBridgeReady(){
+   WeixinJSBridge.invoke(
+       'getBrandWCPayRequest',{"appId" : '<?php echo $paysign["appid"];?>',
+           "timeStamp":'<?php echo $paysign["timeStamp"];?>',
+           "nonceStr" : '<?php echo $paysign["nonceStr"];?>',
+           "package" : 'prepay_id=<?php echo $paysign["prepay_id"];?>',
+           "signType" :"MD5",
+           "paySign" : '<?php echo $paysign["paySign"];?>', //微信签名 
+       },
+       function(res){
+           if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+				wx.closeWindow();
+		   }else{
+			//wx.closeWindow();//history.go(-1);
+			//wx.closeWindow();
+		   } 
+       }
+   ); 
+}
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();//alert('<?php echo $paysign["timeStamp"];?>');
+});
+
+</script>
+</html>

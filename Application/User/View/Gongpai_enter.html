@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>绿色通道</title>
+	
+	<link rel="stylesheet" href="__PUBLIC__/css/cardinal.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font1/iconfont.css">
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();
+	setTimeout(function(){
+		wx.closeWindow();
+	},1000);
+	
+});
+</script>
+	
+	
+</head>
+<body style="padding-bottom:100px;background:#fff;">
+<div style="text-align:center;margin:0 auto;width:15%;margin-top:50px;margin-bottom:20px;">
+<img src="__PUBLIC__/admin/images/loading.gif" width="100%" >
+
+</div><div style="text-align:center;font-size:16px;color:#777;">正在执行...</div>
+</body>
+</html>

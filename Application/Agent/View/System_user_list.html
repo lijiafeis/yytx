@@ -1,0 +1,24 @@
+<a href="{:U('user_add')}" class="btn btn-warning" >添加管理员账号</button></a><br/><br/>
+			
+			<table class="table table-striped" style="font-size:14px;">
+			<th>管理员账号</th>
+			<th>所属权限组</th>
+			<th>最近登录</th>
+			<th>操作</th>
+			<volist name="user_list" id="vv">
+			<tr>
+				<td>{$vv.username}</td>
+				<td>
+				<button class="btn btn-link btn-sm">
+				{$vv.title}
+				</button>
+				</td>
+				<td>{$vv.last_time}</td>
+				<td>
+				<a href="{:U('user_add')}?id={$vv.id}"><button class="btn btn-success btn-sm">修改</button></a>
+				<button class="btn btn-danger btn-sm" onclick="del(this,'{$vv.id}','user_del')">删除</button>
+				</td>
+			</tr>
+			</volist>
+			</table>
+			<div class="pagelist">{$page}</div>

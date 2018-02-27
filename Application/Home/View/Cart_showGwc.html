@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>购物车</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/weui.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/cart.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+	<div class="app_container cart-wrap">
+		<header>
+			<div class="fixed header_inner">
+				<div class="head">				
+					<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+					<span>购物车</span>				
+					<div class="clear"></div>				
+				</div>
+			</div>
+		</header>			
+		</header>
+		<div class="goods-wrap">
+			<volist name="data" id="vv">
+			<div class="goods">		    	
+		    	<div class="weui-cells_checkbox check-img">
+		            <label class="weui-check__label" for="chkSon{$i}">
+		                <div class="weui-cell__hd">
+		                    <input type="checkbox" checked="true" value="{$vv.order_id}"  class="a weui-check checkbox{$vv.good_id}"  name="chkSon" id="chkSon{$i}" onClick="ChkSonClick({$vv.good_id},{$vv.good_chengben},'chkSon','chkAll')"/>
+		                    <i class="weui-icon-checked"></i>
+		                </div>                
+		            </label>            
+		        </div>
+		    	<img class="goods-img" src="{$vv.pic_url}"/>
+		    	<div class="test-num">
+			    	<div class="r-info">
+			    		<div class="test">{$vv.good_name}</div>
+			    		<p class="guige" style="margin-top: -15px;">规格：{$vv.type}</p>
+			    		<p class="price">￥<span class="danjia">{$vv.good_chengben}</span></p>
+			    	</div>
+			    	<div class="clear"></div>
+			    	<div class="add-num_wrap" >
+			    		<div class="num_wrap" >
+							<span class="minus min"  id="min" onclick="jianshao(this,{$vv.good_id},{$vv.good_chengben})"></span>
+							<input class="num text_box" disabled id="text_box{$vv.good_id}" name="" type="text" value="{$vv.good_num}" />
+							<span class="plus add" id="add" onclick="zengjia(this,{$vv.good_id},{$vv.good_chengben})"></span>
+						</div>						
+			    	</div>
+			    	<div class="del_img" onclick="del({$vv.good_id},'{$vv.type}')">
+			    		<img src="__PUBLIC__/home/img/icon-img/del_grey.png"/>
+			    	</div>
+		    	</div>
+		    </div>
+			</volist>
+		</div>		
+		<!--<img src="__PUBLIC__/home/img/order-img.png" style="display: block;width: 150px;margin:120px auto 0;"/>
+		<p style="text-align: center;margin-top:10px;color: #008DFF;font-size: 12px;">亲，您暂无购物车记录</p>-->
+		<div class="fixed bottom-total" style="border-top:.01rem #f0f0f0 solid;border-bottom:.01rem #f0f0f0 solid;bottom:.91rem;">
+			<span class="weui-cells_checkbox"  style="">
+		            <label class="weui-check__label" for="chkAll">
+		                <span class="weui-cell__hd" >
+		                    <input type="checkbox" checked="true" class="weui-check" name="chkAll" id="chkAll" onClick="ChkAllClick(this,'chkSon','chkAll')"/>
+		                    <i class="weui-icon-checked"></i>
+		                </span>                
+		            </label>
+		    </span>
+		    <span style="float: left;margin-left: 10px;">全选</span>
+			<!--<span class="heji">合计 :￥<span id="total">{$money}</span></span>-->
+			<span class="jiesuan" onclick="jiesuan()">去结算</span>
+			<div class="clear"></div>
+		</div>
+		<footer class="fixed">
+			<a href="{:U('Index/index')}?agent_id={$Think.get.agent_id}" class="foot-active">
+				<img src="__PUBLIC__/home1/user-img/foot-img/mt-2.png"/>
+				<div>茅台䣽酒</div>
+			</a>
+			<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+				<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+				<div>茅台文化</div>
+			</a>
+			<a href="{:U('User/index')}?agent_id={$Think.get.agent_id}" >
+				<img src="__PUBLIC__/home1/user-img/foot-img/user-1.png"/>
+				<div>个人中心</div>
+			</a>
+			<div class="clear"></div>
+		</footer>
+	</div>
+</body>
+<script src="__PUBLIC__/home/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	function del(good_id,type) {
+		$.ajax({
+		   type:"post",
+			url:"{:U('delShop')}",
+			dataType:"json",
+			data:{
+		       good_id:good_id,
+			   type:type,
+			},
+			success:function (data) {
+				if(data == 0){
+				    layer.msg('删除成功');
+				    history.go(0);
+				}else{
+				    layer.msg('删除失败');
+				}
+            }
+			
+		});
+    }
+
+    function jiesuan(){
+        layer.confirm('确认结算么?', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            var cart_id = '';//11450
+            $('body .a').each(function(){
+                if($(this).is(':checked')){
+                    cart_id = cart_id+$(this).val()+','
+                }
+            })
+            if(cart_id == ''){layer.closeAll();layer.msg('未选中任何内容');exit;}
+           // alert(cart_id);
+			$.ajax({
+			   type:"post",
+				url:"{:U('jiesuan')}",
+				dataType:"json",
+				data:{
+                    goodlist:cart_id,
+				},
+				success:function (data) {
+                    location.href="{:U('order')}?order_id=" + data + "&agent_id={$Think.get.agent_id}";
+                }
+			});
+
+        }, function(){
+
+        });
+    }
+</script>
+<script>
+
+// --列头全选框被单击---  
+function ChkAllClick(a,sonName, cbAllId){
+    var arrSon = document.getElementsByName(sonName);
+ var cbAll = document.getElementById(cbAllId);
+ var tempState=cbAll.checked;
+ for(i=0;i<arrSon.length;i++) {
+  if(arrSon[i].checked!=tempState)
+           arrSon[i].click();
+ }
+}  
+// --子项复选框被单击---  
+function ChkSonClick(good_id,money,sonName, cbAllId) {
+//    alert('a');
+ var arrSon = document.getElementsByName(sonName);  
+ var cbAll = document.getElementById(cbAllId);  
+ for(var i=0; i<arrSon.length; i++) {  
+     if(!arrSon[i].checked) {  
+     cbAll.checked = false;
+     //减少钱数。
+	 m = $('#text_box' + good_id).val();
+	 fee = money * m;
+	 num = $("#total").html();
+	 //alert(num);
+	 num = parseInt(num);
+	 //alert(num);
+	 num = num - fee;
+	 $("#total").html(num);
+     return;  
+     }  
+ }  
+ cbAll.checked = true;
+    m = $('#text_box' + good_id).val();
+    fee = money * m;
+    num = $("#total").html();
+    //alert(num);
+    num = parseInt(num);
+    //alert(num);
+    num = num + fee;
+    $("#total").html(num);
+}  
+</script>
+<script>
+$(function(){
+    $("input[name='checkbox']").attr("checked","true");
+});
+function jianshao(a,good_id,money) {
+    number = $("#text_box" + good_id).val();
+    number = parseInt(number)
+    if(isNaN(number)){
+        number = 1;
+    }
+    number = number -1;
+    if(number < 1){
+        number = 1;
+    }
+    $.ajax({
+        type:"post",
+        url:"{:U('setShopNum')}",
+        dataType:"json",
+        data:{
+            good_id:good_id,
+			number:number
+        },
+        success:function (data) {
+        }
+
+    });
+    $("#text_box" + good_id).val(number);
+    str = 'checkbox' + good_id;
+	if($('.' + str).is(':checked')) {
+    	fee = money;
+		
+    	num = $("#total").html();
+		//alert(num);
+		num = parseInt(num);
+		//alert(num);
+		num = num - fee;
+		$("#total").html(num);
+	}
+}
+function zengjia(b,good_id,money) {
+    number = $("#text_box" + good_id).val();
+
+    number = parseInt(number)
+    if(isNaN(number)){
+        number = 1;
+    }
+    number = number + 1;
+    $.ajax({
+        type:"post",
+        url:"{:U('setShopNum')}",
+        dataType:"json",
+        data:{
+            good_id:good_id,
+			number:number
+        },
+        success:function (data) {
+        }
+
+    });
+    $("#text_box" + good_id).val(number);
+    str = 'checkbox' + good_id;
+    if($('.' + str).is(':checked')) {
+        fee = money;
+        num = $("#total").html();
+        num = parseInt(num);
+        num = num + fee;
+        $("#total").html(num);
+    }
+}
+
+function setMoney() {
+	//计算钱数
+
+
+}
+	
+</script>
+
+</html>

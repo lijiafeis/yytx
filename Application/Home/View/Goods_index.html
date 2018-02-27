@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/swiper.min.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+	<style>
+	.img-block{display: block;width: 100%;}
+	.links-2 a{text-align: center;float: left;width: 50%;}
+	.links-2 img{width: 1rem;height: 1rem;display: block;margin:20px auto 10px;}
+	header{height:0.8rem;}
+	.header_inner{border-bottom: 0;}
+	.bg {
+            /*background:url(__PUBLIC__/121/img/bg-blur.jpg);*/
+            height:300px;
+            
+            
+        }
+        .bg-blur {
+            float: left;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            /*-webkit-filter: blur(3px);*/
+            
+        }
+.to-orders-wrap{position: fixed;left: 0;right: 0;bottom: 1rem;max-width: 640px;width: 100%;margin: auto;}
+.to-orders{position: absolute;right: 10px;bottom:10px;z-index: 9999;background: rgba(253,147,38,.8);
+width: 50px;height: 50px;border-radius: 50%;text-align: center;max-width: 640px;margin: auto;}
+.to-orders img{width: 26px;height: 29px;margin-top: 10px;}
+	</style>
+</head>
+<body>
+
+<div class="app_container"  style="background: #f8f8f8;">
+	
+	<header style="height: 0.8rem;">
+		<div class="fixed header_inner"  style="border-bottom: 0;">
+			<div class="head" style="background:#000;">				
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/121/img/left-white.png"/></span>
+				<span>我的商城</span>
+				<div class="clear"></div>					
+			</div>
+		</div>
+	</header>
+	<img class="img-block" src="__PUBLIC__/121/img/banner-img.png"/>
+<div class="">
+	<div class="links-2">
+		<a href="{:U('Goods/shop')}?agent_id={$Think.get.agent_id}"><img src="__PUBLIC__/121/img/product -icon.png"/>
+			<div>产品中心</div>
+		</a>
+		<a href="{:U('Game/game')}?agent_id={$Think.get.agent_id}"><img src="__PUBLIC__/121/img/games-icon.png"/>
+			<p>大礼包</p></a>
+		<div class="clear"></div>
+	</div>
+</div>
+	<div class="to-orders-wrap">
+		<a href="{:U('myOrder')}" class="to-orders"><img src="__PUBLIC__/121/img/order.png"/></a>
+	</div>
+	<footer class="fixed">
+		<a href="{:U('Index/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/mt-1.png"/>
+			<div>茅台䣽酒</div>
+		</a>
+		<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+			<div>茅台文化</div>
+		</a>
+		<a class="foot-active" href="">
+			<img src="__PUBLIC__/home1/user-img/foot-img/shop-2.png"/>
+			<div>商城</div>
+		</a>
+		<a href="{:U('User/index')}?agent_id={$Think.get.agent_id}" >
+			<img src="__PUBLIC__/home1/user-img/foot-img/user-1.png"/>
+			<div>个人中心</div>
+		</a>
+		<div class="clear"></div>
+	</footer>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+
+
+</html>

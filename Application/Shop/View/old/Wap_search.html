@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>{$app_info[0]['wxname']}商城</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/public.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/home.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/footer.css">
+	
+	
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/reset.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/common1.css" media="all">
+<style>.recommend .caption_life:after {background-color: #ff6666;}</style>
+<!--首页幻灯js-->
+<script type="text/javascript" src="__PUBLIC__/shop/css/zepto.js"></script>
+<script type="text/javascript" src="__PUBLIC__/shop/css/swipe.js"></script>
+<!--首页幻灯js end-->
+</head>
+<body><include file="./Application/Shop/View/Index_wxjs.html" />
+	<div style="overflow:hidden;">
+       <div class="searchnew" id="searchContainer" style="width:100%;padding:10px 0;">
+			<div class="products-search-item" style="margin-top:0;">
+				<div class="main-nav-search ">
+				<form action="__SELF__" method="post">
+					<div class="input-group">
+						<input autocomplete="off" id="input-main-nav-search" class="form-control" name="keyword" value="{$keyword}" style="width:98%;height:100%;"  title="产品搜索" placeholder="产品搜索" type="search">
+						<span class="input-group-btn"><button class="btn5 submit" type="submit" id="btnSearch" style="height:100%;background:#777;border:1px solid #777;">
+						<i class="search-icon"></i></button>
+						</span>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    
+   
+
+	<style>
+		.good_list .box{background:#fff;padding:5px;text-align:left;}
+		.good_list .title .box{text-align:left !important;border-bottom:1px solid #E8E8E8;line-height:30px;}
+		.good{border-bottom:1px solid #E8E8E8;}
+		.good div{text-align:left !important;}
+		</style>
+	<div class="good_list">
+		
+		<div class="grid gutter-1px mb" style="background:#fff;">
+			<div class="grid-item 12/12 title"><div class="box tc bottom-nav" style="font-size:16px;">
+			<i class="icon iconfont" style="font-size:16px;">&#xe600;</i> 商品列表
+			</div></div>
+			<volist name="good_list" id="vv" empty='$empty'>
+			<div class="grid-item 6/12 good" onclick="shop_url(this)" data-url="{:U('good')}?good_id={$vv.good_id}"><div class="box tc bottom-nav">
+			<figure style="margin-bottom:10px;"><img src="{$vv.pic_url}" alt="Image alt text"></figure>
+			<div style="white-space:nowrap;overflow:hidden;color:#555;">{$vv.good_name}</div>
+			<div class="icon iconfont" style="font-size:14px;color:#777;">&#xe614; {$vv.good_price}</div>
+			</div></div>
+			</volist>
+		</div>
+		
+		
+	</div>
+	
+	
+	
+	
+	
+	
+
+ 
+	
+   <div style="position:fixed;bottom:0;">
+     <include file="./Application/Shop/View/wap_footer.html" />
+    </div>
+
+
+
+</body>
+
+</html>

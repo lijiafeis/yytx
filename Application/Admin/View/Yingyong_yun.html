@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="__PUBLIC__/iconfont/0727/iconfont.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+function get_text(time){
+	if(time == 0){
+		var text = '云';
+	}else if(time == 1){
+		var text = '云栈';
+	}else if(time == 2){
+		var text = '云栈道';
+	}else if(time == 3){
+		var text = '云栈道正';
+	}else if(time == 4){
+		var text = '云栈道正在';
+	}else if(time == 5){
+		var text = '云栈道正在深';
+	}else if(time == 6){
+		var text = '云栈道正在深挖';
+	}else if(time == 7){
+		var text = '云栈道正在深挖中';
+	}else if(time == 8){
+		var text = '云栈道正在深挖中.';
+	}else if(time == 9){
+		var text = '云栈道正在深挖中..';
+	}else if(time == 10){
+		var text = '云栈道正在深挖中...';
+	}
+	return text;
+}
+
+change(0);
+function change(time){
+	var value = get_text(time);
+	$('#text').text(value);
+	setTimeout(function(){
+		if(time == 10){
+			time = 0;
+		}else{
+			time++;
+		}
+		change(time);
+	},500);
+}
+</script>
+<div class="container-fluid main" style="min-height:60%;text-align:center;padding-top:30px;">
+<div class="icon iconfont" style="font-size:76px;margin:40px;color:#555;">&#xe658;</div>
+<div id="text" style="color:#333;font-size:22px;width:200px;margin:0 auto;text-align:left;">云</div>
+</div>

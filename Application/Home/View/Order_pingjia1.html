@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>发表评价</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/order.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+
+</head>
+<body>
+<div class="wrap">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">
+				<span class="left_arrow" onclick="history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>发表评论</span>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</header>
+	<div class="goods-star">
+		<img class="goods" src="{$pic_url}"/>
+	
+		<div class="clear"></div>
+	</div>
+	<div class="textarea-wrap">
+		<div class="textarea">
+			<textarea maxlength="500" onKeyPress="checkLen(this)" onKeyUp="checkLen(this)" onChange="checkLen(this)" placeholder="写下购买体会和感受来帮助其他小伙伴" id="content"></textarea> 					        	
+			<span class="num"><input name="termLen" value="500" maxlength="500" style="" size="3" readonly  />/500</span>
+		</div>											
+	</div>
+	 <div class="upload-img">
+	 <input type="hidden" name="type" value="" id="type">
+		<!-- <img class="cameral-img" src="__PUBLIC__/web/images/ratings-img/zp.png"/>
+		<div class="check-img">
+			<img src="__PUBLIC__/web/images/ratings-img/wanc.png"/>
+			<span>匿名评价</span>
+		</div> -->
+	</div> 
+	<div class="tijiao">
+		<span class="btn" onclick="pj({$pj_id})">提交</span>
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/web/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+function pj(pj_id){
+	var c=$('#content').val();
+	if(!c){
+		layer.msg("请输入评论");exit;
+	}
+ 		$.ajax({
+			type: "post",
+			url: "{:U('Order/pj_add')}",
+			data: {"pj_id":pj_id,"content":c,},
+			success: function(data) {
+
+			    if(data==1){
+				layer.msg("评价成功!");
+		                       setTimeout(function(){
+		                       	location.href="{:U('pingjia')}?agent_id={$Think.get.agent_id}";
+		                       },1000);
+				//$('#showIOSActionSheet').attr("disable","true");
+			       }else if(data==2){
+				layer.msg("评价失败!");			
+			       }              			
+			},
+			error:function(){
+			//layer.msg("添加成功!");
+			  }
+		});	
+}
+
+function checkLen(term){        	
+		document.all.termLen.value=500-term.value.length;        			
+		if (document.all.termLen.value<=0){         			
+		term.value=term.value.substring(0,500); 
+		}
+	}
+</script>
+</html>

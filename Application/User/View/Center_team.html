@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>我的团队</title>
+   <!--  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/iconfont/0727/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+
+	
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	<style>
+	.group-header{background:#ff6666;width:100%;padding-bottom:2px;padding-top:10px;text-align:center;
+				background:-webkit-gradient(linear, 0% 0%, 100% 100%, from({:C('WAP_COLOR')}), to({:C('WAP_JIANBIAN_COLOR')}));}
+	.group-header .group{width:33.3%;color:#fff;text-align:center;padding:20px 0 0 0;font-size:14px;}
+	.group-header .weui_cell_bd span{font-size:14px;color:#fff}
+	.weui_cell{font-size:14px;}
+	.weui_cell:focus{background:#efedf1}
+	</style>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();//alert('<?php echo $paysign["timeStamp"];?>');
+});
+$(document).ready(function(){
+	var str = '';
+	for(var i = 1;i <= '{$fenxiao_info.fenxiao_level}';i++){
+		str = str + '<option value="'+i+'">第'+i+'层</option>';
+	}
+	$('#level').html(str);
+	 getpage(1);
+	
+	$('#level').bind('change',function(){
+		var value = $(this).val();
+		getpage(value);//alert($(this).val());
+	});
+});
+
+var p = 2;
+function getpage(value){
+	$('#list').html('<div style="text-align:center;margin:0 auto;width:15%;margin-top:30px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$('#list').load("{:U('team_ajax')}?p="+value,function(data,status){
+      
+    });
+}
+</script>
+</head>
+<body  style="background: #efedf1;margin-bottom:70px;">
+	<div class="group-header">
+		<div class="icon iconfont" style="font-size:45px;color:#fffff0;line-height:40px;">&#xe622;</div>
+		<div style="white-space: nowrap;text-overflow:ellipsis;overflow:hidden;font-size:16px;color:#fff;line-height:40px;"><span>团队总人数：{$team_num}</span></div>
+		
+		<div class="weui_cells" style="background:rgba(255,255,255,0);margin-bottom:10px;">
+       
+        <div class="weui_cell weui_cell_select weui_select_after" style="background:#fff;">
+            <div class="weui_cell_hd">
+                <label for="" class="weui_label">层级数</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <select class="weui_select" name="select2" id="level">
+                 
+                </select>
+            </div>
+			<span class="weui_cell_ft" style="font-size:12px;margin-right:40px;">选择层级数</span>
+        </div>
+		
+    </div>
+		
+		
+		
+	</div>
+	
+	<div class="weui_panel" style="margin:15px 0;">
+        <div class="weui_panel_hd">团队列表<font size="1.5">[名字变红表示未关注公众号]</font></div>
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg" id="list">
+               
+            </div>
+        </div>
+    </div>
+	
+	
+	
+</body>
+<script>
+
+
+</script>
+</html>

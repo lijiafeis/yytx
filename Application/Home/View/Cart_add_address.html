@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>添加收货地址</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home2/css/style08.03.css"/>
+<style>
+select{
+	color:#5a5a5a;
+	margin-bottom:.1rem;
+	padding:.1rem;
+	border:0;
+	outline:none;
+	border:.01rem #f0f0f0 solid;
+}
+</style>
+</head>
+<body>
+	<div class="app_container">
+		<header>
+			<div class="fixed header_inner">
+				<div class="head">				
+					<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home2/img/left-white.png"/></span>
+					<span>添加收货地址</span>				
+					<div class="clear"></div>				
+				</div>
+			</div>
+		</header>
+		<div>
+			<div class="set_default">
+				<i class="f_left addr_select">设为默认地址</i>
+				<span class="f_right solve" onclick="add()">保存</span>
+				<div class="clear"></div>
+			</div>
+			<div class="input-box">
+				<div class="input-wrap">
+					<span class="input-wrap-addon">姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="text" id="user"  placeholder="收货人姓名">
+				</div>
+			</div>
+			<div class="input-box">
+				<div class="input-wrap">
+					<span class="input-wrap-addon">手机号码</span>
+					<input type="text" id="tel"  placeholder="收货人手机号码">
+				</div>
+			</div>
+			<div class="input-box">
+				<div class="input-wrap area_select">
+					<span class="input-wrap-addon">所在地区&nbsp;&nbsp;&nbsp;</span>
+					<select class="form-control" id="province" name="province">
+						<option value="0">请选择</option>
+					</select>
+					<select class="form-control" id = 'city' name="city">
+						<option value="0">请选择</option>
+					</select>
+					<select class="form-control" id = 'area' name="area">
+						<option value="0">请选择</option>
+					</select>
+				</div>
+			</div>
+			<div class="input-box">
+				<div class="input-wrap">
+					<span class="input-wrap-addon">详细地址</span>
+					<input type="text" id="add"  placeholder="门牌号/楼层号等详细地址">
+				</div>
+			</div>
+			<!--是否默认地址-->
+			<input type="hidden" id="is_true" value="0"/>
+		</div>
+	</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script>	
+	$(function(){	
+		$('.addr_select').click(function(){
+			$(this).addClass('addr_selected').siblings().removeClass('addr_selected');
+			//$('.panes>.pane:eq('+$(this).index()+')').show().siblings().hide();
+			$("#is_true").val(1);
+		})
+	})
+</script>
+<script>
+    $(function(){
+        //获取数据
+        $.get(
+            '__PUBLIC__/home/js/ChinaArea.xml',
+            '',
+            function(res){
+                xmldom = $(res);
+                //把数据填充到省份里面
+                var pros = xmldom.find('province');
+                pros.each(function(index,el){
+                    var pro_id = $(el).attr('provinceID');
+                    var pro_name = $(el).attr('province');
+                    $('<option value = "' +pro_id + '">'+pro_name+'</option>').appendTo('#province');
+                });
+            },
+            'xml'
+        );
+        $('#province').change(function(){
+            var citys = xmldom.find('City');
+            var pro_two = $(this).val().substr(0,2);
+            $('#city').empty().append('<option value = "0">请选择</option>');
+            citys.each(function(index,el){
+                var city_id = $(el).attr('CityID');
+                var city_name = $(el).attr('City');
+                if(city_id.substr(0,2) == pro_two){
+                    $('<option value = "' +city_id + '">'+city_name+'</option>').appendTo('#city');
+                }
+            });
+        });
+        $('#city').change(function () {
+            var areas = xmldom.find('Piecearea');
+            var four = $(this).val().substr(0,4);
+            $('#area').empty().append('<option value="0">请选择</option>');
+            areas.each(function(index,el){
+                var area_id = $(el).attr('PieceareaID');
+                var area_name = $(el).attr('Piecearea');
+                if(area_id.substr(0,4) == four && area_name != '市辖区'){
+                    $('<option value="'+area_id+'">'+area_name+'</option>').appendTo('#area');
+                }
+            });
+        });
+    });
+</script>
+<script>
+    function add(){
+
+        var user=$('#user').val();
+        var tel=$('#tel').val();
+        //var city=$('#city').val();
+        var province = $("#province").val();
+        var city = $("#city").val();
+        var area = $('#area').val();
+        var add=$('#add').val();
+        if(province == 0 || area == 0 || city == 0){
+            layer.msg("请选择地区");
+            return;
+        }
+        is_true = $("#is_true").val();
+        province1 = $('#province option:selected').text();//获取省份
+        city1 = $('#city option:selected').text();//获取市
+        area1 = $('#area option:selected').text();//获取县
+        if(user==""){
+            layer.msg("请填写收货人");
+            return;
+        }else if(tel==""){
+            layer.msg("请填写手机号");
+            return;
+        }else if(add==""){
+            layer.msg("请填写详细地址");
+            return;
+        }else{
+            var re = /^1\d{10}$/;
+            if(!re.test(tel)){
+                layer.msg('请填写正确格式的手机号');return;
+            }
+            var ab = layer.load(2,{
+                shade:[0.6,"#000"]
+			})
+            $.ajax({
+                type: "post",
+                url: "{:U('add')}",
+                data:{
+					username:user,
+					tel:tel,
+                    province:province,
+                    city:city,
+                    area:area,
+                    province1:province1,
+                    city1:city1,
+                    area1:area1,
+					add:add,
+					is_true:is_true
+				},
+                success: function(data) {
+                    layer.close(ab);
+                    if(data==1){
+                        layer.msg("保存成功!",{icon: 1});
+                        setTimeout(function(){
+							location.href="{:U('order')}?agent_id={$Think.get.agent_id}";
+
+                            //history.go(-1);
+                        },1000);
+
+                    }else if(data==2){
+                        layer.msg("保存失败!",{icon: 2});
+                    }
+                },
+                error:function(){
+                    layer.close(ab);
+                    layer.msg("未知错误!",{icon: 2});
+                }
+            });
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,27 @@
+.fixed{position: fixed;width: 100%;max-width: 640px;min-width: 320px;z-index: 3;}
+.fixed-top{top: 0;}
+.fixed-top .nav{background: #fff;text-align: center;height: 40px;line-height: 40px;padding: 0 10px;}
+.fixed-top .nav .l-icon{float: left;margin-top: -1px;}
+.fixed-top .nav .l-icon img{width: 15px;vertical-align: middle;}
+.fixed-top .nav .r-icon{float: right;}
+.fixed-top .nav .r-icon img{width: 20px;vertical-align: middle;}
+
+/*登录*******************************************
+ *******************登录******************/	
+.fixed-top .text{height: 40px;text-align: center;line-height: 40px;}
+.login-wrap{margin-top: 40px;padding: 20px;border-top: 1px #E5E5E5 solid;}
+.login-wrap .user-info{text-align: center;}
+.login-wrap .user-info .user-img{width:60px;display: block;margin: auto;}
+.login-wrap .user-info .user-img .user-name{color: #000;font-size: 12px;margin-top: 5px;}
+.login-form{border: 1px #E5E5E5 solid;padding: 0 10px;}
+.login-form .input-wrap{height: 40px;line-height: 40px;border-bottom: 1px #E5E5E5 solid;}
+.login-form .input-wrap input{border: 0;outline: none;}
+.login-form .input-wrap:last-child{border-bottom: 0;position: relative;}
+.login-form .input-wrap .yzm{font-size: 12px;background: #36AEFE;position: absolute;right: 0;top:7px;height:24px;line-height: 24px;padding: 0 5px;color:#fff;border-radius:3px;}
+body{color: #000;letter-spacing: 0;}
+.login-wrap .text{color: #000;font-size: 12px;margin: 20px 0;}
+.btn{height: 40px;line-height: 40px;background: #36AEFE;text-align: center;color: #999;margin-top: 20px;color: #fff;border-radius: 4px;}
+.link-a1{border: 1px #000 solid;color: #2e2e2e;margin-top: 30px;box-sizing: border-box;background: rgba(0,0,0,0);}
+.link{display: block; height: 40px;line-height: 40px; text-align: center;border-radius: 4px;}
+
+

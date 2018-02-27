@@ -1,0 +1,134 @@
+<style>.layui-layer{top:50px!important;}
+.content{
+	/*width: 500px;*/
+	/*color: red;*/
+	/*word-break:keep-all;!* 不换行 *!*/
+	/*white-space: nowrap;*/
+	text-overflow: ellipsis;
+	overflow: hidden;
+
+}
+.abc tr td{
+	width: 100px;
+	text-align: center;
+}
+</style>
+<table class="table table-striped"  style="font-size:14px;margin-top: 20px;">
+	<th style="width: 5px;">
+	<input type="checkbox" class="all_check">
+	</th>
+		<th>user_id</th>
+		<th>姓名</th>
+		<th>电话</th>
+
+		<th>钱包余额</th>
+		<th>提现金额</th>
+		<th>下级业绩</th>
+		<th>订单金额</th>
+		<th>上级姓名</th>
+		<th>所属平台</th>
+
+		<th>操作</th>
+		<volist name="arr" id="vv" key="kk" empty="$empty">
+			<tr id="{$kk}" style="font-size:13px;">
+				<td><input type="checkbox" class="one_check" value="{$vv.id}"></td>
+				<td>{$vv.user_id}</td>
+				<td>{$vv.name}</td>
+				<td>{$vv.username}</td>
+
+				<td>{$vv.money|default=0}</td>
+				<td>{$vv.tixian_money|default=0}</td>
+				<td>{$vv.yeji}</td>
+				<td>{$vv.order_money|default=0}</td>
+
+				<td>{$vv.sj_name}</td>
+				<td>{$vv.wxname}</td>
+
+				<!--sj_name-->
+				<!--<td>{$vv.money}</td>-->
+				<td>
+					<button type="button" class="btn btn-warning" onclick="yongjinInfo({$vv.user_id})" style = "background: #44B549">佣金情况</button>
+
+					<if condition="$vv.black eq 0">
+					<button type="button" onclick="black({$vv.user_id})" class="btn btn-warning " style = "background: #44B549">加入黑名单</button>
+					<else/>
+					<button type="button" onclick="black({$vv.user_id})" class="btn btn-warning " style = "background: #44B549">移除黑名单</button>
+					</if>
+					<button type="button" class="btn btn-warning" onclick="xiaji({$vv.user_id})" style = "background: #D84F4B">查看下级</button>
+				</td>
+			</tr>
+		</volist>
+</table>
+<input type="hidden" name="bili" id="bili" value="{$bili}"/>
+<div class="pagelist">{$page}</div>
+<script src="__PUBLIC__/Admin/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/js/jquery.js"></script>
+<script>
+	function yongjin(user_id) {
+		location.href = "{:U('yongjinList')}?user_id=" + user_id;
+    }
+	function black(user_id){
+        layer.confirm('确定要操作？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.ajax({
+                type:"post",
+                url:"{:U('black')}",
+                dataType:"json",
+                data:{
+                    user_id:user_id,
+                },
+                success:function(data){
+                    if(data == 0){
+                        layer.msg('修改成功');
+                        setTimeout(function(){
+                            history.go(0);
+                        },1000);
+                    }else{
+                        layer.msg('修改状态失败');
+                    }
+                }
+            });
+        }, function(){
+
+        });
+
+	}
+
+	function xiaji(user_id){
+	    location.href = "{:U('xiaji')}?user_id=" + user_id;
+	}
+
+    function yongjinInfo(user_id){
+        $.ajax({
+            type:"post",
+            url:"{:U('getYongJin')}",
+            dataType:"json",
+            data:{
+                user_id:user_id,
+            },
+            success:function(data){
+                if(data.success == 0){
+                    console.log(data);
+                    res = data.data;
+                    res1 = data.data1;
+
+                    layer.open({
+                        type: 1,
+                        skin: 'layui-layer-rim', //加上边框
+                        area: ['420px', '240px'], //宽高
+                        content: '<table class="abc" border="1px" ><tr><td>类别</td><td>推荐奖</td><td>领导奖</td><td>分红奖</td><td>回馈奖</td></tr>' +
+                        '<tr><td>昨天</td><td>'+res["w1"]+'</td><td>'+res["w2"]+'</td><td>'+res["w3"]+'</td><td>'+res["w4"]+'</td></tr>' +
+                        '<tr><td>总的</td><td>'+res1['w1']+'</td><td>'+res1['w2']+'</td><td>'+res1['w3']+'</td><td>'+res1['w4']+'</td></tr></table>'
+
+                    });
+                }else{
+                    layer.msg('修改状态失败');
+                }
+            }
+        });
+
+    }
+
+
+</script>

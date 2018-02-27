@@ -1,0 +1,438 @@
+.user-center {
+	margin-top: -5px;
+	padding: 20px 0;
+	background: url(../img/bg.jpg) no-repeat center center;
+	background-size: 100%;
+	text-align: center;
+	color: #fff;
+}
+
+.user-center .user-header img {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	display: block;
+	margin: auto;
+}
+
+.user-center .user-name {
+	margin-top: 5px;
+}
+
+.marginbottom10 {
+	margin-bottom: 10px;
+}
+
+.weui-panel__ft {
+	background: #fff;
+}
+
+.weui-cell {
+	padding: 10px;
+}
+
+.weui-cell:before {
+	border-top: 0;
+}
+
+.border-bottom {
+	border-bottom: 1px #f0f0f0 solid
+}
+
+
+/************************************************
+ * ***********************************************
+  退款/售后*/
+.img1 {
+	width: 100%;
+	display: block;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	background: #fff;
+	border-top: 1px #e5e5e5 solid;
+	max-width: 640px;
+	margin: auto;
+}
+
+
+
+.text-over {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.marginbottom10 {
+	margin-bottom: 10px;
+}
+
+.margintop10 {
+	margin-top: 10px;
+}
+
+
+/************************************************
+ * ***********************************************
+  特价*/
+
+
+.color1 {
+	color: #FF5454;
+}
+
+.tejia .goods-box {
+	position: relative;
+	padding: 10px;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.tejia .goods-box .goods-img {
+	width: 110px;
+	height: 80px;
+}
+
+.tejia .goods-box .r-info {
+	position: absolute;
+	left: 130px;
+	top: 10px;
+	right: 10px;
+}
+
+.tejia .goods-box .r-info .price {
+	margin-top: 5px;
+	font-size: 14px;
+}
+
+.tejia .goods-box .r-info p.info {
+	font-size: 12px;
+	height: 32px;
+	margin-top: 3px;
+}
+
+.tejia .goods-box .icon-cart, .hot-goods .icon-cart {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.tejia .goods-box .icon-cart img ,.hot-goods .icon-cart img {
+	width: 25px;
+}
+
+.tejia .col_2 {
+	padding-right: 0px;
+}
+
+.tejia .col_2 a {
+	display: block;
+	border-top: 1px #e5e5e5 solid;
+	border-right: 1px #e5e5e5 solid;
+	box-sizing: border-box;
+}
+
+.tejia .col_2 a:nth-of-type(2n) {
+	border-right: 0;
+}
+
+.tejia .col_2 .goods-box .goods-img {
+	width: 60px;
+	height: 80px;
+}
+
+.tejia .col_2 .goods-box {
+	bor
+}
+
+.tejia .col_2 .goods-box {
+	float: left;
+	width: 50%;
+}
+
+.tejia .col_2 .goods-box .r-info {
+	position: absolute;
+	left: 70px;
+	top: 10px;
+	right: 10px;
+}
+
+.tejia .col_2 .goods-box:nth-child(2n) {
+	float: right;
+	margin-right: 0px;
+}
+
+.tejia .col_2 .goods-box .r-info .price {
+	font-size: 12px;
+}
+
+.tejia .col_2 .goods-box .tit-over {
+	width: 60px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.tejia .hot {
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.tejia .hot-goods {
+	padding: 0;
+}
+
+.tejia .hot-goods .col-goods {
+	padding-right: 0;
+}
+
+.tejia .hot-goods .col-goods a {
+	margin-bottom: 0;
+}
+
+.tejia .hot-goods a {
+	padding: 10px;
+	border-bottom: 1px #e5e5e5 solid;
+	border-right: 1px #e5e5e5 solid;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.tejia .hot-goods .col-goods a:nth-child(2n) {
+	float: right;
+	margin-right: 0px;
+}
+
+.tejia .hot-goods .col-goods .sale-sum {
+	color: #999;
+	margin-top: 3px;
+}
+
+
+
+
+/************************************************
+ * ***********************************************
+  购物车*/
+.cart-wrap .col_wrap_2 {
+	padding: 10px;
+}
+
+.cart-wrap .col_2 {
+	padding-right: 10px;
+}
+
+.cart-wrap .col_2 img {
+	width: 100%;
+}
+
+.cart-wrap .col_2 a {
+	float: left;
+	width: 50%;
+}
+
+.cart-wrap .col_2 a:nth-child(2n) {
+	float: right;
+	margin-right: -10px;
+}
+
+.cart-goods li {
+	float: left;
+}
+
+.num_wrap span, .num_wrap input {
+	float: left;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border: 1px #ddd solid;
+	background: #eee;
+	text-align: center;
+	position: relative;
+}
+
+.num_wrap .minus,.num_wrap .plus {
+	position: relative;
+}
+
+.num_wrap .minus:after {
+	content: '';
+	width: 8px;
+	height: 2px;
+	border-radius: 2px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	margin-top: -1px;
+	margin-left: -4px;
+	background: #39312f;
+}
+
+.num_wrap .num {
+	font-size: 14px;
+	width: 38px;
+	border-left: 0;
+	border-right: 0;
+	background: #fff;
+}
+
+.num_wrap .plus:after {
+	content: '';
+	width: 8px;
+	height: 2px;
+	border-radius: 2px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	margin-top: -1px;
+	margin-left: -4px;
+	background: #39312f;
+}
+
+.num_wrap .plus:before {
+	content: '';
+	width: 2px;
+	height: 8px;
+	border-radius: 2px;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	margin-top: -4px;
+	margin-left: -1px;
+	background: #39312f;
+}
+
+.bottom-total {
+	bottom: 48px;
+	background: #fff;
+	height: 50px;
+}
+
+.bottom-total .all {
+	float: left;
+	margin-left: 10px;
+	line-height: 50px;
+}
+
+.bottom-total .all img {
+	vertical-align: middle;
+	width: 15px;
+}
+
+.bottom-total .all span {
+	vertical-align: middle;
+}
+
+.bottom-total .heji {
+	float: left;
+	font-size: 12px;
+	margin-left: 50px;
+	margin-top: 8px;
+}
+
+.bottom-total .heji p.hj {
+	color: #FF6363;
+	font-size: 14px;
+}
+
+.bottom-total .jiesuan {
+	float: right;
+	margin-right: 10px;
+	line-height: 50px;
+}
+
+.bottom-total .jiesuan span {
+	padding: 5px 15px;
+	background: #FF6363;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 3px;
+}
+
+.cart-wrap .seller {
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+
+.cart-wrap .seller img {
+	width: 15px;
+	vertical-align: middle;
+}
+
+.cart-wrap .seller span {
+	vertical-align: middle;
+}
+
+.cart-goods {
+	padding: 10px;
+	background: #fff;
+	box-sizing: border-box;
+	border-bottom: 1px #e5e5e5 solid;
+}
+
+.cart-goods .icon-img {
+	line-height: 70px;
+}
+
+.cart-goods .icon-img img {
+	width: 15px;
+}
+
+.cart-goods .goods-img {
+	margin-left: 10px;
+}
+
+.cart-goods .goods-img img {
+	width: 70px;
+	height: 70px;
+}
+
+.cart-goods .goods-info {
+	margin-left: 10px;
+}
+
+.cart-goods .goods-info .detail {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 6px;
+}
+
+.cart-goods .price {
+	float: right;
+}
+
+.cart-goods .price .del-price {
+	text-align: right;
+}
+
+.cart-goods .price .del-price del {
+	font-size: 12px;
+	color: #777;
+}
+
+.cart-goods .price .del-icon {
+	margin-top: 6px;
+	text-align: right;
+}
+
+.cart-goods .price .del-icon img {
+	width: 15px;
+}
+
+.cn-like {
+	padding: 0 10px;
+	background: #fff;
+}
+
+.cn-like .text {
+	height: 40px;
+	line-height: 40px;
+}
+

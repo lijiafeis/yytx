@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>商品列表</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/updatehome/css/common.css"/>
+<style>
+.goods_list{display: flex;position: relative;padding: 10px;background: #fff;border:1px #eee solid;margin-bottom: 10px;font-size: .3rem;}
+.goods_list .goods_img{margin-right: 10px;}
+.goods_list .goods_img img{width: 100px;height: 100px;display: block;}
+.goods_list .goods_infor{flex: 2;}
+.spec{margin-top:20px;color:#999;font-size:.25rem;}
+.goods_infor .goods_price{position: absolute;bottom:10px;color: red;font-size: .27rem;}
+</style>
+</head>
+<body style="background: #f8f8f8;">
+<div class="app_container" style="background: #f8f8f8;">
+<div style="padding: 15px;padding-bottom:1rem;">
+	<volist name="data" id="vv">
+		<a class="goods_list" href="{:U('goodXiangqing')}?good_id={$vv.good_id}">
+			<div class="goods_img"><img src="{$vv.pic_url}"/></div>
+			<div class="goods_infor">
+				<p class="goods_name">商品名称</p>
+				<div class="spec">规格：1箱</div>
+				<if condition="$vv.good_id eq 1">
+					<span class="goods_price">￥{$vv.good_chengben}/两瓶</span>
+					<elseif condition="$vv.good_id eq 2"/>
+					<span class="goods_price">￥{$vv.good_chengben}/两瓶</span>
+					<elseif condition="$vv.good_id eq 3"/>
+					<span class="goods_price">￥{$vv.good_chengben}/箱</span>
+				</if>
+			</div>
+		</a>
+	</volist>
+	
+</div>
+<footer class="fixed">
+	<a class="foot-active"  href="#">
+		<img src="__PUBLIC__/home1/user-img/foot-img/mt-2.png"/>
+		<div>茅台䣽酒</div>
+	</a>
+	<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+		<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+		<div>茅台文化</div>
+	</a>
+	<a href="{:U('Goods/index')}?agent_id={$Think.get.agent_id}">
+		<img src="__PUBLIC__/home1/user-img/foot-img/shop-1.png"/>
+		<div>商城</div>
+	</a>
+	<a href="{:U('User/index')}?agent_id={$Think.get.agent_id}" >
+		<img src="__PUBLIC__/home1/user-img/foot-img/user-1.png"/>
+		<div>个人中心</div>
+	</a>
+	<div class="clear"></div>
+</footer>
+</div>
+</body>
+<script src="__PUBLIC__/updatehome/js/font.js" type="text/javascript" charset="utf-8"></script>
+</html>

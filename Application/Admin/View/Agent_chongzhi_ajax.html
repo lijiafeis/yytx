@@ -1,0 +1,30 @@
+
+<table class="table table-striped" style="font-size:14px;">
+	<th>订单号</th>
+	<th>用户ID</th>
+	<th>昵称</th>
+	<th>会员等级</th>
+	<th>钱包余额</th>
+	<th>充值金额</th>
+	<th>充值时间</th>
+	<th>进度</th>
+	<volist name="info" id="vv" key="kk">
+	<tr id="{$kk}" style="font-size:13px;">
+		<td>{$vv.order_sn}</td>
+		<td>{$vv.user_id}</td>
+		<td>{$vv.user_info.nickname}</td>
+		<td>{$vv.user_info.agent_name}</td>
+		<td>{$vv.user_info.shop_income}</td>
+		<td style="color:Red">{$vv.fee}</td>
+		<td>{$vv.time}</td>
+		
+		<td>
+		
+		<button class="btn btn-link">已存入钱包</button>
+		
+		</td>
+	</tr>
+	</volist>
+</table>
+<div class="pagelist">{$page}</div>
+			

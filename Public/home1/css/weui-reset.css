@@ -1,0 +1,49 @@
+.weui-cell_access .weui-cell__ft:after {
+	content: " ";
+	display: inline-block;
+	height: 8px;
+	width: 8px;
+	border-width: 1px 1px 0 0;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-color: #C8C8CD;
+	border-style: solid;
+	-webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+	transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);	
+	position: absolute;		
+	right: 2px;
+}
+
+.weui-cell:before {
+	border-top: 0;
+}
+
+.weui-panel__ft a {
+	border-bottom: 0.1vw #2A2A2A solid;
+	color: #fff;
+}
+.weui-panel__ft {
+	background: #16120F;
+}
+
+.weui-cell_access .weui-cell__ft:after {
+	border-color: #E8E8E8;
+}
+.weui-cell {
+	padding:.3rem;
+}
+
+.weui-cell_access .weui-cell__ft:after{
+	border-color: #666;
+}
+.weui-cell_access:active{
+	background:#f8f8f8;
+}
+.weui-cell_access:active{
+	background:#16120F;
+}
+.weui-cell_link{
+	font-size: .25rem;	
+}

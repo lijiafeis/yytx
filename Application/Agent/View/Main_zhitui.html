@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link href="__PUBLIC__/admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>信息统计</div>
+	<div class="main-content">
+
+		<div>
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">奖励统计</a></li>		    
+		  </ul>
+		  
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="home">
+				<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+					统计时间：{$start}--{$end}
+				</div>
+				
+				<div class="well">
+				<form action="__SELF__" method="post">
+					
+					
+				<div class="form-group col-sm-12">
+					<label class="col-sm-2   col-lg-1 control-label" for="exampleInputEmail1">本周奖金池额度</label>
+					<div class=" col-sm-3 col-lg-1"  style="height:30px">
+						<input type="text" name="fenhong_fee"  id="" class="form-control demo" value="{$fenhong_fee}">
+					</div>
+				</div>
+				
+					 <button type="submit" class="btn btn-success" style="width:200px;">保存</button>
+					</form>
+					</div>
+				
+				<div id="list">
+				<table class="table table-bordered table-hover" style="font-size:14px;margin-top:10px;">
+					<th>会员名称</th>
+					<th>会员ID</th>
+					<th>会员等级</th>
+					<th>直推人数</th>
+					<th>领包金额</th>
+					<th>是否达标</th>
+					
+					<volist name="info" id="vv" key="kk" empty="暂无数据">
+					<tr id="{$kk}" style="font-size:13px;">
+						
+						<td>{$vv.nickname}</td>
+						<td>{$vv.user_id}</td>
+						<td>{$vv.agent}</td>
+						<td>{$vv.count}</td>
+						<td>{$vv.hongbao}</td>
+						<td><if condition="$vv.hongbao egt 40000">达标<else />未满4w，未达标</if></td>
+					</tr>
+					</volist>
+					
+				</table>
+				<div class="pagelist">{$page}</div>
+		    </div>
+		    </div>
+		  </div>
+		</div>
+		
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+
+<script src="__PUBLIC__/admin/js/fileinput.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/js/fileinput_locale_zh.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+	$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+getpage(1);
+function getpage(p){
+var user_id = $('#user_id').val();//alert(sn);
+	$('#list').html('<div style="text-align:center;margin-top:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="60px" ></div>');
+	$("#list").load(
+		"{:U('zhitui_ajax')}?p="+p+"&user_id="+user_id,
+		function() {}
+	);
+}
+
+</script>

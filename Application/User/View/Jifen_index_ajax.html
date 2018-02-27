@@ -1,0 +1,25 @@
+<volist name="user_jifen" id="vv">
+<div class="weui_panel_bd">
+<a class="weui_panel_ft" href="javascript:void(0);">
+<switch name="vv['type']" >
+<case value="1">关注行为积分「+{$vv.number}」</case>
+<case value="2">每日签到积分「+{$vv.number}」</case>
+<case value="3">积分商城消费「-{$vv.number}」</case>
+<case value="4">参与公排活动「-{$vv.number}」</case>
+<case value="5">参与公排活动返还「+{$vv.number}」</case>
+<case value="6">商城购买商品返还「+{$vv.number}」</case>
+<case value="7">钱包余额购买积分「+{$vv.number}」</case>
+<case value="8">商城佣金返成比例「+{$vv.number}」</case>
+<default  />未知原因「+{$vv.number}」
+</switch>
+</a>
+	<a href="javascript:void(0);" class="weui_media_box weui_media_appmsg" style="padding-top:5px;padding-bottom:5px;">
+		<div class="weui_media_bd">
+			<p class="" style="font-size:12px;color:#777;">
+			记录时间：{$vv.time}
+			</p>
+		</div>
+	</a>
+</div>
+</volist>
+<div class="pagelist">{$page}</div>

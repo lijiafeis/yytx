@@ -1,0 +1,14 @@
+﻿<volist name="hongbao_info" id="vv">
+<div class="weui_cell">
+	<div class="weui_cell_hd" style="border-left:4px solid {:C('WAP_COLOR')};"><img src="{$vv.headimgurl}" alt="" style="height:40px;width:5px;margin-right:5px;display:block"></div>
+	<div class="weui_cell_bd weui_cell_primary" style="font-size:12px;">
+		<p style="white-space: nowrap;text-overflow:ellipsis;overflow:hidden;">来源：「{$vv.from_nickname}」出局感恩奖</p>
+		<p style="white-space: nowrap;text-overflow:ellipsis;overflow:hidden;">金额：{$vv.hongbao_fee}元</p>
+	</div>
+	<if condition="$vv.is_true eq 1">
+	<div class="weui_cell_ft weui_btn weui_btn_mini  weui_btn_plain_default" style="color:#777;border:1px solid #777;font-size:12px;">已领取</div>
+	<else />
+	<div class="weui_cell_ft weui_btn weui_btn_mini  weui_btn_plain_default" style="color:{:C('WAP_COLOR')};border:1px solid {:C('WAP_COLOR')};font-size:12px;" onclick="send(this,'{$vv.hb_id}')">点击领取</div>
+	</if>
+</div>
+</volist>

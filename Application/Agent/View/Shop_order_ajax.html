@@ -1,0 +1,55 @@
+<table class="table table-bordered table-hover">
+	<th width="5%">订单号</th>
+	<th>下单时间</th>
+	<th>会员ID</th>
+	<th>收货人</th>
+	<th>总金额</th>
+	<th>支付状态</th>
+	<th>发货状态</th>
+	<th>操作</th>
+	<volist name="order_info" id="vv" key="kk">
+	<tr id="{$kk}">
+		<td width="5%">{$vv.order_sn}</td>
+		<td>{$vv.time|date="Y-m-d H:i:s",###}</td>
+		<td>{$vv.user_id}</td>
+		<td width="30%">{$vv.address.username} Tel:{$vv.address.telphone}<br />{$vv.address.city}{$vv.address.address}</td>
+		<td>{$vv.zonge}</td>
+		<td><if condition="$vv.state eq 1 ">已支付<else /> <font color="red">未支付</font></if></td>
+		<td>
+		<if condition="$vv.state eq 1 ">
+		<if condition="$vv.type eq 0 "><font color="red" size="4">待发货</font></if>
+		<if condition="$vv.type eq 1 "><font color="#000" size="4">待收货</font></if>
+		<if condition="$vv.type eq 2 "><font color="#555">已收货</font></if>
+		<else />
+		<font color="#555">未支付</font>
+		</if>
+		</td>
+		<td>
+		<a href="{:U('order_more')}?pay_id={$vv.id}&page={$p}"><button class="btn btn-default btn-sm">详情</button></a>
+		<!--<if condition="$vv.state eq 0">-->
+			<!--<a onclick="confirm({$vv.id})"><button class="btn btn-default btn-sm">确认订单</button></a>-->
+		<!--</if>-->
+		</td>
+	</tr>
+	</volist>
+</table>
+<div class="pagelist">{$page}</div>
+<script>
+	function confirm(order_id){
+	    $.ajax({
+	        type:"post",
+	       url:"{:U('orderConfirm')}",
+			dataType:"json",
+			data:{
+	            order_id:order_id,
+			},
+			success:function (data) {
+				if(data == 0){
+				    layer.msg('确认订单成功');
+				}else{
+				    layer.msg('未知错误');
+				}
+            }
+		});
+	}
+</script>

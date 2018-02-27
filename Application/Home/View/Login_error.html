@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta content="telephone=no" name="format-detection">
+    <title>亿赢天下</title>
+    <link rel="stylesheet" href="__PUBLIC__/616/weui.min.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/shop/css/basic.css">
+	<link rel="stylesheet" href="__PUBLIC__/cs/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/cs/weui.new.css"/>
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_h3icwk77mzir7ldi.css">
+	<link rel="stylesheet" href="__PUBLIC__/cs/style.css"/>
+	<script src="//cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+	<include file="Application/Wap/View/Public_header.html" />
+	<style>
+	.content-view{background: #fff;margin:5px 0;padding:10px;}
+	.weixin-top-notice{background: #F5F6CE;padding:10px 20px;color: #AC7700;}
+	.weixin-pay-qr{width:40%;display: block;margin:0 auto;margin-top:50px;margin-bottom: 10px;}
+	.weixin-pay-notice{text-align: center;font-size: 14px;margin-bottom: 20px;}
+	.weixin-pay-btn .left{width: 50%;text-align: center;background: }
+	.weixin-pay-btn button{background: #E07500;color: #fff;border-style: none;border-radius: 5px;line-height: 35px;padding:0 15px;}
+	.weixin-notice span{font-size:14px;}
+	.weixin-notice {color:#777;padding:40px 20px;}
+	</style>
+<script>
+	/*链接跳转函数*/
+	function jump_url(obj){
+		 layer.open({type: 2,shadeClose: false,content: '正在前往请求页面'});
+		 var url = $(obj).attr('data-url');
+		 setTimeout(function(){location.href=url},1000);
+	}
+
+</script>
+</head>
+<body style="position: relative;text-align: center;">
+<div class="wrap">
+	<div class="wap-header">
+		<i class="left iconfont icon-xiangzuo" onclick="history.go(-1);"></i>
+		<span>系统提示</span>
+		<i class="right iconfont icon-zhuye" onclick="jump_url(this)" data-url="{:U('Home/index')}"></i>
+		<div class="clear"></div>
+	</div>
+	<div style="margin: 50px;color: #777;">
+		<i class="iconfont icon-dengluzhaodao" style="font-size: 8em;color: #777;" ></i>
+		<div style="font-size: 1.2em;line-height: 30px;">系统检测到您未登录</div>
+	</div>
+	
+	<div class="weui-btn weui-btn_xigua_success" onclick="jump_url(this)" data-url="{:U('/Login/User/index')}?agent_id={$Think.get.agent_id}" style="width: 80%;margin:0 auto;margin-bottom: 50px;">去登陆</div>
+	<div class="weui-footer">
+	           <p class="weui-footer__text">亿赢天下</p>
+	</div>
+</div>	
+</body>
+<script>
+
+
+</script>
+</html>

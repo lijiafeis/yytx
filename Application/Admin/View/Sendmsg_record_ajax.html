@@ -1,0 +1,58 @@
+<table class="table  table-hover" style="font-size:14px;">
+					<th>类型</th>
+					<th>内容</th>
+					
+					<th>发送人数</th>
+					<th>成功人数</th>
+					<th>失败人数</th>
+					<th>发送状态</th>
+					<th style="text-align:center;">消显状态</th>
+					<th>发送时间</th>
+					
+					<volist name="info" id="v">
+					<tr>
+						
+						<switch name="v['type']">
+						<case value="text">
+						<td>文字</td><td><button class="btn-link">{$v.text}</button></td>
+						</case>
+						<case value="news">
+						<td>图文</td><td>{$v.text}</td>
+						</case>
+						<case value="radio">
+						<td>语音</td><td><a href="javascript:link('/{$v.text}');">点击加载</a></td>
+						</case>
+						<case value="image">
+						<td>图片</td><td><a href="javascript:look_pic('/{$v.text}');">点击加载</a></td>
+						</case>
+						<case value="vedio">
+						<td>视频</td><td><a href="javascript:link('/{$v.text}');">点击加载</a><!-- <video src="/{$v.text}" controls="controls" class="vedio" width="320px"></video> --></td>
+						</case>
+						</switch>
+						
+						
+						
+						
+						<td>{$v.count}</td>
+						<td>{$v.success}</td>
+						<td>{$v.fail}</td>
+						<td>
+						<if condition="$v['is_sure'] eq 1 ">
+						<a href="javascript:;" target="_blank" class="btn-link">已发送</a>
+						<else />
+						<a href="{:U('sending')}?id={$v.id}" target="_blank" class="btn-link" style="color:red">未发送，点击发送</a>
+						</if>
+						</td>
+						
+						<td style="text-align:center;color:#777">
+						<if condition="$v['system_show'] eq 1">
+						<i class="icon-check icon-large" onclick="change_show(this,'{$v.id}','{$v.system_show}')"   data-type='{$v.system_show}'></i>
+						<else />
+						<i class="icon-check-empty icon-large" onclick="change_show(this,'{$v.id}')"  data-type='{$v.system_show}'></i>
+						</if>
+						</td>
+						<td>{$v.time}</td>
+					</tr>
+					</volist>
+					</table>
+					<div class="pagelist">{$page}</div>

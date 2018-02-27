@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/121/game/css/common.css"/>
+<style>
+/*产品升级*/
+.flex{display: flex;padding: 10px 15px;margin-top: 10%;}	
+.img-block{display: block;width: 100%;}
+.tit-img{width: 50%;text-align: center;margin:0 auto 20px;padding-top: 25px;}
+.rules-btn{position: absolute;top: 0;right: 30px;}
+.rules-btn img{width: .8rem;}
+.up_bg{background:#0A1115 url(__PUBLIC__/121/game/img/game-img/guess-backg.png) no-repeat;background-size: 100% 100%;/*background-attachment: fixed;*/}
+.grade-bg{background: url(__PUBLIC__/121/game/img/game-img/upgrade-backg.png) no-repeat;width: 100%;height: 3rem;background-size: 100% 3rem;text-align: center;color: #fff;max-height: 5rem;}
+.grade-bg .img-block{height: 1.5rem;width: 1.5rem;margin: auto;margin-top: .3rem;}
+.name{margin-top: 10px;}
+.mid{flex: 2;height: 3rem;line-height: 3rem;padding: 0 5px;box-sizing: border-box;margin-bottom: 40px;}
+.mid img{width: 30px;margin: auto;height: 1.5rem;margin-top: .7rem;}
+.gradient {  
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'microsoft yahei';
+   background: linear-gradient(to bottom right, rgba(255, 230, 112, 1) , rgba(226, 168, 69, 1));
+   -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/*鸡藕*/
+.goods-bg{background: url(__PUBLIC__/121/game/img/game-img/table1.png) no-repeat;width:100%;height: 2.5rem;background-size: 100% 2.5rem;
+position: relative;margin-bottom: 50px; max-width: 640px;margin: auto;}
+.left-image{position: absolute;top: 0.3rem;left: 18%;}
+.left-image img,.right-image img{width: 1.4rem;height: 1.28rem;}
+.right-image{position: absolute;top: 0.3rem;right: 18%;}
+/*升级按钮*/
+.go-btn{width:30%;display: block;margin:10% auto 0;}
+
+/*规则弹窗*/
+#tan_box{display: none;max-width: 640px;margin: auto;}
+.mask{position: fixed;z-index: 1000;top: 0;left: 0;right: 0;bottom:0;background: rgba(0,0,0,0.8);max-width: 640px;margin: auto;}
+.dialog{position: fixed;z-index: 5000;top: 50%;left: 50%;width: 80%; transform: translate(-50%,-50%);max-width: 600px;margin: auto;height: 80%;}
+.rule-title{width: 100%;display: block;margin:0 auto 20px;}
+.dialog_infor{padding-left: 20px;}
+.dialog_ft{height: 40px;line-height: 40px;}
+.dialog_ft a{float: left;width: 50%;}
+.cancel{border-right: 1px #D5D5D6 solid;box-sizing: border-box;}
+.enter{color: #36aefe;}
+.p-tit{color:rgba(238,182,118,1);font-size: .28rem;font-family: NotoSansHans-Regular;margin-top: 20px;margin-bottom:10px;}
+.p-txt{font-family:NotoSansHans-Regular;color:rgba(250,228,189,1);font-size: .26rem;}
+.txt-bg{background: url(__PUBLIC__/121/game/img/game-img/rule-bg.png) no-repeat;width:100%;height: 80%;background-size: 100% 90%;margin: auto;}
+.scroll-texts{padding:0 20px 20px;height: 80%;overflow-y: scroll;
+
+}
+.scroll-texts::-webkit-scrollbar{display: none;}
+/*规则关闭按钮*/
+.close-dialog{width: 1rem;display: block;margin:30px auto 0;}
+.scale{transform: scale(1.1);}
+
+/*数字编号*/
+#tan_box1{display: none;max-width: 640px;margin: auto;}
+.dialog1{border-radius: 4px; position: fixed;z-index: 5000;top: 70%;left: 50%;width: 60%;
+ transform: translate(-50%,-50%);max-width: 600px;margin: auto;background:rgba(232,148,73,0.6);padding: 10px;color: #fff;text-align: center;}
+
+/*猜错或才对*/
+#tan_box2{display: none;max-width: 640px;margin: auto;}
+.img-block3{display: block;width: 100%;}
+.mask3{position: fixed;z-index: 1000;top: 0;left: 0;right: 0;bottom:0;background: rgba(0,0,0,0.6);max-width: 640px;margin: auto;}
+.dialog3{position: fixed;z-index: 5000;top: 50%;left: 50%;width: 80%; transform: translate(-50%,-50%);max-width: 600px;margin: auto;height: 60%;}
+
+.btn-groups3 img{width: 45%;display: inline-block;}
+.btn-groups3 .left-btn{float: left;}
+.btn-groups3 .right-btn{float: right;}
+.close-dialog3{width: 20%;display: block;margin:30px auto 0;}
+#tan_box3{display: none;max-width: 640px;margin: auto;}
+/*猜错或才对*/
+</style>
+</head>
+<body >
+<div class="app_container up_bg" style="position: relative;">
+	<img  class="img-block tit-img" src="__PUBLIC__/121/game/img/game-img/guess-title.png"/>
+	<div class="rules-btn"><img onclick="rules()" src="__PUBLIC__/121/game/img/game-img/rule.png"/></div>
+	<div class="flex">
+		<div class="grade-bg">
+			<div class="name">{$info.good_name}</div>
+			<div class="price gradient">￥{$info.price}</div>
+			<img  class="img-block" src="{$info.good_pic}"/>
+		</div>
+		<div class="mid"><img  class="img-block" src="__PUBLIC__/121/game/img/game-img/upgrade.png"/></div>
+		<div class="grade-bg">
+			<div class="name">{$info.good_name}</div>
+			<div class="price gradient">￥{$info['price']*2}</div>
+			<img  class="img-block" src="{$info.game_pic}"/>
+		</div>
+	</div>
+	
+	
+	<div class="goods-bg">
+		<div class="left-image"><img id="odd" data-info="1" src="__PUBLIC__/121/game/img/game-img/un-chicken.png"/></div>
+		<div class="right-image"><img id="even" data-info="0" src="__PUBLIC__/121/game/img/game-img/un-root.png"/></div>
+	</div>
+	<img class="go-btn" onclick="tan_btn1({$info.id})" src="__PUBLIC__/121/game/img/game-img/button.png"/>
+	<div id="tan_box">
+		<div class="mask" onclick="cancel()"></div>
+		<div class="dialog">
+			<img class="rule-title" src="__PUBLIC__/121/game/img/game-img/rule-title.png"/>
+			<div class="txt-bg">
+			<div class="scroll-texts">
+				<p class="p-tit">一．购买指定的升级特色产品</p>
+				<p class="p-txt">凡通过商城中心页面购买指定的特色产品， 有机会获得一次份量升级的机会。
+				</p>
+				<p class="p-tit">二．到我的订单页面点击升级</p>
+				<p class="p-txt">购买成功后，系统跳转到我的订单页面，
+				您可以点击升级，跳转到促销页面。</p>
+				<p class="p-tit">三．在促销页面进行升级玩法操作</p>
+				<p class="p-txt">升级规则：为回馈广大新老用户对亿赢 商场的长期支持，现推出一系列升级促销 活动，用户可通过一系列升级促销费方式 购买商品参与本活动。若判断成功可获得 大升级资格，判断失败可获得小升级资格。
+				</p>
+				<p class="p-txt">升级结果: <br />1)大升级：可以享受兑换一个价值更高的 物品，并且可以随时提现。<br />2)小升级：可以获得指定商城货品。
+				</p>
+				<p class="p-tit">四．升级过后，您需要支付运费我们将 给你正常发货。由于本商品是特推 产品，不提供退换货服务。
+				</p>
+			</div>
+			</div>
+			<img class="close-dialog" onclick="cancel()" src="__PUBLIC__/121/game/img/game-img/rule-close.png"/>
+		</div>
+	</div>
+	<div id="tan_box1">
+		<div class="mask" onclick="cancel()"></div>
+		<div class="dialog1">
+
+		</div>
+	</div>
+	<div id="tan_box3">
+		<div class="mask3" onclick="cancel1()"></div>
+		<div class="dialog3">
+			<img class="img-block3" src="__PUBLIC__/121/game/img/game-img/un-succeed.png"/>
+			<img class="close-dialog3" onclick="cancel1()" src="__PUBLIC__/121/game/img/game-img/succeed-close.png"/>
+		</div>
+	</div>
+	<div id="tan_box2">
+		<div class="mask3" onclick="cancel2()"></div>
+		<div class="dialog3">
+			<img class="img-block3" src="__PUBLIC__/121/game/img/game-img/succeed.png"/>
+
+			<div class="btn-groups3">
+				<img onclick="successSelect(2,{$info.id})" class="left-btn3" src="__PUBLIC__/121/game/img/game-img/succeed-return-.png"/>
+				<img onclick="successSelect(1,{$info.id})" class="right-btn3" src="__PUBLIC__/121/game/img/game-img/Pick-up.png"/>
+				<div class="clear3"></div>
+			</div>
+			<img class="close-dialog3" onclick="cancel2()" src="__PUBLIC__/121/game/img/game-img/succeed-close.png"/>
+		</div>
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/121/game/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/121/game/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+	/*鸡*/
+	$("#odd").click(function() {
+		$("#odd").attr("src", "__PUBLIC__/121/game/img/game-img/chicken.png")
+		$("#odd").addClass('scale')		
+		$("#even").attr("src", "__PUBLIC__/121/game/img/game-img/un-root.png")
+		$("#even").removeClass('scale')
+	})
+	/*藕*/
+	$("#even").click(function() {
+		$("#even").attr("src", "__PUBLIC__/121/game/img/game-img/root.png")
+		$("#even").addClass('scale')
+		$("#odd").removeClass('scale')
+		$("#odd").attr("src", "__PUBLIC__/121/game/img/game-img/un-chicken.png")
+
+	})
+	
+	/*游戏规则*/
+	function rules(){
+    	$("#tan_box").fadeIn(200);
+    }
+     function cancel(){
+    	$("#tan_box").fadeOut(200);
+    }
+      
+    /*数字编号*/
+   function tan_btn1(order_id){
+        //判断用户是否点击了鸡和偶 1 是鸡 2 是偶
+	    type = $(".scale").data('info');
+	    if(type == null){
+	        layer.msg('请选择鸡或藕');return;
+		}
+		var index = layer.load(2,{
+		   shade:[0.6,"#000"]
+		});
+	   $.ajax({
+		   type:"post",
+		   url:"{:U('Game/setGameState')}",
+		   dataType:"json",
+		   data:{
+			   order_id:order_id,
+               user_select:type,
+
+		   },
+		   success:function (data) {
+
+			   if(data.code ==  1){
+                   layer.close(index);
+			       setUserSelectType(data);
+			   }else if(data.code == -1){
+				   layer.close(index)
+				   layer.msg(data.info);
+			   }else if(data.code == 2){
+			       //订单已经玩过了，没有中
+                   layer.close(index)
+                   layer.msg(data.info);
+			   }else if(data.code == 3){
+                   //订单已经玩过了，中了，弹出来对话框让用户选择是否提货还是退款
+                   layer.close(index)
+                   layer.msg(data.info);
+                   setTimeout(function () {
+                       setGameState();
+                   },800)
+			   }
+		   },
+		   error:function (data) {
+			   layer.close(index)
+			   layer.msg('网络错误');
+		   }
+	   });
+
+    }
+
+</script>
+<script>
+	function setUserSelectType(data){
+        //code 1 type 1 中奖 0 没有中奖 numberList数字列表
+        var numberList = data.numberList;
+        $("#tan_box1").fadeIn(200);
+		var i = 0;
+		clearInterval(index);
+		var index = setInterval(function () {
+            $(".dialog1").text(numberList[i]);
+            i++;
+            if(i > 10){
+                clearInterval(index);
+                if(data.type == 0){
+                    $("#tan_box3").fadeIn(200);
+                    return;
+                }else if(data.type == 1){
+                    setGameState();
+                }
+			}
+        },100);
+	}
+	//根据用户的赢跳出来不同的弹框
+	function setGameState(){
+        $("#tan_box2").fadeIn(200);
+	}
+
+    /**
+	 * 用户猜中后选择退款或提货
+     * @param type 1 用户想提货 2 用户想退款
+     * @param order_id  订单id
+     */
+	function successSelect(type,order_id){
+        $("#tan_box2").fadeOut(200);
+        $("#tan_box1").fadeOut(200);
+		if(type != 1 && type != 2){return;}
+		if(order_id == null){return;}
+        var index = layer.load(2,{
+            shade:[0.6,"#000"]
+        });
+        $.ajax({
+            type:"post",
+            url:"{:U('Game/userSelect')}",
+            dataType:"json",
+            data:{
+                order_id:order_id,
+                user_select:type,
+            },
+            success:function (data) {
+                if(data.code ==  1){
+                    layer.close(index);
+                    layer.msg(data.info);
+                }else if(data.code == -1){
+                    layer.close(index)
+                    layer.msg(data.info);
+                }
+            },
+            error:function (data) {
+                layer.close(index)
+                layer.msg('网络错误');
+            }
+        });
+	}
+
+</script>
+<script>
+    function cancel1(){
+        $("#tan_box3").fadeOut(200);
+        $("#tan_box1").fadeOut(200);
+    }
+    function cancel2(){
+        $("#tan_box2").fadeOut(200);
+        $("#tan_box1").fadeOut(200);
+    }
+</script>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/swiper.min.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/xiangqing.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/weui.css"/>-->
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/weui.css"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/xiangqing.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/shop/css/3c30a65871.layout.min.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/86fe49ca90.common.min.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/flexslider.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/basic.css">
+<link rel="stylesheet" href="__PUBLIC__/shop/css/cart.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/shop/css/footer.css">
+<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+<link rel="stylesheet" href="__PUBLIC__/css/ali_font1/iconfont.css">
+<!--<link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/0.4.3/weui.min.css">-->
+<link rel="stylesheet" href="__PUBLIC__/css/weui_old.min.css">
+<style>
+.icon {
+	display: block;
+	width: 25px;
+	height: 25px;
+	margin: 0 auto;
+	position: relative;
+	background: url(__PUBLIC__/home/img/footbar.png);
+	background-size: 25px 130px;
+}
+
+
+
+.icon3 {
+	background-position: 0 -35px;
+}
+</style>
+
+</head>
+<body style="background: #f0f0f0;">
+<div class="wrap xiangqing" style="padding-bottom: 60px;">
+	<header class="header-top">
+		<div class="fixed fixed-top">
+			<div class="head"  style="background: #16120F">
+				<span class="l-icon" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home/img/icon-img/left-img.png"/></span>
+				<span style="color:#fff">商品详情</span>
+				<span class="r-icon" onclick="showGwc()"><img src="__PUBLIC__/home/img/icon-img/gwc_top.png"/></span>
+			</div>
+		</div>		
+	</header>
+	<div class="goods_info">
+		<img class="img_block" src="{$data.pic_url}"/>
+		
+		<div class="info">
+			<p class="goods_name">{$data.good_name}</p>
+			<p class="goods_price">￥<if condition="$is_true eq 1">{$data.good_chengben}<else/>{$data.good_price}</if><del style="color:black;margin-left:20px;">￥{$data.good_fee}</del></p>
+			<p><span class="xl">销量 : {$data.xiaoliang}</span><span>库存 : {$data.number}</span></p>
+		</div>
+	</div>
+	<div class="bz_text"><img style="width:15px;height:15px;margin-right:8px;vertical-align:middle;" src="__PUBLIC__/home/images5/zp.png"/>正品保障</div>
+	<div class="cart_link" id="showIOSActionSheet1">
+		<span style="margin-left: 10px;">请选择</span>
+		<!--<span><input type="" name="" id="" value="" /></span>		-->
+	</div>
+	<div class="pingjia">
+		<div class="pj_num">宝贝评价:</div>
+		<div class="pj_box">
+			<div class="list">
+				<volist name="pjlist" id="vv">
+				<div>
+					<img src="{$vv.headimgurl}" class="user_header"/>
+					<span class="user_name">{$vv.name}</span>
+				</div>
+				<div class="ratings">
+					<p>{$vv.content}</p>
+				</div>
+				<div class="date">{$vv.time|date="Y-m-d H:i:s",###}</div>
+				</volist>
+			</div>
+		</div>
+		<div class="look_border">
+			<a href="{:U('quanbuPingLun')}?good_id={$data.good_id}" class="look_more">查看全部评价</a>
+		</div>
+	</div>
+	 <div class="product_detail" style="margin-top:20px;"><!-- data-GetDetail="more"-->
+		    <div class="tab_content pro_detail_info">
+				<div class="M_detail" style="width:1000px">
+				<div style="text-align:center;margin-bottom:5px;" class="cent_text">图文详情</div>
+					<!-- <div class="M_detailCon" style="padding:px;margin:0px;">	 -->
+						{$data.good_desc}		
+					<!-- </div> -->
+				</div>
+			</div>
+			<div class="space10"></div>
+		  </div>
+	<div class="footer" >
+		<div style="height: 50px;">
+			<ul class="icons">			
+				<li onclick="shoucang({$data.good_id})">
+					<div><img src="__PUBLIC__/home/img/icon-img/sc.png" style="width:25px;height:25px;"/></div>
+					<div>收藏</div>
+				</li>
+				<div class="clear"></div>
+			</ul>
+			<ul class="btns" id="showIOSActionSheet">
+				<li class="add_cart">加入购物车</li>
+				<li class="buy">立即购买</li>
+				<div class="clear"></div>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="weui-mask" id="iosMask" style=" display: none;"></div>
+	<div class="weui-actionsheet add-cart-box" id="iosActionsheet">
+		<div class="weui-actionsheet__menu">
+			<div class="clear"></div>
+			<div class="goods-box" style="margin-top: 15px;">
+				<img src="{$data.pic_url}" class="goods-img" />
+				<div class="goods-name" style="margin-right: 30px;">
+					<div class="test">{$data.good_name}</div>
+					<p style="position: absolute;bottom:10px;color: #F0302F;">￥<if condition="$is_true eq 1">{$data.good_chengben}<else/>{$data.good_price}</if><span style="font-size: 12px;color: #ccc;margin-left: 20px;">库存:{$data.number}</span></p>
+				</div>
+				<div style="position: absolute;top:10px;right:10px;" id="close-box"><img src="__PUBLIC__/home/img/icon-img/close.png" width="20"/></div>
+				<div class="clear"></div>
+			</div>
+			<volist name="leibie" id="vv">
+				<div class="color">
+					<div class="tit option_selected">{$vv.spec_name}:</div>
+					<input type="hidden" id="specid{$vv.spec_id}" value="a">
+					<volist name="vv['value']" id="v">
+					<span onclick="setShuxing({$vv.spec_id},this)" class="option{$vv.spec_id} option">{$v}</span>
+					</volist>
+					<div class="clear"></div>
+				</div>
+			</volist>
+
+			<div class="number" >
+				<div class="tit">数量:</div>
+				<div class="num_wrap">
+					<span class="minus" id="min"></span>
+					<input class="num" id="text_box" name="" type="text" value="1" />
+					<span class="plus" id="add"></span>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="weui-actionsheet__action">
+				<!--<div class="weui-actionsheet__cell enter-btn" onclick="setShop({$data.good_id})" id="iosActionsheetCancel">确定</div>-->
+				<ul class="btns" id="showIOSActionSheet" style="width: 100%">
+					<li class="add_cart" onclick="setShop(1,{$data.good_id})" id="iosActionsheetCancel">加入购物车</li>
+					<li class="buy" onclick="setShop(2,{$data.good_id})" id="iosActionsheetCancel1">立即购买</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+		<input type="hidden" name="gwc" id="gwc" value=""/>
+		<input type="hidden"  id="jihe" value="0"/>
+		<input type="hidden"  id="numa" value="{$num}"/>
+	</div>
+
+</div>
+</body>
+<script src="__PUBLIC__/home/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	function shoucang(good_id) {
+		$.ajax({
+		   type:"post",
+			url:"{:U('shoucang')}",
+			dataType:"json",
+			data:{
+		       good_id:good_id,
+			},
+			success:function (data) {
+				if(data == 0){
+				    layer.msg('收藏成功');
+				}
+				if(data == -1){
+				    layer.msg('收藏失败');
+				}
+				if(data == -2){
+                    layer.msg('取消收藏');
+				}
+            }
+		});
+    }
+
+    function setShuxing(spec_id,a){
+		str = 'option' + spec_id;
+        $('.' + str).each(function(){
+            //让所有的indextab遍历后恢复默认状态
+            $(this).removeClass('active');
+            $(this).removeClass('option_selected');
+        });
+        //现在正被点击的dom发生变化
+        $(a).addClass('active');
+        $(a).addClass('option_selected');
+		//计算属性的和和后台的相比
+		//alert(spec_id);
+		num = $("#specid" + spec_id).val();
+		//alert(num);
+		if(num == -1){
+			
+		}else{
+			val = $('#jihe').val();
+			val = parseInt(val);
+			val = val + spec_id;
+			//alert(val);
+			$("#jihe").val(val);
+			$("#specid" + spec_id).val(-1);
+		}
+		
+    }
+
+    //进入购物车页面
+	function showGwc() {
+		location.href = "{:U('Cart/showGwc')}";
+    }
+
+    //点击确定
+	function setShop(type,good_id) {
+	    str = '';
+		$('.option_selected').each(function () {
+			val = $(this).text();
+//			alert(val);
+        	str +=  val;
+		});
+		//得到属性的集合
+		jihe = $("#jihe").val();
+		jihe = parseInt(jihe);
+		specNum = $("#numa").val();
+		specNum = parseInt(specNum);
+		//alert(jihe);
+		//alert(specNum);
+		if(jihe != specNum){
+			 layer.msg('请选择属性');
+			 return;
+		}
+		
+		//alert(str);
+		//return;
+		number = $("#text_box").val();
+//		alert(type);
+    	if(type == 1){
+    	    //异步添加到购物车
+			$.ajax({
+				type:"post",
+				url:"{:U('insertShop')}",
+				dataType:"json",
+				data:{
+				    good_id:good_id,
+					type:str,
+					number:number
+				},
+				success:function (data) {
+					if(data == 0){
+					    layer.msg('加入购物车成功');
+					}
+					if(data == -1){
+					    layer.msg('加入购物车失败');
+					}
+					if(data == -2){
+					    layer.msg('请先购买代理');
+					}
+					if(data == -3){
+					    layer.msg('商品已在购物车');
+					}
+					if(data == -4){
+						layer.msg('该商品已经卖光，请选择其它商品');
+					}
+
+                }
+			});
+		}else if(type == 2){
+            $.ajax({
+                type:"post",
+                url:"{:U('Cart/Ljjiesuan')}",
+                dataType:"json",
+                data:{
+                    good_id:good_id,
+                    type:str,
+                    number:number
+                },
+                success:function (data) {
+                    if(data == -2){
+                        layer.msg('请购买代理');
+					}
+					if(data > 0){
+                        location.href = "{:U('Cart/order')}?order_id=" + data;
+                    }
+					if(data == -4){
+						layer.msg('该商品已经卖光，请选择其它商品');
+					}
+                }
+            });
+		}
+	}
+
+
+</script>
+
+
+<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" class="actionsheet js_show">
+    // ios
+    $(function(){
+        var $iosActionsheet = $('#iosActionsheet');
+        var $iosMask = $('#iosMask');
+
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+        }
+
+        $iosMask.on('click', hideActionSheet);
+        $('#iosActionsheetCancel').on('click', hideActionSheet);
+        $('#close-box').on('click', hideActionSheet);
+        $("#showIOSActionSheet").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
+        });
+    });
+    $(function(){
+        var $iosActionsheet = $('#iosActionsheet');
+        var $iosMask = $('#iosMask');
+
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+        }
+
+        $iosMask.on('click', hideActionSheet);
+        $('#iosActionsheetCancel1').on('click', hideActionSheet);
+        $('#close-box').on('click', hideActionSheet);
+        $("#showIOSActionSheet").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
+        });
+    });
+    // ios
+    $(function(){
+        var $iosActionsheet = $('#iosActionsheet');
+        var $iosMask = $('#iosMask');
+
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+        }
+
+        $iosMask.on('click', hideActionSheet);
+        $('#iosActionsheetCancel').on('click', hideActionSheet);
+        $('#close-box').on('click', hideActionSheet);
+        $("#showIOSActionSheet1").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
+        });
+    });
+
+</script>
+<script>
+    $(document).ready(function(){
+//
+
+
+		/*--------------------------------------*/
+		/*--------------------------------------*/
+		/*加减数量*/
+        $(function(){
+            //获得文本框对象
+            var t = $("#text_box");
+            //数量增加操作
+            $("#add").click(function(){
+                t.val(parseInt(t.val())+1)
+                if (parseInt(t.val())!=1){
+                    $('#min').attr('disabled',false);
+                }
+            })
+            //数量减少操作
+            $("#min").click(function(){
+                if (parseInt(t.val())>1) {                     //判断数量值大于1时才可以减少
+                    t.val(parseInt(t.val())-1)
+                }
+                else{
+                    $("#min").attr("disabled","disabled")        //当$("#min")为1时，$("#min")不可读状态
+                }
+            })
+        })
+    });
+</script>
+
+</html>

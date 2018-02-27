@@ -1,0 +1,16 @@
+﻿<volist name="dianwei_info" id="vv">
+<a class="weui_cell" href="{:U('kawei')}?dianwei_id={$vv.dianwei_id}">
+	<div class="weui_cell_hd"><i class="icon iconfont">&#xe685;</i></div>
+	<div class="weui_cell_bd weui_cell_primary">
+		<p>卡位ID「{$vv.dianwei_id}」
+		<if condition="$vv['type'] eq 0 ">
+		<button  style="background:#cc0000;border:1px solid #cc0000;color:#fff;border-radius:5px;font-size:10px;padding:2px;margin-left:10px;">进行中</button>
+		<else />
+		<button  style="background:#5cb85c;border:1px solid #5cb85c;color:#fff;border-radius:5px;font-size:10px;padding:2px;margin-left:10px;">已出局</button>
+		</if>
+		
+		</p>
+	</div>
+	<span class="weui_cell_ft">查看详情</span>
+</a>
+</volist>

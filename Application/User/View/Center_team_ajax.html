@@ -1,0 +1,16 @@
+<volist name="user_list" id="vv" empty="" alt="1">
+<div class="weui_cell" <if condition="$vv.subscribe eq 0">style="color:red"</if> >
+	<div class="weui_cell_hd"><img src="{$vv.headimgurl}" alt="" style="width:30px;margin-right:5px;display:block"></div>
+	<div class="weui_cell_bd weui_cell_primary">
+		<p style="white-space: nowrap;text-overflow:ellipsis;overflow:hidden;">{$vv.nickname}</p>
+	</div>
+	<div class="weui_cell_ft" <if condition="$vv.subscribe eq 0">style="color:red"</if> >
+	<if condition="$vv['agent'] eq 0">普通会员</if>
+	<if condition="$vv['agent'] eq 1">{$fenxiao_info.fenxiao_name}</if>
+	</div>
+</div>
+</volist>
+<div id="">
+<div style="background:#fff;text-align:center;padding:4px 0;color:#777;font-size:12px;">第{$id}层共<?php echo count($user_list);?>人已全部加载</div>
+</div>
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>我的二维码</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/new_reset.css"/>
+<style>
+*{margin: 0;padding: 0;}
+html,body{height: 100%;font-family: "微软雅黑";-webkit-tap-highlight-color: rgba(0,0,0,0);font-size: 16px;}
+.wrap{height: 100%;max-width: 640px;min-width: 320px;margin: auto;font-size: 16px;color: #000;}
+img{margin: 0;padding: 0;border: 0;}
+.qr_box{margin:0 30px 0px;padding: 10px 10px 20px ;background: #fff;border-radius: 5px;}
+.qr_bg{height: 100%;background:#A0A8BF url(__PUBLIC__/img/qr_bg.png)no-repeat;background-size: 100%;max-width: 640px;margin: auto;}
+.qr_box strong{color: #F34241;font-size: 16px;}
+.qr_box a{padding: 10px;display: block;background: #F34241;color: #fff;text-align: center;margin-top: 15px;border-radius: 5px;}
+.tips{color: #fff;margin-left: 20px;}
+.tips div{margin-top: 15px;}
+.tips p{font-size: 14px;line-height: 1.6;}
+</style>
+</head>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/js/base.js"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+<script>
+function pay_done(){
+	var index = layer.open({type:2,shadeClose:false,content:'正在连接微信确认订单'})
+	$.ajax({
+		type:'post',
+		url:"{:U('order_state_sure')}",
+		dataType:'json',
+		data:{pay_id:{$pay_id}},
+		success:function(json){
+			if(json.success == 1){
+				layer.close(index)
+				layer.open({content:'支付成功！',skin:'msg',time:3})
+				location.href="{:U('Index/index')}?agent_id={$Think.get.agent_id}";
+			}else{
+				layer.open({content:json.error_info,skin:'msg',time:3})
+			}
+		},
+		error:function(){
+			layer.close(index)
+			layer.open({content:'连接发生延迟错误，请重试',skin:'msg',time:3})
+		}
+	})
+}
+
+</script>
+<body>
+<div class="wrap qr_bg">
+	<header class="header-top">
+		<div class="fixed fixed-top" style="border-bottom: 0;">
+			<div class="head" style="background: rgba(255,255,255,0.3);">				
+				<span class="l-icon" onclick="history.go(-1);"><img src="__PUBLIC__/img/xiangzuo.png"></span>
+				<span>我的二维码</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>
+	<div style="height: 30px;"></div>
+	<div class="qr_box" style="">
+		<img src="http://<?php echo $_SERVER['HTTP_HOST'];?>/Home/Cart/wxpay_qr?url={$code_url}" style="width: 50%;display: block;margin: auto;"/>
+		<strong>长按</strong>或<strong>扫描</strong>二维码进行微信支付
+		<a href="" onclick="pay_done()">已支付订单确认</a>
+	</div>
+	<div class="tips">
+		<div>温馨提示 : </div>
+		<p>1. 长按二维码图片-识别图中二维码-发起微信支付。</p>
+		<p>2. 支付完成后，点击已完成支付，系统自动连接微信进行订单校验。</p>
+		<p>3. 支付过程中，请不要点击手机的返回按钮，否则可能造成支付失败。</p>
+		<p>4. 支付遇到问题，可联系个人中心的人工客服解决。</p>
+	</div>
+</div>
+</body>
+</html>

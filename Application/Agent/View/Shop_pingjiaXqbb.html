@@ -1,0 +1,37 @@
+
+				<table class="table table-striped" style="font-size:14px;">
+					<th>user_id</th>
+					<th>姓名</th>
+					<th>电话</th>
+					<th>级别</th>
+					<!--<th>上级姓名</th>-->
+					<th>评论时间</th>
+					<!--<th>类型</th>-->
+					<th>内容</th>
+					<th>操作</th>
+					<volist name="good_list" id="vv" key="kk">
+					<tr id="{$kk}" style="font-size:13px;">
+						<td>{$vv.user_id}</td>
+						<td>{$vv.u_name}</td>
+						<td>{$vv.u_tel}</td>
+						<if condition="$vv.type eq 1">
+							<td>总代</td>
+							<elseif condition="$vv.type eq 2"/>
+							<td>见习股东</td>
+							<elseif condition="$vv.type eq 3"/>
+							<td>高级股东</td>
+							<elseif condition="$vv.type eq 4"/>
+							<td>首席股东</td>
+						</if>
+						<td >{$vv.time|date="Y-m-d H:i:s",###}</td>
+						<td >{$vv.content}</td>
+						
+						<td>
+						<button class="btn btn-sm btn-danger" onclick="del({$vv.pj_id})">删除</button>
+						
+						</td>
+					</tr>
+					</volist>
+				</table>
+				<div class="pagelist">{$page}</div>
+			

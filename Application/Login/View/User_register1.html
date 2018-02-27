@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>逸风天贸注册</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/616/css/new_reset.css"/>
+<style>
+body{background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#FAB27F), to(#ED5C93));}
+</style>
+
+<script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="__PUBLIC__/js/base.js"></script>
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+	<script>
+	function check_form(){
+		var tel = form_error_info('telphone','请输入正确手机号码');
+		var name = form_error_info('name','请输入昵称');
+		
+		check_tel(tel);
+		var verify = form_error_info('verify','请输入验证码');
+		var pwd1 = form_error_info('pwd1','请输入密码');
+		var pwd2 = form_error_info('pwd2','请输入确认密码');
+		/*比对两次密码值*/
+		if(pwd1 != pwd2){layer.open({content:'两次密码输入不一致',skin:'msg',time:2});exit;}
+		if(pwd1.length < 6){layer.open({content:'密码位数至少6位',skin:'msg',time:2});exit;}
+		/*异步提交信息*/
+		var index = layer.open({type:2,shadeClose: false,content:"正在注册…"});
+		$.ajax({
+			type:'post',url:"{:U('new_user_add')}",dataType:'json',data:{name:name,tel:tel,verify:verify,pwd1:pwd1,uid:"{$uid_info['user_id']}",agent_id:"{$agent_id}"},
+			success:function(json){
+				if(json.success ==1){
+					layer.open({content:'注册成功，即将前往登录页…',skin:'msg',time:3});
+					setTimeout(function(){location.href="{:U('index')}";},2000);
+				}else{
+					layer.open({content:json.error_info,skin:'msg',time:3});layer.close(index);
+				}
+			},
+			error:function(){ system_error_info('后端逻辑出错啦…');layer.close(index);}
+		});
+	}
+	function check_tel(tel,callback){
+		/*检测手机号是否已被注册*/
+		$.post("{:U('check_tel')}",{tel:tel},function(data){
+			if(data == 'false'){
+				layer.open({content:'手机号码已被注册',skin:'msg',time:2});
+				$('#telphone').parent().parent().addClass('weui-cell_warn')
+			}else{
+				$('#telphone').parent().parent().removeClass('weui-cell_warn')
+				callback();
+			}
+		});
+
+	}
+	/*请求验证码*/
+	function get_verify(obj){
+		var tel = form_error_info('telphone','请输入正确手机号码');
+		
+		var last = function(){
+			//alert("西瓜科技");exit;
+			var type = $(obj).attr('data-type');
+			(type == 'on')?exit:$(obj).attr('data-type','on');
+			var callback = function(i){
+				
+				if(i>0) {$(obj).text(i+'s后重新获取'); $(obj).css('color','#ccc');}else {$(obj).text('重新获取');$(obj).attr('data-type','off'); $(obj).css('color','#555');}
+			}
+			$.post("{:U('get_verify')}",{tel:tel},function(data){
+				if(data == 'error'){ 
+					layer.open({content:'半小时内已发过验证码，请查看短信记录',skin:'msg',time:3});
+					$(obj).attr('data-type','off')
+					exit;
+				}else{
+					verify_time_out('60',callback)
+				}
+			});
+			
+		}
+
+		check_tel(tel,last);
+		
+		
+	}
+	/*注册验证码60s倒计时程序*/
+	function verify_time_out(i,callback){
+		callback(i);
+		setTimeout(function(){
+			i--;
+			(i>=0)?verify_time_out(i,callback):exit
+		},1000);
+		
+	}
+	/*系统错误信息弹出*/
+	function system_error_info(str){
+		$('#error_info').remove(); 
+		$('body').append('<div class="weui-toptips weui-toptips_warn js_tooltips" id="error_info" style="display: block;">'+str+'</div>')
+	}
+	/*input表框值判断*/
+	function  form_error_info(id,str){
+		var value = $('#'+id).val();
+		if(value == ''){
+			system_error_info(str)
+			 $('#'+id).parent().parent().addClass('weui-cell_warn')
+			exit
+		}else{
+			$('#error_info').remove(); 
+			$('#'+id).parent().parent().removeClass('weui-cell_warn')
+			return value
+		}
+	}
+	/*链接跳转函数*/
+	function jump_url(obj){
+		 layer.open({type: 2,shadeClose: false,content: '正在前往请求页面'});
+		 var url = $(obj).attr('data-url');
+		 setTimeout(function(){location.href=url},1000);
+	}
+	</script>
+</head>
+<body>
+<div class="wrap login_wrap">
+<div style="height: 30px;"></div>
+	<div id="logo"><img src="__PUBLIC__/616/img/logo.jpg"/></div>
+	<div  class="login register">
+		<input class="tel"  type="text" name="name" id="name"  placeholder="请输入昵称"/>
+		<input class="tel"  type="number" name="telphone" id="telphone" pattern="[0-9]*" placeholder="请输入手机号码"/>
+		<div class="yzm_box">
+			<input  type="number" name="verify" value='' id="verify" />
+			<div class="hq_yzm" onclick="get_verify(this)" data-type='off'>获取验证码</div>		
+		</div>				
+		<input type="password" name="pwd1" id="pwd1" placeholder="请输入密码"/>
+		<div style="margin-top:20px;"><input type="password" name="pwd2" id="pwd2" placeholder="请确认密码"/></div>	
+		<div style="margin-top:20px;"><a href="javascript:check_form();" class="login_btn">立即注册</a></div>
+		<div style="margin-top:20px;"><a onclick="jump_url(this)" data-url="{:U('index')}"class="login_btn">已有账号，点击登录</a></div>
+	</div>	
+</div>
+</body>
+</html>

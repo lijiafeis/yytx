@@ -1,0 +1,33 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+.clear{
+	clear: both;
+}
+.img_container{
+	max-width:640px;
+	margin:0 auto;
+}
+.img_2_box {
+	padding: 10px;
+	padding-bottom: 0;
+}
+
+.img_2_box .img_2 {
+	padding-right: 10px;
+}
+
+.img_2_box li {
+	float: left;
+	width: 50%;
+	margin-right: 10px;
+}
+
+.img_2_box li:nth-of-type(2n) {
+	margin-right: -10px;
+}
+.img_2_box img{width: 100%;display: block;}

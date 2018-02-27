@@ -1,0 +1,38 @@
+
+<table class="table table-striped" style="font-size:14px;">
+	<th>ID</th>
+	<th>昵称</th>
+	<th>头像</th>
+	<!--<th>地区</th>-->
+	<th>会员等级</th>
+	<th>钱包</th>
+	<th>已提现</th>
+	<!--<th>红包</th>
+	<th>积分</th>
+	<th>关注时间</th>
+	<th>关注状态</th>-->
+	<th>操作</th>
+	<volist name="info" id="vv" key="kk">
+	<tr id="{$kk}" style="font-size:13px;">
+		<td>{$vv.user_id}</td>
+		<td>{$vv.nickname}</td>
+		<td><img src="{$vv.headimgurl}" width="30px"></td>
+		<!--<td>{$vv.country}.{$vv.province}.{$vv.city}</td>-->
+		<td>{$vv.agent_name}</td>
+		<td>{$vv.shop_income}</td>
+		<td>{$vv.broke}</td>
+		<!--<td>{$vv.hb_total}</td>
+		<td>{$vv.jifen}</td>
+		<td>{$vv.subscribe_time}</td>
+		<td><if condition="$vv.subscribe eq 1 ">关注<else />未关注</if></td>-->
+		<td>
+		
+		<!--<a href="{:U('users')}?type=team&user_id={$vv.user_id}"><button class="btn btn-link">团队</button></a>-->
+		<button class="btn btn-link" onclick="">查看商户</button>
+		<button class="btn btn-link" onclick="del(this,{$vv.user_id})">删除商户</button>
+		</td>
+	</tr>
+	</volist>
+</table>
+<div class="pagelist">{$page}</div>
+			

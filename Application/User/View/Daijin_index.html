@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>商城代金券</title>
+   <!--  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+	
+
+	
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+	<style>
+	.daijin-view{padding:10px;padding-top:20px;background:#fff url(__PUBLIC__/images/daijin_border.png) no-repeat;background-size:100% ;background-position:0 100%;height:150px;}
+	#money{ display:inline-block; 
+		-webkit-animation: move 1s linear 0s 1 alternate running forwards;
+	}
+	#money-view{color:#C2C2C2; 	-webkit-animation: myfirst 2s linear 1s infinite alternate;}
+	@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+from {color: #C2C2C2;}
+to {color: #fff;}
+}
+@-webkit-keyframes move /* Safari 和 Chrome */
+{
+from { -webkit-transform:rotateY(180deg);font-size:16px;}
+to { -webkit-transform:rotateY(0deg);font-size:55px;}
+}
+	</style>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();//alert('<?php echo $paysign["timeStamp"];?>');
+});
+function wait(){
+	 layer.open({
+    content: '功能即将上线'
+    ,skin: 'footer'
+  });
+}
+</script>
+</head>
+<body  style="background: #fff;margin-bottom:70px;">
+	
+	<div class="daijin-view">
+		<div style="border-top-right-radius:10px; box-shadow: -3px -5px 3px #555;width:95%;margin:0 auto;height:94%;position:relative;">
+			<div style="float:left;background:{:C('WAP_JIANBIAN_COLOR')};border-radius:10px;color:#fff;width:150px;height:65%;margin-top:5%;margin-left:2%;font-size:55px;text-align:center;" id="money-view"><span id="money">{$daijin_info.daijin_name}</span></div>
+			<div style="float:left;font-size:22px;margin-top:9%;margin-left:5%;">
+			<span>元 代 金 券</span><br/>
+			<span style="font-size:12px;color:{:C('WAP_COLOR')};">
+			<if condition="$daijin_info['daijin_rule'] eq 2 ">
+			商城消费满{$daijin_info.daijin_line}元使用
+			<else />
+			无门槛使用
+			</if>
+			</span><br/>
+			<span style="font-size:12px;color:#777;display:block;line-height:10px;">
+			剩余{$daijin_info.now_number}张
+			</span>
+			</div>
+		</div>
+	</div>
+	<div style="width:85%;margin:20px auto; box-shadow: 0 0px 3px #777;background:url(__PUBLIC__/images/daijin_person.png) no-repeat;background-position:100% 5%;background-size:30%;padding:15px 10px;font-size:14px;">
+	<p><span style="color:#777;">使用期限：</span>
+	<if condition="$daijin_info['date_switch'] eq 1 ">
+	{$daijin_info.daijin_date}前
+	<else />
+	永久有效
+	</if>
+	</p>
+	<p><span style="color:#777;">使用范围：</span>
+	<if condition="$daijin_info['daijin_rule'] eq 2 ">
+	商城消费满{$daijin_info.daijin_line}元使用
+	<else />
+	无门槛使用
+	</if>
+	</p>
+	<p><span style="color:#777;">售价：</span>{$daijin_info.daijin_fee}元</p><br />
+	<p>代金券可直接用于商城购物抵扣</p>
+	
+	</div>
+	<div style="padding:15px 6%;background:#fff;margin-top:50px;">
+	<a href="javascript:buy();" class="weui_btn weui_btn_primary buy" style="font-size:16px;background:{:C('WAP_JIANBIAN_COLOR')};">立即购买</a>
+	</div>
+	
+	
+	
+	
+</body>
+<script>
+var type = 1;
+$(document).ready(function(){
+		if('{$daijin_info.now_number}' == 0){reset_button('已售罄');type = 0;}
+		if('{$daijin_info.date_switch}' == 0 && '{$daijin_info.now_date}' == 1){reset_button('已过期，无法购买');type = 0;}
+});
+function reset_button(text){
+	$('.buy').css('background','#ccc');
+	$('.buy').text(text);
+}
+function buy(){
+	if(type == 0){exit;}
+	layer.open({
+		type: 2,shadeClose: false,content: '排队下单中'
+	});
+
+	location.href="{:U('/pay/pay/daijin')}?daijin_id={$daijin_info.daijin_id}";exit;
+	
+}
+
+
+/*
+function a(str){
+	$('.qiandao').stop().animate({top:str+'%'},6000,'linear',function (){
+	//var str = parseInt(40*Math.random());
+	a(10);
+});
+}
+function qiandao(){
+	layer.open({
+		type: 2,shadeClose: false,content: '全力冲刺中'
+	});
+	$.ajax({
+		type:'post',
+		url:"{:U('qiandao')}",
+		dataType:'json',
+		data:{},
+		success:function(json){
+				if(json.success == 1){
+					over(json.error);
+					$('#add-jifen').text({$user_info.jifen}*1+json.jifen*1);
+					$('#now-jifen').animate({'margin-top':'-30px'},1500);
+					$('.qiandao').html('<span class="icon iconfont" id="shou" style="font-size:32px;">&#xe61a;</span><br/><span>已签到</span>');
+				}else{
+					over(json.error);
+				}
+		},
+		error:function(){
+			over('请求失败，可能是网络原因，稍后再试');
+		}
+	});
+}
+function over(text){
+	layer.closeAll();
+	layer.open({
+		content: text
+		,skin: 'msg'
+		,time: 3 //2秒后自动关闭
+	});
+}
+*/
+</script>
+</html>

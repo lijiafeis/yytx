@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>我的收藏</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+	<div class="app_container">
+		<header>
+			<div class="fixed header_inner">
+				<div class="head">				
+					<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+					<span>我的收藏</span>				
+					<div class="clear"></div>				
+				</div>
+			</div>
+		</header>
+		<div class="goods_wrap">
+			<div class="goods_list">
+				<volist name="data" id = "vv">
+				<a href="{:U('Shop/goodXiangqing')}?good_id={$vv.good_id}">
+					<img class="goods_img" src="{$vv.pic_url}"/>
+					<div class="goods_name">
+						{$vv.good_name}
+					</div>
+					<div class="stock">库存:{$vv.number}件</div>
+					<div>
+						<div class="price f_left">￥{$vv.good_chengben}</div>
+						<div class="del f_right" onclick="delCollect({$vv.id})"><img src="__PUBLIC__/home1/img/images/delete.png"/></div>
+						<div class="clear"></div>
+					</div>
+				</a>
+				</volist>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	function delCollect(collect_id){
+//        layer.confirm('确认删除吗?', {
+//            btn: ['确认','取消'] //按钮
+//        }, function(){
+            $.ajax({
+                type:"post",
+                url:"{:U('delCollect')}",
+                dataType:"json",
+                data:{
+                    good_id:collect_id,
+                },
+                success:function (data) {
+                    if(data == 0){
+                        layer.msg('删除成功');
+                        history.go(0);
+                    }else{
+                        layer.msg('删除失败');
+                    }
+                }
+            });
+
+//        }, function(){
+//
+//        });
+	}
+
+</script>
+</html>

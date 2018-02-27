@@ -1,0 +1,89 @@
+﻿ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>系统管理后台</title>
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/Chart.min.js"></script>
+</head>
+<body>
+<style>
+.view{padding:30px 0;background:#13cbae5;margin:10px 20px;color:#fff;text-align:center;}
+.view:hover{background:#133afd9;}
+.number{font-size:30px;}
+</style>
+<div class="well">
+	<div class="col-sm-12 alert-success" style="font-size:16px;padding:10px 20px;margin-bottom:10px;">平台营收</div>
+	<div class="col-sm-3">
+		<div class="view" style="background:#428bca">
+			<div class="inner">
+			￥<em class="number">{$shop_all_fee}</em><div class="title">总营业额</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="view" style="background:#5cb85c">
+			<div class="inner">
+			<em class="number">{$zonge.a}</em><div class="title">当天营业额</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-3">
+		<div class="view" style="background:#f0ad4e">
+			<div class="inner">
+			￥<em class="number">{$user_all_broke}</em><div class="title">当天订单数</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+	<div class="col-sm-3">
+		<div class="view" style="background:#428bca">
+			<div class="inner">
+			￥<em class="number">{$user_all_tixian}</em><div class="title">总订单数</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-3">
+		<div class="view" style="background:#428bca">
+			<div class="inner">
+				￥<em class="number">{$tixian}</em><div class="title">总提现额</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-3">
+		<div class="view" style="background:#428bca">
+			<div class="inner">
+				￥<em class="number">{$currentTx}</em><div class="title">当天提现额</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-3">
+		<div class="view" style="background:#428bca">
+			<div class="inner">
+				￥<em class="number">{$qb_money}</em><div class="title">钱包余额</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-3">
+		<div class="view" style="background:#428bca">
+			<div class="inner">
+				￥<em class="number">{$xinjinmoney}</em><div class="title">当天新进钱包余额</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+</body></html>

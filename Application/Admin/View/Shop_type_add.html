@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link href="__PUBLIC__/admin/css/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>商城管理--属性管理</div>
+	<div class="main-content">
+<style>
+.table tr td{font-size:12px;vertical-align:middle;}
+</style>
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">产品类型编辑</a></li>
+	<li role="presentation"><a href="javascript:void(0);" onclick="history.go(-1);">返回上一页</a></li>		
+  </ul>
+  
+  <!-- Tab panes -->
+  <!-- 模板编号	模板名	回复内容	头部颜色	文字颜色	状态	模板ID -->
+  <div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="home">
+		<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+			产品类型名称自定义
+		</div>
+		<div class="well">
+			<form action="__SELF__" method="post" onsubmit="return check();">
+			  <div class="form-group">
+				<label for="exampleInputEmail1">属性组名称</label>
+				<input type="text" class="form-control" name="type_name" value="{$info.type_name}" id="type_name" placeholder="给属性组一个命名">
+			  </div>
+			 
+			  <br/><br/>
+			  <input type="hidden" name="id" value="{$info.type_id}">
+			  <button type="submit"  class="btn btn-default" style="width:80px;">保存</button>
+			</form>
+			
+		</div>
+		
+		
+	</div>
+	<div role="tabpanel" class="tab-pane active" id="admin">
+	</div>
+  </div>
+</div>
+		
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script src="__PUBLIC__/admin/js/jquery.minicolors.min.js" type="text/javascript"></script>
+<script>
+	$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+function check(){
+	var type_name = $('#type_name').val();if(type_name == ''){layer.msg('名称不能为空');return false;}
+}
+
+</script>

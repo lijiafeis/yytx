@@ -1,0 +1,70 @@
+.weui-cell {
+	padding: 15px;
+}
+
+.weui-cell_link {
+	color: #111111;
+}
+
+.weui-cell_access .weui-cell__ft:after {
+	content: " ";
+	display: inline-block;
+	height: 8px;
+	width: 8px;
+	border-width: 1px 1px 0 0;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-color: #C8C8CD;
+	border-style: solid;
+	-webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+	transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+	position: relative;
+	top: -2px;
+	position: absolute;
+	top: 50%;
+	margin-top: -4px;
+	right: 2px;
+}
+
+.weui-cell:before {
+	border-top: 0;
+}
+
+.weui-panel__ft a {
+	border-bottom: 1px #f0f0f0 solid;
+	background: #fff;
+}
+.weui-cell__bd{font-size: 15px;}
+.weui-cell_access:active{background: #fff}
+.weui-cells_checkbox .weui-cell:active{background: rgba(0,0,0,0);}
+.weui-cells_radio .weui-cell:active{background: rgba(0,0,0,0);}
+.weui-cells_checkbox .weui-check:checked + .weui-icon-checked:before{color: #10AEFF;}
+.weui-cells_radio .weui-check:checked + .weui-icon-checked:before {
+	display: block;
+	content: '';
+	background: #09BB07;
+	font-size: 16px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+
+.weui-cells_checkbox .weui-icon-checked:before {
+	content: '\EA06';
+	color: #C9C9C9;
+	font-size: 23px;
+	display: block;
+}
+
+.weui-cells_checkbox .weui-check:checked + .weui-icon-checked:before {
+	color: #F54342;
+}
+
+.weui-cells_checkbox .weui-cell:active {
+	background: rgba(0,0,0,0);
+}
+.weui-cells:before{border-top: 0;}
+.weui-cells:after{border-bottom: 0;}
+.weui-cell:before{border-top: 0;}

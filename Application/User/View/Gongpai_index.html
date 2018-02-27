@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>公排控制面板</title>
+   <!--  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/iconfont/0727/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+
+	
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	<style>
+	.group-header{background:#ff6666;width:100%;padding-bottom:2px;padding-top:10px;text-align:center;
+				background:-webkit-gradient(linear, 0% 0%, 100% 100%, from({:C('WAP_COLOR')}), to({:C('WAP_JIANBIAN_COLOR')}));}
+	.group-header .group{width:33.3%;color:#fff;text-align:center;padding:20px 0 0 0;font-size:14px;}
+	.group-header .weui_cell_bd span{font-size:1px;color:#fff}
+	.weui_cell{font-size:12px;}
+	.weui_cell:focus{background:#efedf1}
+	.weui_navbar_item{font-size:12px;}
+	
+	</style>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();//alert('<?php echo $paysign["timeStamp"];?>');
+});
+function ganen(){
+	$('#index').css('display','none');
+	$('#ganen').css('display','block');
+}
+function dianwei(){
+	$('#index').css('display','block');
+	$('#ganen').css('display','none');
+}
+function jifen_enter(){
+	//layer.open({content: '暂未开放',skin: 'footer',time: 3});exit;
+	 layer.open({
+		content: '这将会消耗您账户的{$gongpai_info.jifen_fee}积分用来创造点位<br/>继续吗？'
+		,shadeClose: false,btn: ['继续', '取消']
+		,skin: 'footer'
+		,style: 'background:rgba(255,255,255,0.8)'
+		,yes: function(index){
+		  layer.closeAll();layer.open({type:2, shadeClose: false,content: '正在请求'});
+		  send_jifen_enter();
+		}
+	  });
+}
+function send_jifen_enter(){
+	$.ajax({
+		type:'post',
+		url:"{:U('/user/jifen/enter_gongpai')}",
+		dataType:'json',
+		data:{},
+		success:function(data){
+			layer.closeAll();
+			if(data.success == 1){layer.open({content: data.error_info,skin: 'footer',time:3});location.reload();}else{layer.open({content: data.error_info,skin: 'msg',time:4});}
+			
+		},
+		error:function(){
+			layer.closeAll();layer.open({content: '通信发生故障！重新打开试试',skin: 'footer'});
+		}
+	});
+}
+</script>
+</head>
+<body  style="background: #efedf1;margin-bottom:70px;">
+	<div class="group-header">
+		
+		<!-- <div class="icon iconfont" style="font-size:55px;color:#fffff0;line-height:60px;">&#xe604;</div> -->
+		<div><img src="__PUBLIC__/images/gongpai-top.png" width="100%"></div>
+		<div style="white-space: nowrap;text-overflow:ellipsis;overflow:hidden;font-size:14px;color:#fff;line-height:50px;"><span>{$user_info.nickname}，欢迎您参与活动</span></div>
+		
+		
+		<div class="weui_tab">
+			<div class="weui_navbar" style="font-size:12px;">
+				<div class="weui_navbar_item">
+					<p class="icon iconfont" style="font-size:25px;line-height:30px;color:{:C('WAP_COLOR')};">&#xe6e1;</p>{$hb_total}元
+				</div>
+				<div class="weui_navbar_item" onclick="dianwei()">
+					<p class="icon iconfont" style="font-size:18px;line-height:30px;color:{:C('WAP_COLOR')};"><?php echo $count;?></p>点位数量
+				</div>
+				<div class="weui_navbar_item">
+					<p class="icon iconfont" style="font-size:18px;line-height:30px;color:{:C('WAP_COLOR')};">{$chuju_num}</p>出局次数
+				</div>
+				<if condition="$gongpai_info['ganen_switch'] eq 1">
+				<div class="weui_navbar_item" onclick="ganen()">
+					<p class="icon iconfont" style="font-size:22px;line-height:30px;color:{:C('WAP_COLOR')};">&#xe6a8;</p>感恩奖
+				</div>
+				</if>
+				<if condition="$gongpai_info['jifen_switch'] eq 1">
+				<div class="weui_navbar_item" onclick="jifen_enter()">
+					<p class="icon iconfont" style="font-size:25px;line-height:30px;color:{:C('WAP_COLOR')};">&#xe690;</p>积分入口
+				</div>
+				</if>
+			</div>
+			<div class="weui_tab_bd">
+ 
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="weui_panel" style="margin:15px 0;">
+		<div  id="index">
+        <div class="weui_panel_hd">点位列表</div>
+        <div class="weui_panel_bd">
+            <div class="weui_media_box weui_media_small_appmsg">
+                <div class="weui_cells weui_cells_access index_list">
+					<volist name="dianwei_info" id="vv">
+                    <a class="weui_cell" href="{:U('kawei')}?dianwei_id={$vv.dianwei_id}">
+                        <div class="weui_cell_hd"><i class="icon iconfont">&#xe685;</i></div>
+                        <div class="weui_cell_bd weui_cell_primary">
+                            <p>卡位ID「{$vv.dianwei_id}」
+							<if condition="$vv['type'] eq 0 ">
+							<button  style="background:#cc0000;border:1px solid #cc0000;color:#fff;border-radius:5px;font-size:10px;padding:2px;margin-left:10px;">进行中</button>
+							<else />
+							<button  style="background:#5cb85c;border:1px solid #5cb85c;color:#fff;border-radius:5px;font-size:10px;padding:2px;margin-left:10px;">已出局</button>
+							</if>
+							
+							</p>
+                        </div>
+                        <span class="weui_cell_ft">查看详情</span>
+                    </a>
+                   </volist>
+				   
+                </div>
+				
+				<div id="list" onclick="getpage()"  style="line-height:50px;width:100%;border-top:1px solid #ccc;font-size:14px;text-align:center;"><i class="icon iconfont">&#xe6e0;</i>加载更多</div>
+				   
+            </div>
+        </div>
+        </div>
+		<div  id="ganen" style="display:none;">
+        <div class="weui_panel_hd">感恩奖列表</div>
+        <div class="weui_panel_bd">
+			<div class="weui_panel_bd">
+				<div class="weui_media_box weui_media_small_appmsg">
+					<div class="weui_cells hongbao_list">
+						
+					</div>
+					
+					<div id="list1" onclick="getpage1()"  style="line-height:50px;width:100%;border-top:1px solid #ccc;font-size:14px;text-align:center;"><i class="icon iconfont">&#xe6e0;</i>加载更多</div>
+					
+					   
+				</div>
+			</div>
+			
+			
+        </div>
+        </div>
+        </div>
+    </div>
+	
+	
+		
+	
+	
+	
+	
+	
+	
+</body>
+<script>
+var p = 2;
+function getpage(){
+	$('#list').html('<div style="text-align:center;margin:0 auto;width:15%;margin-top:30px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$.get("{:U('dianwei_list')}?p="+p,function(data,status){
+      //alert("数据: " + data + "\n状态: " + status);
+	  if(data == ''){
+		$('#list').html('<i class="icon iconfont">&#xe621;</i> 没有更多了…');
+	  }else{
+		  $('#list').html('<i class="icon iconfont">&#xe6e0;</i>加载更多');
+		  $('.index_list').append(data);
+		  p++;
+	  }
+	  
+	  
+    });
+}
+
+var pp = 1;
+getpage1(pp);
+function getpage1(){
+	$('#list1').html('<div style="text-align:center;margin:0 auto;width:15%;margin-top:30px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$.get("{:U('ganen_list')}?p="+pp,function(data,status){
+      //alert("数据: " + data + "\n状态: " + status);
+	  if(data == ''){
+		$('#list1').html('<i class="icon iconfont">&#xe621;</i> 没有更多了…');
+	  }else{
+		  $('#list1').html('<i class="icon iconfont">&#xe6e0;</i>加载更多');
+		  $('.hongbao_list').append(data);
+		  pp++;
+	  }
+	  
+	  
+    });
+}
+function send(obj,id){
+		loading("正在请求");
+		$.ajax({
+			type: "POST",
+			url: "{:U('send_hongbao')}",
+			dataType: "json",
+			data: {"id":id},
+			success: function(json){
+				if(json.success==1){
+					dialog2("红包发放成功！");send_over(obj);
+				}else{
+					 dialog2(json.err_info);loadingclose();	
+				}
+			},
+			error:function(){
+				 dialog2("网络出现异常！请稍后再试");loadingclose();
+			}
+		});	
+	}
+function send_over(obj){
+		$(obj).css("color","#999");
+		$(obj).css("border","1px solid #999");
+		$(obj).attr("onclick","");
+		$(obj).text("已领取");
+		loadingclose();
+	}
+
+</script>
+</html>

@@ -1,0 +1,98 @@
+.apply-wrap .input-box {
+	padding: 30px 20px 0;
+	box-sizing: border-box;
+}
+
+.apply-wrap .tel {
+	padding-top: 15px;
+}
+
+.apply-wrap .name {
+	background: rgba(0,0,0,0);
+}
+
+.apply-wrap .input-box .input-wrap {
+	border: 1px #ccc solid;
+	display: table;
+	box-sizing: border-box;
+}
+
+.apply-wrap .input-box .input-wrap .input-wrap-addon {
+	border: 0;
+	outline: none;
+	width: 1%;
+	white-space: nowrap;
+	display: table-cell;
+	padding: 6px 12px;
+	box-sizing: border-box;
+}
+
+.apply-wrap .yzm {
+	background: #ff6363;
+	color: #fff;
+	font-size: 12px;
+}
+
+.apply-wrap .input-box .input-wrap input {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-family: "Microsoft YaHei";
+	outline: none;
+	border: 0;
+	box-sizing: border-box;
+}
+
+.apply-wrap .apply-btn {
+	padding: 8px 20px;
+	background: #ff6363;
+	color: #fff;
+	border-radius: 4px;
+	display: block;
+	margin: 30px 20px;
+	text-align: center;
+}
+
+.apply-wrap .up_wrap {
+	position: relative;
+	padding-left: 15px;
+	background: #fff;
+	padding: 30px 20px 0;
+}
+
+.apply-wrap .up_file {
+	width: 70px;
+	height: 70px;
+	position: absolute;
+	top: 30px;
+	left: 15px;
+	z-index: 0;
+	opacity: 0;
+}
+
+.apply-wrap .up_bg {
+	background: #f2f2f2;
+	width: 70px;
+	height: 70px;
+	z-index: 1;
+	text-align: center;
+}
+
+.apply-wrap .up_bg .txt {
+	color: #a8a8a8;
+	font-size: 12px;
+}
+
+.apply-wrap .up_bg img {
+	width: 25px;
+	height: 25px;
+	margin-top: 13px;
+}		

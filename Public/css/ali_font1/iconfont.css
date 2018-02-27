@@ -1,0 +1,62 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1469104996'); /* IE9*/
+  src: url('iconfont.eot?t=1469104996#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1469104996') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1469104996') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1469104996#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-text:before { content: "\e791"; }
+.icon-copy:before { content: "\e706"; }
+.icon-pay:before { content: "\e673"; }
+.icon-send:before { content: "\e675"; }
+.icon-deliver:before { content: "\e671"; }
+.icon-evaluate:before { content: "\e672"; }
+.icon-settings:before { content: "\e68a"; }
+.icon-qrcode:before { content: "\e6b0"; }
+.icon-home:before { content: "\e6b8"; }
+.icon-homefill:before { content: "\e6bb"; }
+.icon-cartfill:before { content: "\e6b9"; }
+.icon-cart:before { content: "\e6af"; }
+.icon-message:before { content: "\e6bc"; }
+.icon-friendadd:before { content: "\e6ca"; }
+.icon-friendaddfill:before { content: "\e6c9"; }
+.icon-location:before { content: "\e651"; }
+.icon-locationfill:before { content: "\e650"; }
+.icon-edit:before { content: "\e649"; }
+.icon-sortlight:before { content: "\e7ad"; }
+.icon-my:before { content: "\e78b"; }
+.icon-myfill:before { content: "\e78c"; }
+.icon-tag:before { content: "\e752"; }
+.icon-tagfill:before { content: "\e751"; }
+.icon-recharge:before { content: "\e6ed"; }
+.icon-rechargefill:before { content: "\e6ec"; }
+.icon-voice:before { content: "\e6ef"; }
+.icon-voicefill:before { content: "\e6f0"; }
+.icon-sort:before { content: "\e700"; }
+.icon-my1:before { content: "\e686"; }
+.icon-myfill1:before { content: "\e685"; }
+.icon-presentfill:before { content: "\e732"; }
+.icon-backwardfill:before { content: "\e74d"; }
+.icon-forwardfill:before { content: "\e74e"; }
+.icon-stop:before { content: "\e750"; }
+.icon-write:before { content: "\e761"; }
+.icon-writefill:before { content: "\e760"; }
+.icon-forward:before { content: "\e6eb"; }
+.icon-forwardfill1:before { content: "\e6ea"; }
+.icon-share:before { content: "\e6f3"; }
+.icon-countdown:before { content: "\e708"; }
+.icon-countdownfill:before { content: "\e707"; }
+.icon-cameraadd:before { content: "\e724"; }
+.icon-check:before { content: "\e645"; }
+.icon-close:before { content: "\e646"; }
+.icon-roundcheckfill:before { content: "\e656"; }

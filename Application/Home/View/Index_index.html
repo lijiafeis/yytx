@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+	<style>
+	.app_container{background:#f8f8f8;}
+		.notice{position:fixed;width:100%;z-index:99999;
+		left:0;right:0;top:0.81rem;max-width:640px;margin:auto;
+		}
+		
+		.notice .gg{line-height:30px;height:30px;background:rgba(255,149,29,.6);
+		float:left;height:30px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;color: #fff;width:100%;}
+		#notice p{overflow:hidden;width:100%;white-space: nowrap;text-overflow:ellipsis;color:#fff;margin-left:10px;}
+		.goods_list{display: flex;position: relative;padding: 10px;background: #fff;border-bottom:1px #eee solid;font-size: .3rem;}
+		.goods_list .goods_img{margin-right: 10px;}
+		.goods_list .goods_img img{width: 100px;height: 100px;display: block;}
+		.goods_list .goods_infor{flex: 2;}
+		.spec{margin-top:25px;color:#999;font-size:.25rem;}
+		.goods_infor .goods_price{position: absolute;bottom:10px;color: red;font-size: .27rem;}
+		.gobuy{flex:1;margin-top:35px;color:red;width:60px;height:30px;line-height:30px;font-size:.26rem;border:1px red solid;text-align:center;border-radius:4px;}
+	</style>
+</head>
+<body>
+
+<div class="app_container">
+	<if condition="$Think.session.agent_token eq OZfBaUKX">
+		<header>
+			<div class="fixed header_inner">
+				<div class="head">
+					<span>首页</span>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</header>
+
+		<div class="notice">
+			<div class="gg">
+				<div id="notice">
+					<volist name="new_name" id="vv">
+						<p style="text-align:center;"> 恭喜{$vv}成功购买茅台䣽酒
+						</p>
+					</volist>
+				</div>
+			</div>
+		</div>
+		<!--<marquee bgcolor="orange" direction="left" scrollamount="8" height="23px">贵州茅台集团-茅台䣽酒河南品鉴会于10月21日下午在河南饭店隆重召开!</marquee>-->
+		<else/>
+		<div class="notice" style="position:fixed;width:100%;z-index:99999;
+		left:0;right:0;top:0rem;max-width:640px;margin:auto;">
+			<div class="gg">
+				<div id="notice">
+					<volist name="new_name" id="vv">
+						<p> 恭喜{$vv}成功购买茅台䣽酒
+						</p>
+					</volist>
+				</div>
+			</div>
+		</div>
+		<!--<marquee bgcolor="orange" direction="left" scrollamount="5" height="23px">贵州茅台集团-茅台䣽酒河南品鉴会于10月21日下午在河南饭店隆重召开!</marquee>-->
+	</if>
+
+	<div style="padding-bottom: .91rem;">
+		<img src="__PUBLIC__/yytxbg.png" style="width: 100%;display: block;"/>
+		<volist name="data" id="vv">
+		<a class="goods_list" href="{:U('Home/Shop/goodXiangqing')}?good_id={$vv.good_id}">
+			<div class="goods_img"><img src="{$vv.pic_url}"/></div>
+			<div class="goods_infor">
+				<p class="goods_name">{$vv.good_name}</p>
+				<if condition="$vv.good_id eq 1">
+					<div class="spec">规格：两瓶</div>
+					<elseif condition="$vv.good_id eq 2"/>
+					<div class="spec">规格：两瓶</div>
+					<elseif condition="$vv.good_id eq 3"/>
+					<div class="spec">规格：一箱</div>
+				</if>
+				<span class="goods_price">￥{$vv.good_chengben}</span>
+			</div>
+			<div class="gobuy">立即购买</div>
+		</a>
+	</volist>
+	</div>
+	
+
+	<footer class="fixed">
+		<a href="" class="foot-active">
+			<img src="__PUBLIC__/home1/user-img/foot-img/mt-2.png"/>
+			<div>茅台䣽酒</div>
+		</a>
+		<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+			<div>茅台文化</div>
+		</a>
+		<a href="{:U('Goods/index')}?agent_id={$Think.get.agent_id}">
+			<img src="__PUBLIC__/home1/user-img/foot-img/shop-1.png"/>
+			<div>商城</div>
+		</a>
+		<a href="{:U('User/index')}?agent_id={$Think.get.agent_id}" >
+			<img src="__PUBLIC__/home1/user-img/foot-img/user-1.png"/>
+			<div>个人中心</div>
+		</a>
+		<div class="clear"></div>
+	</footer>
+</div>
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script>
+    
+	 function show(){
+	     location.href = "{:U('Home/Shop/index')}";
+//		$(".buy_box").addClass('box_toggle');
+//		$(".mask").fadeIn(200);
+	}
+
+	
+	
+	
+	
+	
+</script>
+<script>
+    $(function(){
+        setTimeout(function(){notice_move(30);},10000)
+
+    })
+
+    function notice_move(nw_height){
+        var nt_height = $('#notice').height()
+        if(nt_height <= nw_height){
+            $('#notice').css({'margin-top':'30px'})
+            nw_height = 0
+        }
+        $('#notice').animate({'margin-top':'-'+nw_height+'px'})
+        setTimeout(function(){
+            nw_height = nw_height + 30
+            notice_move(nw_height)
+        },2500)
+    }
+</script>
+</html>

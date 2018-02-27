@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<meta content="telephone=no" name="format-detection">
+    <title>分红明细</title>
+   <!--  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/css/new_web.css">
+	<link rel="stylesheet" href="__PUBLIC__/iconfont/0727/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font1/iconfont.css">
+
+	
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css"/>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="__PUBLIC__/js/base.js"></script>
+	<style>
+			.wrap{
+				color: #666;
+				min-width: 320px;
+				max-width: 640px;
+				margin: 0 auto;
+				font-family: 100% Microsoft Yahei,微软雅黑, Tahoma, Verdana, Arial, Helvetica, sans-serif;
+			}
+			.top_wrap{
+				max-width: 640px;
+				min-width: 320px;
+				width: 100%;
+				position: fixed;
+				top: 0;
+				background: #fff;
+				color: #666;
+				/*padding: 10px 0;*/
+				text-align: center;
+				/*border-bottom: 1px #e5e5e5 solid;*/
+				font-size:14px;
+			}
+			.tit{
+				text-align: center;
+				padding: 10px 0;
+				border-bottom: 1px #ccc solid;
+				border-top: 1px #ccc solid;
+			}
+			table{
+				border-collapse: collapse;
+				width: 100%;
+				text-align: center;
+				border: 1px #ccc solid;
+			}
+			th{
+				font-size: 12px;
+			}
+			th ,td{
+				border: 1px #ccc solid;
+				padding: 10px 0;
+				font-size: 12px;
+			}	
+			body{
+				background: #f8f8f8;
+			}	
+	.group-header{background:#ff6666;width:100%;padding-bottom:2px;padding-top:10px;text-align:center;
+				background:-webkit-gradient(linear, 0% 0%, 100% 100%, from({:C('WAP_COLOR')}), to({:C('WAP_JIANBIAN_COLOR')}));}
+	.group-header .group{width:33.3%;color:#fff;text-align:center;padding:20px 0 0 0;font-size:14px;}
+	.group-header .weui_cell_bd span{font-size:14px;color:#fff}
+	.weui_cell{font-size:14px;}
+	.weui_cell:focus{background:#efedf1}
+	</style>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				// 所有要调用的 API 都要加到这个列表中
+				'checkJsApi',
+				'addCard',
+				'chooseCard',
+				'openCard',
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'closeWindow',
+				'hideOptionMenu',
+				'hideAllNonBaseMenuItem',
+				'menuItem:profile'
+			  ]
+		});
+wx.ready(function(){
+	wx.hideAllNonBaseMenuItem();//alert('<?php echo $paysign["timeStamp"];?>');
+});
+$(document).ready(function(){
+	var str = '';
+	for(var i = 1;i <= '{$fenxiao_info.fenxiao_level}';i++){
+		str = str + '<option value="'+i+'">第'+i+'层</option>';
+	}
+	$('#level').html(str);
+	 getpage(1);
+	
+	$('#level').bind('change',function(){
+		var value = $(this).val();
+		getpage(value);//alert($(this).val());
+	});
+});
+
+var p = 2;
+function getpage(value){
+	$('#list').html('<div style="text-align:center;margin:0 auto;width:15%;margin-top:30px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$('#list').load("{:U('team_ajax')}?p="+value,function(data,status){
+      
+    });
+}
+</script>
+</head>
+
+<body  style="">
+	<div class="top_wrap" style="z-index: 3;">		
+		<header id="header" class="" style="height:40px;font-size:16px;text-align:center;line-height:40px;color:#666;background:#fff;border-bottom:1px solid #e8e8e8;">
+		 分红明细
+		 <i class="icon iconfont" style="float:left;margin-left:10px;font-size:22px;color:#777;" onclick="history.go(-1);">&#xe6d7;</i>
+		 <a href="{:U('/shop/wap/index')}"><i class="icon iconfont" style="float:right;margin-right:10px;font-size:22px;color:#777">&#xe6b8;</i></a>
+		</header>
+	</div>
+	
+		<div class="wrap" style="margin-top:41px;">
+			<div class="tit">
+				<h3>岗位津贴标准</h3>
+			</div>
+			<div style="padding: 10px 20px;box-shadow: -1px 2px 5px #ccc;">
+				<table border="" cellspacing="" class="table1">
+					<tr style="background: {:C('WAP_COLOR')};color:#fff;">
+						<th style="width: 30%;">级别</th>
+						<th style="width: 40%;">直推数</th>
+						<th style="width: 30%;">团队业绩</th>
+					</tr>
+					<tr>
+						<td style="width: 30%;">业务员</td>
+						<td style="width: 40%;">5</td>
+						<td style="width: 30%;">6000</td>						
+					</tr>
+					<tr>
+						<td style="width: 30%;">经理</td>
+						<td style="width: 40%;">10</td>
+						<td style="width: 30%;">12000</td>						
+					</tr>
+					<tr>
+						<td style="width: 30%;">总监</td>
+						<td style="width: 40%;">15</td>
+						<td style="width: 30%;">18000</td>						
+					</tr>
+					<tr>
+						<td style="width: 30%;">董事长</td>
+						<td style="width: 40%;">20</td>
+						<td style="width: 30%;">24000</td>						
+					</tr>
+				</table>				
+			</div>
+			<php>
+			$user_id = session('xigua_user_id');
+			$zhitui_num = M('users') -> where("pid = '$user_id'") -> count();
+			
+			$week = date("w",time());
+			if($week <= 3){
+				$start = mktime(0,0,0,date('m'),date('d')-date('w')+1-5,date('Y'));
+				$end = mktime(0,0,0,date("m"),date("d")-date("w")+3,date("Y"));
+			}else{
+				$start = mktime(0,0,0,date("m"),date("d")-date("w")+3,date("Y"));
+				$end = mktime(0,0,0,date("m"),date("d")-date("w")+10,date("Y"));
+			}
+			
+			$start_date = date("Y-m-d H:i:s",$start);
+			$end_date = date("Y-m-d H:i:s",$end);
+			//echo date("Y-m-d H:i:s",$start);
+			//echo date("Y-m-d H:i:s",$end);
+			
+			$xigua_users = D('Xigua/users');$sale_fee = 0;$shop_order = M('shop_order');
+			for($i=1;$i<=9;$i++){
+				$arr = $xigua_users -> get_team_level($user_id,$i);
+				if($arr == null){break;}else{
+					foreach($arr as $val){
+						if($val['agent'] > 0){
+							$fee = $shop_order -> where("user_id = '$val[user_id]' and is_true = 1 and pay_time >= '$start' and pay_time < '$end' ") -> sum('total_fee');
+							$sale_fee = $sale_fee*1 + $fee*1;
+						}
+					}
+					
+				}
+			}
+			$fenhong_fee = F('fenhong_fee','',DATA_ROOT);
+			</php>
+			<div class="tit">
+				<h3>本周预计岗位津贴</h3>
+			</div>
+			<div style="padding: 10px 20px;box-shadow: -1px 2px 5px #ccc;">
+				<table border="" cellspacing="" cellpadding="" class="table2">					
+					<tr>
+						<td style="width: 25%;">岗位津贴:</td>
+						<td style="width: 35%;">{$fenhong_fee}</td>
+						
+					</tr>
+				</table>
+			</div>
+			<div class="tit">
+				<h3>我的业绩</h3>
+			</div>
+			<div style="padding: 10px 20px;border-bottom: 1px #ccc solid;box-shadow: -1px 2px 5px #ccc;">
+				<table border="" cellspacing="" cellpadding="">
+					<tr style="background: {:C('WAP_COLOR')};color:#fff;">
+						<th>推广人数</th>
+						<th>团队业绩</th>
+						<th>业绩考核周期</th>
+					</tr>
+					<tr>
+						<td>{$zhitui_num}</td>
+						<td>{$sale_fee}</td>
+						<td><div style="line-height: 2;"> {$start_date}至<br /> {$end_date}</div></td>
+					</tr>
+				</table>
+				<!-- <table border="" cellspacing="" cellpadding="" style="margin-top: 20px;"> -->
+					<!-- <tr> -->
+						<!-- <td width="50%">本周期我的团队业绩</td> -->
+						<!-- <td width="50%">0</td> -->
+					<!-- </tr> -->
+					
+				<!-- </table> -->
+			</div>
+			<div style="padding:20px;line-height: 1.5;font-size: 12px;">
+				<p>说明:每周三12点系统自动统计上周三至本周三的团队业绩，完成业绩的会员享受下一个周期的分红，每日凌晨开始分红。</p>
+			</div>
+		</div>
+	
+</body>
+<script>
+
+
+</script>
+</html>

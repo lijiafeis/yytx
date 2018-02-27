@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>个人中心</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/weui-reset.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body>
+	<div class="app_container usercenter">
+		<if condition="$Think.session.agent_token eq OZfBaUKX">
+		<header >
+			<div class="fixed header_inner" >
+				<div class="head">
+					<span>个人中心</span>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</header>
+		</if>
+		<div class="app_content" style="padding-bottom:.91rem;">
+		<!--<marquee bgcolor="orange" direction="left" scrollamount="5" height="23px">由于昨天系统升级，导致用户无法购买，给大家造成不便请谅解！现系统升级已完成！</marquee>-->
+			<div class="top-infor">				
+				<div class="user-infor">
+					<span class="border"><img src="{$head_img}"/></span>
+					<span class="user-name">{$nickname}</span>
+				</div>
+			</div>
+			<div class="weui-panel__ft all-order">
+			   	<a href="" class="weui-cell weui-cell_access weui-cell_link border-bottom">
+			        <div class="weui-cell__bd">
+			            <img class="icon-img" src="__PUBLIC__/home1/user-img/order.png"/>全部订单
+			        </div>
+			        <span class="weui-cell__ft"></span>
+			    </a>    
+			</div>
+			<div class="nav-order-wrap">
+				<div class="nav">
+					<a href="{:U('Order/dfu')}?agent_id={$Think.get.agent_id}">
+						<img src="__PUBLIC__/home1/user-img/order1.png"/>
+						<div>待付款</div>
+					</a>
+					<a href="{:U('Order/dfahuo')}?agent_id={$Think.get.agent_id}">
+						<img src="__PUBLIC__/home1/user-img/order2.png"/>
+						<div>待发货</div>
+					</a>
+					<a href="{:U('Order/dsh')}?agent_id={$Think.get.agent_id}">
+						<img src="__PUBLIC__/home1/user-img/order3.png"/>
+						<div>待收货</div>
+					</a>
+					<a href="{:U('Order/ysh')}?agent_id={$Think.get.agent_id}">
+						<img src="__PUBLIC__/home1/user-img/order4.png" />
+						<div>已收货</div>
+					</a>
+					<div class="clear"></div>
+				</div>
+			</div>
+			
+			<div class="weui-panel__ft">
+			    <a href="{:U('team')}?agent_id={$Think.get.agent_id}" style="z-index:999;" class="weui-cell weui-cell_access weui-cell_link border-bottom">
+			       	<div class="weui-cell__bd">
+			       		<img class="icon-img" src="__PUBLIC__/home1/user-img/icon5.png"/>我的团队</div>
+			       	<span class="weui-cell__ft"></span>
+			    </a>    
+			</div>
+			<if condition="$flag neq 1">
+			<div class="weui-panel__ft">
+			    <a href="{:U('yongjin')}?agent_id={$Think.get.agent_id}" style="z-index:999;" class="weui-cell weui-cell_access weui-cell_link border-bottom">
+			       	<div class="weui-cell__bd">
+			       		<img class="icon-img" src="__PUBLIC__/home1/user-img/icon6.png"/>我的佣金</div>
+			       	<span class="weui-cell__ft"></span>
+			    </a>    
+			</div>
+			</if>
+			<div class="weui-panel__ft">
+			    <a href="{:U('wodeqianbao')}?agent_id={$Think.get.agent_id}" style="z-index:999;"  class="weui-cell weui-cell_access weui-cell_link border-bottom">
+			       	<div class="weui-cell__bd">
+			       		<img class="icon-img" src="__PUBLIC__/home1/user-img/icon7.png"/>我的钱包</div>
+			       	<span class="weui-cell__ft"></span>
+			    </a>
+			</div>
+
+			<!--<div class="weui-panel__ft">-->
+			    <!--<a href="{:U('/Web/Web/index')}"  style="z-index:999;" class="weui-cell weui-cell_access weui-cell_link border-bottom">-->
+			       	<!--<div class="weui-cell__bd">-->
+			       		<!--<img class="icon-img" src="__PUBLIC__/home1/user-img/icon9.png"/>公司介绍</div>-->
+			       	<!--<span class="weui-cell__ft"></span>-->
+			    <!--</a>-->
+			<!--</div>	-->
+			<div class="weui-panel__ft">
+			    <a onclick="isFlag({$user_id})"    style="z-index:999;" class="weui-cell weui-cell_access weui-cell_link border-bottom">
+			       	<div class="weui-cell__bd">
+			       		<img class="icon-img" src="__PUBLIC__/home1/user-img/icon10.png"/>推广二维码</div>
+			       	<span class="weui-cell__ft"></span>
+			    </a>    
+			</div>
+			<div class="weui-panel__ft">
+				<a href="{:U('/Web/Web/women')}?agent_id={$Think.get.agent_id}"  style="z-index:999;" class="weui-cell weui-cell_access weui-cell_link border-bottom">
+					<div class="weui-cell__bd">
+						<img class="icon-img" src="__PUBLIC__/home1/user-img/icon8.png"/>关于我们</div>
+					<span class="weui-cell__ft"></span>
+				</a>
+			</div>
+			<div class="weui-panel__ft">
+				<a href="{:U('User/guanyu')}?agent_id={$Think.get.agent_id}"  style="z-index:999;" class="weui-cell weui-cell_access weui-cell_link border-bottom">
+					<div class="weui-cell__bd">
+						<img class="icon-img" src="__PUBLIC__/home1/user-img/icon8.png"/>联系客服</div>
+					<span class="weui-cell__ft"></span>
+				</a>
+			</div>
+			<div class="bottom-bg" ><img src="__PUBLIC__/home1/user-img/bottom-bg.png" style="z-index: 1"/></div>
+		</div>
+		<footer class="fixed">						
+			<a href="{:U('Index/index')}?agent_id={$Think.get.agent_id}">
+				<img src="__PUBLIC__/home1/user-img/foot-img/mt-1.png"/>
+				<div>茅台䣽酒</div>
+			</a>
+			<a href="{:U('/Web/Web/index')}?agent_id={$Think.get.agent_id}">
+				<img src="__PUBLIC__/home1/user-img/foot-img/jj-1.png"/>
+				<div>茅台文化</div>
+			</a>
+			<a href="{:U('Goods/index')}?agent_id={$Think.get.agent_id}">
+				<img src="__PUBLIC__/home1/user-img/foot-img/shop-1.png"/>
+				<div>商城</div>
+			</a>
+			<a href="" class="foot-active">
+				<img src="__PUBLIC__/home1/user-img/foot-img/user-2.png"/>
+				<div>个人中心</div>
+			</a>					
+			<div class="clear"></div>			
+		</footer>
+		<input type="hidden" id="flag" value="{$flag}"/>
+	</div>	
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	function isFlag(user_id) {
+        val = $("#flag").val();
+        if(val == 1){
+            layer.alert('请先购买商品', {
+                skin: 'layui-layer-lan'
+                ,closeBtn: 0
+                ,anim: 4 //动画类型
+            });
+        }else{
+			location.href = "{:U('qr')}?agent_id={$Think.get.agent_id}&id=" + user_id;
+		}
+    }
+
+</script>
+</html>

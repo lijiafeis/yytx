@@ -1,0 +1,116 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+img{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #333333;
+}
+.clear{
+	clear: both;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+	overflow: hidden;
+}
+.wrap{
+	font-size: 14px;
+	color: #666;
+	min-width: 320px;
+	max-width: 640px;
+	margin: 0 auto;
+	font-family: 100% Microsoft Yahei,微软雅黑, Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+body{
+	background: #f8f8f8;
+}
+/*认证页面*/
+/*头部样式*/
+.top_wrap {
+	width: 100%;
+	position: relative;
+	top: 0;
+	background: #42A3CD;
+	color: #fff;
+	padding: 12px 0;
+	text-align: center;
+	border-bottom: 1px #f0f0f0 solid;
+}
+
+.top_wrap .left {
+	position: absolute;
+	left: 10px;
+	top: 8px;
+}
+
+.top_wrap .right {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	color: #fff;
+	font-size: 12px;
+	padding: 8px 18px;
+	background: #6DC1E5;
+	border-radius: 4px;
+}
+
+.btn_wrap {
+	padding: 10px;
+}
+
+.btn_wrap #nextBtn {
+	height: 40px;
+	background: #42A3CD;
+	text-align: center;
+	border-radius: 4px;
+	margin: 10px 0;
+	font-size: 14px;
+	line-height: 40px;
+	color: #fff;
+}
+
+.step-body {
+	margin-top: -20px;
+	border-bottom: 1px #ccc dashed;
+	background: #f0f0f0;
+	z-index: 1;
+}
+
+.step-body .step-header {
+	width: 100%;
+	padding: 0 20px 5px;
+}
+
+.des-over {
+	height: 57px;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	font-size: 12px;
+	line-height: 1.6;
+}
+
+.input-wrap {
+	padding: 10px;
+	background: #fff;
+}
+
+.input-wrap input {
+	margin-bottom: 10px;
+}
+
+.form-control {
+	height: 40px;
+}	

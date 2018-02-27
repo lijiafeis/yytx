@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<style>
+body .layui-layer{top:10%!important;}
+</style>
+<div class="container-fluid main" style="position:relative;">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>应用中心--群发消息</div>
+	<div class="main-content">
+
+		<div>
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation"><a href="#" onclick="to()" aria-controls="home" role="tab" data-toggle="tab">编辑群发</a></li>		    
+		    <li role="presentation" class="active"><a href="#home"  aria-controls="" role="tab" data-toggle="tab">群发历史</a></li>		    
+		    <li role="presentation"><a href="" onclick="yun()" aria-controls="" role="tab" data-toggle="tab">应用市场</a></li>		    
+		  </ul>
+		   <div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="home">
+				<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+					群发历史记录
+				</div>
+				<div id="list"></div>
+				
+			</div>
+			
+			</div> 
+		</div> 
+	</div> 
+
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+function to(){location.href="{:U('index')}";}
+function yun(){location.href="{:U('yingyong/index')}";}
+getpage(1);
+function getpage(p){
+	var url = "{:U('record_ajax')}?p="+p;
+	$('#list').html('<div style="text-align:center;margin:0 auto;width:60px;padding-top:60px;margin-bottom:30px;"><img src="__PUBLIC__/admin/images/loading.gif" width="100%" ></div>');
+	$('#list').load(
+		url,
+		function() {}
+	);
+}
+function link(str){
+	layer.open({
+	  type: 2,
+	  title: false,
+	  area: ['630px', '360px'],
+	  shade: 0.8,
+	  closeBtn: 0,
+	  shadeClose: true,
+	  content: str
+});
+}
+function look_pic(url){
+	layer.open({
+	  type: 1,
+	  title: false,
+	  closeBtn: 0,
+	  shadeClose: true,
+	  skin: 'yourclass',
+	   time:3000,
+	  content: '<img src="'+url+'" width="300px">',
+	 
+	});
+}
+function change_show(obj,id){
+	var type = $(obj).attr('data-type');
+	$.ajax({
+		type: "POST",
+		url: "{:U('changetype')}",
+		dataType: "json",
+		data: {id:id,type:type},
+		success: function(json){
+			if(json.success==1){
+				$(obj).removeClass('icon-check-empty');$(obj).addClass('icon-check');$(obj).attr('data-type','1');
+					
+			}else{
+				$(obj).removeClass('icon-check');$(obj).addClass('icon-check-empty');$(obj).attr('data-type','0');		
+			}
+		},
+		error:function(){
+			layer.msg("发生异常！");
+		}
+	});
+
+}
+</script>

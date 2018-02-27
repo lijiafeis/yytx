@@ -1,0 +1,22 @@
+
+				<table class="table table-striped" style="font-size:14px;">
+					<th>ID</th>
+					<th>昵称</th>
+					<th>会员等级</th>
+					<th>钱包余额</th>
+					<th>红包金额</th>
+					<th>发送时间</th>
+					<volist name="info" id="vv" key="kk">
+					<tr id="{$kk}" style="font-size:13px;">
+						<td>{$vv.user_id}</td>
+						<td>{$vv.user_info.nickname}</td>
+						<td>{$vv.user_info.agent_name}</td>
+						<td>{$vv.user_info.shop_income}</td>
+						<td style="color:Red">{$vv.hongbao_fee}</td>
+						<td>{$vv.time}</td>
+						
+					</tr>
+					</volist>
+				</table>
+				<div class="pagelist">{$page}</div>
+			

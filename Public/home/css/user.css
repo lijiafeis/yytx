@@ -1,0 +1,92 @@
+/***************个人中心********************************
+ * ************************个人中心****************
+ */
+.user_bg{background: #FFA842;color: #fff;padding:0px 10px;height:100px;}
+.user_bg .user_info{padding-top: 30px;}
+.user_bg .user_name{font-size: 16px;margin-bottom: 5px;}
+.user_header{position: absolute;left: 50%;margin-left: -25px;top: 115px;}
+.user_header img{width: 50px;height: 50px;border-radius: 50%;}
+.order_link{background: #fff;}
+.order_link .order_text ,.baibao .order_text {padding: 8px 10px;border-bottom: 1px #f0f0f0 solid;}	
+.order_link a{display: block;text-align: center;}
+.person_order{margin-top: 20px;}
+.baibao img, .order_link a img{width: 20px;height: 20px;}
+.flex_wrap{display: flex;}
+.order_link .flex_wrap{padding: 8px 0;}
+.flex{flex: 1;}
+.team_order{margin-top: 10px;margin-bottom: 10px;}
+.baibao{background: #fff;padding-bottom: 15px;}
+.baibao a{float: left;text-align: center;width: 33.33%;margin-top:12px;}
+/***************我要开店********************************
+ * ************************我要开店****************
+ */
+.kaidian .input-box{padding: 10px;box-sizing: border-box;}
+.kaidian .input-box .input-wrap{border: 1px #ccc solid;display: table;box-sizing: border-box;border-radius: 4px;padding: 5px 0;margin-bottom: 15px;}
+.kaidian .input-box .input-wrap .input-wrap-addon{border: 0;outline: none;background: rgba(0,0,0,0);width: 1%;white-space: nowrap;display: table-cell;padding: 6px 12px;box-sizing: border-box;}
+.kaidian .input-box .input-wrap input {display: block;width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;
+border: 1px solid #ccc;border-radius: 4px;font-family: "Microsoft YaHei";outline: none;border: 0;box-sizing: border-box;}
+.kaidian .input-box .input-wrap #price{color: #FFA842;text-align: right;}
+.kaidian .buy_daili{display: block;padding: 10px 30px;background: #FFA842;color: #fff;border-radius: 4px;margin: 0px 60px;text-align: center;}
+
+/***************我的卡券********************************
+ * ************************我的卡券****************
+ */
+.coupon {
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.coupon .coupon-info {
+	background: #fff;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.coupon .coupon-info .l-info {
+	float: left;
+	padding: 14px 10px;
+	box-sizing: border-box;
+}
+
+.coupon .coupon-info .l-info .l-img {
+	float: left;
+}
+
+.coupon .coupon-info .l-info .l-img img {
+	width: 40px;
+	height: 40px;
+	display: block;
+}
+
+.coupon .coupon-info .l-info .l-text {
+	float: left;
+	margin-left: 10px;
+}
+
+.coupon .coupon-info .l-info .l-date {
+	font-size: 12px;
+}
+
+.coupon .coupon-info .r-info {
+	padding-right: 10px;
+	box-sizing: border-box;
+	color: #fff;
+	float: right;
+	background: url(../img/quan_bg.png) no-repeat;
+	width: 80px;
+	height: 69px;
+	background-size: 100%;
+	border-radius: 0 4px 4px 0;
+}
+
+.coupon .coupon-info .r-info div {
+	text-align: right;
+	font-size: 16px;
+	margin-top: 6px;
+}
+
+.coupon .coupon-info .r-info p {
+	text-align: right;
+	font-size: 12px;
+}
+

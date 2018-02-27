@@ -1,0 +1,46 @@
+<!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+<link href="__PUBLIC__/Admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/base.css">
+<!--<link href="__PUBLIC__/Admin/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />-->
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>会员列表</div>
+		<div class="main-content">
+			<div>
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">列表</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="home">
+					<div id="list">
+						<table class="table table-striped"  style="font-size:14px;margin-top: 20px;">
+							<th>user_id</th>
+							<th>姓名</th>
+
+							<!--<th>操作</th>-->
+							<volist name="data" id="vv" empty="$empty">
+								<tr style="font-size:13px;">
+									<td>{$vv.user_id}</td>
+									<td>{$vv.name}</td>
+								</tr>
+							</volist>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/Admin/js/bootstrap.min.js"></script>
+
+<script src="__PUBLIC__/Admin/js/fileinput.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/js/fileinput_locale_zh.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/layer/layer.js"></script>

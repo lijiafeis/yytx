@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<link href="__PUBLIC__/admin/css/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+<div class="container-fluid main">
+	<div class="main-top"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>管理员信息</div>
+	<div class="main-content">
+<style>
+.table tr td{font-size:12px;vertical-align:middle;}
+</style>
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">管理员</a></li>
+ <li role="presentation"><a href="javascript:void(0);" onclick="history.go(-1);">返回上一页</a></li>		
+  </ul>
+  
+  <!-- Tab panes -->
+  <!-- 模板编号	模板名	回复内容	头部颜色	文字颜色	状态	模板ID -->
+  <div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="home">
+		<div class="alert alert-success" style="padding:5px 10px;margin:15px 0;line-height:30px;">
+			请先设置权限组，然后再添加管理员
+		</div>
+		<div class="well">
+			<form action="{:U('user_save')}" method="post" onsubmit="return check();">
+			  <div class="form-group">
+				<label for="exampleInputEmail1">管理员账号</label>
+				<input type="text" class="form-control" name="username" value="{$user_info.username}" id="username" placeholder="给管理员设置一个登录名" <if condition="$user_info.username neq '' ">readonly</if> >
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputEmail1">登录密码</label>
+				<input type="password" class="form-control" name="pwd1" value="" id="pwd1" placeholder="请输入密码">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputEmail1">确认密码</label>
+				<input type="password" class="form-control" name="pwd2" value="" id="pwd2" placeholder="再次输入密码">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputPassword1">选择权限组</label>
+				<select multiple class="form-control" name="group_id" id="group_id" style="font-size:16px;color:#777;">
+					<volist name="group_list" id="vv">
+				  <option value="{$vv.id}" <if condition="$group_id eq $vv['id'] ">selected</if> >{$vv.title}</option>
+				  </volist>
+				</select>
+			  </div>
+			  
+			  <br/>
+			  <input type="hidden" name="id" value="{$user_info.id}">
+			  <input type="hidden" name="old_group_id" value="{$group_id}">
+			  <button type="submit"  class="btn btn-default" style="width:80px;">保存</button>
+			</form>
+			
+		</div>
+		
+		
+	</div>
+	<div role="tabpanel" class="tab-pane active" id="admin">
+	</div>
+  </div>
+</div>
+		
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script src="__PUBLIC__/admin/js/jquery.minicolors.min.js" type="text/javascript"></script>
+<script>
+	$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+function check(){
+	var username = $('#username').val();if(username == ''){layer.msg('请输入管理员账号');return false;exit;}
+	var pwd1 = $('#pwd1').val();if(pwd1 == ''){layer.msg('请输入管理员密码');return false;exit;}
+	var pwd2 = $('#pwd2').val();if(pwd2 == ''){layer.msg('请输入确认密码');return false;exit;}
+	if(pwd1 != pwd2){layer.msg('两次密码输入不一致！');return false;exit;}
+	var group_id = $('#group_id').val();if(group_id == null){layer.msg('请选择权限组');return false;exit;}
+}
+
+</script>

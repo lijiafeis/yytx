@@ -1,0 +1,95 @@
+<style>.layui-layer{top:50px!important;}
+.content{
+	/*width: 500px;*/
+	/*color: red;*/
+	/*word-break:keep-all;!* 不换行 *!*/
+	/*white-space: nowrap;*/
+	text-overflow: ellipsis;
+	overflow: hidden;
+
+}
+</style>
+<table class="table table-striped"  style="font-size:14px;margin-top: 20px;">
+	<th style="width: 5px;">
+	<input type="checkbox" class="all_check">
+	</th>
+		<!--<th>user_id</th>-->
+		<th>姓名</th>
+		<th>电话</th>
+		<th>佣金</th>
+		<th>时间</th>
+		<th>商户</th>
+		<th>类型</th>
+		<volist name="arr" id="vv" key="kk" empty="$empty">
+			<tr id="{$kk}" style="font-size:13px;">
+				<td><input type="checkbox" class="one_check" value="{$vv.id}"></td>
+				<!--<td>{$vv.user_id}</td>-->
+				<td>{$vv.name}</td>
+				<td>{$vv.username}</td>
+				<td>{$vv.yjmoney}</td>
+				<td>{$vv.yjtime|date="Y-m-d H:i:s",###}</td>
+				<td>{$vv.wxname}</td>
+				<if condition="$vv.atype eq 0">
+					<td>推荐奖</td>
+					<elseif condition="$vv.atype eq 1"/>
+					<td>领导奖</td>
+					<elseif condition="$vv.atype eq 2"/>
+					<td>分红奖</td>
+					<elseif condition="$vv.atype eq 3"/>
+					<td>回馈奖</td>
+				</if>
+			</tr>
+		</volist>
+</table>
+<input type="hidden" name="bili" id="bili" value="{$bili}"/>
+<div class="pagelist">{$page}</div>
+<script src="__PUBLIC__/Admin/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/js/jquery.js"></script>
+<script>
+	var openid = '';
+    function chongzhijifen(money,user_id,cz_id) {
+        bili = $("#bili").val();
+        openid = layer.open({
+            type: 0,
+            skin: '', //加上边框
+            area: ['300px', '300px'], //宽高
+            content: '<div class="zzsc-container" style="margin-left: 0px;"><div class="container">' +
+			'<div class="row"><div class="col-md-6 content" ><p>按照设定的比例，需要充值的积分是'+money * bili + '</p>' +
+			'<p>你可以输入你想充值的积分</p>' +
+			'<input style="border-radius: 4px;border: 1px solid black;" onclick="setDate()" id="jifen" type="text" value="' + money * bili + '"/>' +
+			'<div class="" style="margin-top: 5px;">' +
+			'<button style="background:#44B549;" type="submit" onclick="chongzhi('+user_id+','+cz_id+')" class="btn btn-default btn-default1" >充值</button>' +
+			'</div></div></div></div></div>'
+        });
+    }
+
+    //异步请求充值积分
+    function chongzhi(user_id,cz_id) {
+        jifen = $("#jifen").val();
+		$.ajax({
+			type:'post',
+			url:"{:U('chongzhi')}",
+			dataType:'json',
+			data:{
+				jifen:jifen,
+				user_id:user_id,
+				cz_id:cz_id
+			},
+			success:function (data) {
+				if(data == 0){
+					layer.close(openid);
+
+					layer.msg('充值成功');
+					setTimeout(function () {
+                        history.go(0);
+                    },1000);
+				}else{
+				    layer.close(openid);
+				    layer.msg('充值失败');
+				}
+            }
+
+		});
+    }
+    
+</script>

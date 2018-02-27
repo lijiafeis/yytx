@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>我的订单</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home1/css/style.css"/>
+</head>
+<body style="background: #f8f8f8;">
+<div class="app_container">
+	<header>
+		<div class="fixed header_inner">
+			<div class="head">				
+				<span class="left_arrow" onclick="javascript:history.go(-1)"><img src="__PUBLIC__/home1/img/left-white.png"/></span>
+				<span>我的订单</span>				
+				<div class="clear"></div>				
+			</div>
+		</div>
+	</header>
+	
+	<div class="orders">
+
+		<volist name="data" id="v">
+		<div class="order">
+			<div class="order-top">
+				<div class="f_left">待发货</div>
+				<div class="clear"></div>
+			</div>
+			<div class="order-inner">
+				<div class="goods-img-box">
+					<img src="{$v.pic_url}"/>
+				</div>
+				<div class="order-infor">
+					<div class="goods-name over2">{$v.good_name}</div>
+					<div class="goodsinfo">
+						<div class="f_left quantity">{$v.num}件</div>
+						<div class="f_right price">￥{$v.zonge}</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="order-num">
+				订单号 : {$v.order_sn}
+			</div>
+			<div class="order-bottom">
+				
+				<a href="{:U('orderXiangQing')}?order_id={$v.id}&agent_id={$Think.get.agent_id}" class="active-border">订单详情</a>
+			</div>
+		</div>
+		</volist>
+	</div>
+</div>	
+</body>
+<script src="__PUBLIC__/home1/js/font.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/home1/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script>	
+	$(function(){	
+		$('.order-tab').click(function(){
+			$(this).addClass('order-tab-active').siblings().removeClass('order-tab-active');
+			//$('.panes>.pane:eq('+$(this).index()+')').show().siblings().hide();	
+		})
+	})
+</script>
+</html>

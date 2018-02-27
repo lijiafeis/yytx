@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="__PUBLIC__/css/cardinal.css">
+<link rel="stylesheet" href="__PUBLIC__/css/ali_font1/iconfont.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/ali_font/iconfont.css">
+<style>
+body{height:auto!important;}
+.bottom-menu{position:fixed;bottom:0;width:100%;height:60px;background:#f0f0f0;border-top:1px solid #f0f0f0;font-size:12px;}
+.bottom-nav{padding:10px 0;line-height:20px;color:#333;font-size:12px;}
+.bottom-nav .icon{font-size:20px;line-height:30px;}
+.box{background:#fff;}
+</style>
+<div class="bottom-menu">
+	<div class="grid gutter-1px mb">
+		<div class="grid-item 3/12" onclick="<if condition="$action_name eq 'index'">;<else />shop_url(this)</if>" data-url="{:U('/shop/wap/index')}">
+		<div class="box tc bottom-nav" style="padding:5px;<if condition="$action_name eq 'index'">color:{:C('WAP_COLOR')};</if>"><p class="icon iconfont">&#<if condition="$action_name eq 'index'">xe6bb<else />xe6b8</if>;</p>首页</div>
+		</div>
+		<div class="grid-item 3/12" onclick="<if condition="$action_name eq 'catelist'">;<else />shop_url(this)</if>" data-url="{:U('/shop/wap/catelist')}">
+		<div class="box tc bottom-nav" style="padding:5px;<if condition="$action_name eq 'catelist'">color:{:C('WAP_COLOR')};</if>"><p class="icon iconfont">&#<if condition="$action_name eq 'test_fenlei'">xe700<else />xe7ad</if>;</p>分类</div>
+		</div>
+		<div class="grid-item 3/12" onclick="shop_url(this)" data-url="{:U('/shop/wap/categrey')}">
+		<div class="box tc bottom-nav" style="padding:5px;"><p class="icon iconfont">&#<if condition="$action_name eq 'categrey'">xe6b9<else />xe6af</if>;</p>购物车</div>
+		</div>
+		<div class="grid-item 3/12" onclick="<if condition="$action_name eq 'user'">;<else />shop_url(this)</if>" data-url="{:U('/user/center/user')}">
+		<div class="box tc bottom-nav" style="padding:5px;<if condition="$action_name eq 'user'">color:{:C('WAP_COLOR')};</if>"><p class="icon iconfont">&#<if condition="$action_name eq 'user'">xe685<else />xe686</if>;</p>个人中心</div>
+		</div>
+    </div>
+	<div class="clear"></div>
+</div>
+
+<script src="__PUBLIC__/layer-mobile/layer.js"></script>
+<script>
+function shop_url(obj){
+	var url = $(obj).data('url');
+	$(obj).find('.box').css('background','#f0f0f0');
+	layer.open({type: 2,shadeClose: false});
+	setTimeout(function(){location.href=url;},500);
+}
+</script>

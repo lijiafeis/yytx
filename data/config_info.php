@@ -1,0 +1,1 @@
+a:1:{i:0;a:8:{s:6:"app_id";s:1:"1";s:6:"wxname";s:12:"亿赢天下";s:4:"wxid";s:5:"亿12";s:6:"weixin";s:0:"";s:5:"appid";s:18:"wx14083de221a2af94";s:9:"appsecret";s:32:"c101f61601230288220dcf25f1b4de90";s:6:"machid";s:10:"1486244082";s:4:"mkey";s:32:"qazwsxedcrfvtgbyhnujmikolpqazwsx";}}

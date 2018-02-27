@@ -1,0 +1,21 @@
+<div class="weui_panel weui_panel_access">
+	<div class="weui_panel_hd">钱包余额明细</div>
+	<volist name="info" id="vv" empty="$empty">
+	<div class="weui_panel_bd">
+	<a class="weui_panel_ft" href="javascript:void(0);">
+	{$vv.desc}[{$vv.fee}]
+	<if condition="$vv['state'] eq 0">
+	<button style="background:#cc0000;border:1px solid #cc0000;color:#fff;border-radius:5px;font-size:10px;padding:2px;margin-left:10px;">待审核</button>
+	</if>
+	</a>
+		<a href="javascript:void(0);" class="weui_media_box weui_media_appmsg" style="padding-top:5px;padding-bottom:5px;">
+			<div class="weui_media_bd">
+				<p class="" style="font-size:12px;color:#777;">
+				记录时间：{$vv.time}
+				</p>
+			</div>
+		</a>
+	</div>
+	</volist>
+</div>
+<div class="pagelist">{$page}</div>

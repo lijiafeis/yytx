@@ -1,0 +1,43 @@
+<style>.layui-layer{top:50px!important;}
+.content{
+	/*width: 500px;*/
+	/*color: red;*/
+	/*word-break:keep-all;!* 不换行 *!*/
+	/*white-space: nowrap;*/
+	text-overflow: ellipsis;
+	overflow: hidden;
+
+}
+</style>
+<table class="table table-striped"  style="font-size:14px;margin-top: 20px;">
+	<th style="width: 5px;">
+	<input type="checkbox" class="all_check">
+	</th>
+		<!--<th>user_id</th>-->
+		<th>姓名</th>
+		<th>电话</th>
+		<th>时间</th>
+		<th>金额</th>
+		<!--<th>操作</th>-->
+		<volist name="arr" id="vv" key="kk" empty="$empty">
+			<tr id="{$kk}" style="font-size:13px;">
+				<td><input type="checkbox" class="one_check" value="{$vv.id}"></td>
+				<!--<td>{$vv.uid}</td>-->
+				<td>{$vv.name}</td>
+				<td>{$vv.username}</td>
+				<td>{$vv.atime|date="Y-m-d H:i:s",###}</td>
+				<td>{$vv.sjmoney}</td>
+				<!--<td>-->
+					<!--<button type="button" onclick="del({$vv.id})" class="btn btn-warning " style = "background: #44B549">充值积分</button>-->
+					<!--&lt;!&ndash;<button type="button" class="btn btn-warning" onclick="del({$vv.id})" style = "background: #D84F4B">删除</button>&ndash;&gt;-->
+				<!--</td>-->
+			</tr>
+		</volist>
+</table>
+<input type="hidden" name="bili" id="bili" value="{$bili}"/>
+<div class="pagelist">{$page}</div>
+<script src="__PUBLIC__/Admin/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/js/jquery.js"></script>
+<script>
+
+</script>

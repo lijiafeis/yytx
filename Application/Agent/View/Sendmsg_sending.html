@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/css/base.css">
+<style>
+body {background:#F5F0F0;padding:0;}
+</style>
+
+<div class="container-fluid" style="background:#F5F0F0;padding:0;max-width:1200px;" oncontextmenu="self.event.returnValue=false" onselectstart="return false">
+	<div><img src="__PUBLIC__/admin/images/send_msg.jpg" width="100%"></div>
+	<div class="text-center" style="margin:20px 0;">
+		<img src="__PUBLIC__/admin/images/clock.png" width="200px">
+		<div style="font-size:24px;line-height:60px;" id="done">任务正在执行，请勿关闭该页面，结束前请勿再次群发消息，去喝杯咖啡吧</div>
+		<div style="font-size:20px;line-height:45px;color:red">进度：发送{$info.count}人，已发送<span id="success">{$info.success}</span>人，未发送<span id="fail">{$info.fail}</span>人</div>
+	</div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/admin/layer/layer.js"></script>
+<script>
+
+$(function(){
+	send_message(0);
+});
+
+function send_message(p){
+	if('{$id}' == ''){layer.msg('程序中断');exit;}
+	$.ajax({
+		type:'post',
+		url:"{:U('sending_ajax')}",
+		dataType:'json',
+		data:{id:'{$id}',p:p},
+		success:function(data){
+			//alert(data.success);
+			if(data.success == 1){
+				$('#success').text($('#success').text()*1+1);send_message(data.p);
+			}else if(data.success == 0){
+				$('#done').text('任务已完成~');
+				alert('任务已完成！页面即将关闭');
+				window.opener=null;window.open('','_self');window.close();
+				exit;
+			}else if(data.success == 2){
+				$('#fail').text($('#fail').text()*1+1);send_message(data.p);
+			}
+		},
+		error:function(){
+			layer.msg('发生错误！');$('#success').text($('#success').text()*1+1);
+		}
+	});
+}
+
+</script>
